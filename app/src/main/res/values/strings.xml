@@ -6,4 +6,12 @@
     <string name="total_unit">Total unit : 3958</string>
     <string name="add_room">Add New Room</string>
     <string name="add_meter">Add New Meter</string>
+    <string name="room_hint">Enter Room Name</string>
+    <string name="room_name">Room Name</string>
+    <string name="select_month">Select Starting Month</string>
+    <string name="tenant_name">Tenant Name</string>
+    <string name="tenant_hint">Enter tenant name</string>
+    <string name="advance_hint">Advance?</string>
+    <string name="amount">Advance Amount</string>
+    <string name="advance_hint2">Enter advance amount</string>
 </resources>
