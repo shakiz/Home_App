@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Home App</string>
+    <string name="no_of_rooms">Number of Rooms : 6</string>
+    <string name="total_earnings">Total Earnings : 12000</string>
+    <string name="no_of_meters">Number Of Meters</string>
+    <string name="total_unit">Total unit : 3958</string>
+</resources>
