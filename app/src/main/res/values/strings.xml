@@ -4,4 +4,6 @@
     <string name="total_earnings">Total Earnings : 12000</string>
     <string name="no_of_meters">Number Of Meters</string>
     <string name="total_unit">Total unit : 3958</string>
+    <string name="add_room">Add New Room</string>
+    <string name="add_meter">Add New Meter</string>
 </resources>

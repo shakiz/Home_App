@@ -28,6 +28,7 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.+'
     // circle image view
     implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
