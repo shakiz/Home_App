@@ -11,7 +11,6 @@
     tools:context=".activities.room.AddNewRoomActivity">
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +21,7 @@
             android:layout_height="match_parent"
             app:cardCornerRadius="12dp"
             android:elevation="4dp"
-            android:layout_margin="4dp"
+            android:layout_margin="8dp"
             android:translationZ="4dp">
 
             <LinearLayout
@@ -34,12 +33,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_marginTop="5dp"
                         android:text="@string/room_name"
                         android:textColor="@color/md_grey_900"
@@ -49,15 +49,12 @@
                         android:id="@+id/RoomName"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edittext_back"
                         android:inputType="text"
                         android:ellipsize="end"
                         android:scrollHorizontally="true"
                         android:maxLines="1"
-                        android:gravity="center"
                         android:textColorHint="@color/md_grey_700"
                         android:hint="@string/room_hint"
                         android:paddingLeft="10dp"
@@ -70,12 +67,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_marginTop="5dp"
                         android:text="@string/select_month"
                         android:textColor="@color/md_grey_900"
@@ -85,23 +84,23 @@
                         style="@style/Base.TextAppearance.AppCompat.Medium"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edittext_back"
-                        android:id="@+id/StartingMonth"></Spinner>
+                        android:id="@+id/MonthSpinner"></Spinner>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_marginTop="5dp"
                         android:text="@string/tenant_name"
                         android:textColor="@color/md_grey_900"
@@ -111,15 +110,12 @@
                         android:id="@+id/TenantName"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edittext_back"
                         android:inputType="text"
                         android:ellipsize="end"
                         android:scrollHorizontally="true"
                         android:maxLines="1"
-                        android:gravity="center"
                         android:textColorHint="@color/md_grey_700"
                         android:hint="@string/tenant_hint"
                         android:paddingLeft="10dp"
@@ -132,8 +128,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_margin="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
                     android:weightSum="2"
                     android:background="@drawable/edittext_back"
                     android:orientation="horizontal">
@@ -148,7 +145,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.80"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
                         android:textColor="@color/md_grey_900"
                         android:textSize="16sp"
@@ -158,12 +154,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_marginTop="5dp"
                         android:text="@string/amount"
                         android:textColor="@color/md_grey_900"
@@ -173,15 +171,12 @@
                         android:id="@+id/AdvanceAmount"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edittext_back"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:ellipsize="end"
                         android:scrollHorizontally="true"
                         android:maxLines="1"
-                        android:gravity="center"
                         android:textColorHint="@color/md_grey_700"
                         android:hint="@string/advance_hint2"
                         android:paddingLeft="10dp"
