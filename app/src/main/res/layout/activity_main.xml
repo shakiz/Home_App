@@ -10,11 +10,30 @@
     android:focusableInTouchMode="true"
     tools:context=".activities.MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:id="@+id/app_bar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tool_bar"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            style="@style/TextAppearance.Widget.Event.Toolbar.Title"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/md_grey_800">
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@id/app_bar">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

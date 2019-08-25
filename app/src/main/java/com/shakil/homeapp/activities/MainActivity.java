@@ -1,6 +1,7 @@
 package com.shakil.homeapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.shakil.homeapp.activities.room.AddNewRoomActivity;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView addRoom;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
+
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         addRoom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,5 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         addRoom = findViewById(R.id.mAddMasterRoom);
+        toolbar = findViewById(R.id.tool_bar);
     }
 }

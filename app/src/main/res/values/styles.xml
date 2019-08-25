@@ -26,7 +26,7 @@
     <style name="ToolBarStyle.Event" parent="ToolBarStyle">
         <item name="titleTextAppearance">@style/TextAppearance.Widget.Event.Toolbar.Title</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="TextAppearance.Widget.Event.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">

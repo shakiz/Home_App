@@ -61,7 +61,7 @@ public class AddNewRoomActivity extends AppCompatActivity {
         addRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (inputValidation.checkInput(R.id.RoomName,"Please Input Value",mainLayout) && inputValidation.checkInput(R.id.TenantName,"Please Input Value",mainLayout)){
+                if (inputValidation.checkEditTextInput(R.id.RoomName,"Please Input Value",mainLayout) && inputValidation.checkEditTextInput(R.id.TenantName,"Please Input Value",mainLayout)){
 
                 }
             }
