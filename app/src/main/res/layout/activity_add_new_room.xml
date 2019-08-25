@@ -10,10 +10,21 @@
     android:focusableInTouchMode="true"
     tools:context=".activities.room.AddNewRoomActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:id="@+id/app_bar">
+
+        <include
+            layout="@layout/toolbar"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/app_bar"
         android:id="@+id/mainLayout"
         android:orientation="vertical">
 
