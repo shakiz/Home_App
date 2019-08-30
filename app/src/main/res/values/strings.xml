@@ -14,4 +14,6 @@
     <string name="advance_hint">Advance?</string>
     <string name="amount">Advance Amount</string>
     <string name="advance_hint2">Enter advance amount</string>
+    <string name="select_meter">Select Meter</string>
+    <string name="validation">Please check your value</string>
 </resources>

@@ -19,7 +19,7 @@ import com.shakil.homeapp.activities.utils.SpinnerData;
 
 public class AddNewRoomActivity extends AppCompatActivity {
 
-    private Spinner monthSpinner;
+    private Spinner monthSpinner, meterSpinner;
     private FloatingActionButton addRoomButton;
     private EditText roomName,tenantName,advanceAmount;
     private CheckBox checkBoxAdvance;
@@ -45,12 +45,14 @@ public class AddNewRoomActivity extends AppCompatActivity {
         });
 
         spinnerAdapter.setSpinnerAdapter(monthSpinner,spinnerData.setMonthData(),this);
+        spinnerAdapter.setSpinnerAdapter(meterSpinner,spinnerData.setMeterData(),this);
 
         checkBoxAdvance.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean visibilityValue) {
                 if (visibilityValue){
                     linearLayoutAdvanceAmount.setVisibility(View.VISIBLE);
+                    inputValidation.checkEditTextInput(R.id.AdvanceAmount,"Please give amount",mainLayout);
                 }
                 else{
                     linearLayoutAdvanceAmount.setVisibility(View.GONE);
@@ -61,15 +63,14 @@ public class AddNewRoomActivity extends AppCompatActivity {
         addRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (inputValidation.checkEditTextInput(R.id.RoomName,"Please Input Value",mainLayout) && inputValidation.checkEditTextInput(R.id.TenantName,"Please Input Value",mainLayout)){
-
-                }
+                inputValidation.checkEditTextInput(new int[]{R.id.RoomName,R.id.TenantName},"Please check your data",mainLayout);
             }
         });
     }
 
     private void init() {
         monthSpinner = findViewById(R.id.MonthSpinner);
+        meterSpinner = findViewById(R.id.MeterSpinner);
         addRoomButton = findViewById(R.id.mSaveRoomMaster);
         roomName = findViewById(R.id.RoomName);
         tenantName = findViewById(R.id.TenantName);
@@ -80,7 +81,7 @@ public class AddNewRoomActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar);
         spinnerData = new SpinnerData();
         spinnerAdapter = new SpinnerAdapter();
-        inputValidation = new InputValidation();
+        inputValidation = new InputValidation(getApplicationContext());
     }
 
 
