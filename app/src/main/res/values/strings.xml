@@ -16,4 +16,8 @@
     <string name="advance_hint2">Enter advance amount</string>
     <string name="select_meter">Select Meter</string>
     <string name="validation">Please check your value</string>
+    <string name="meter_name">Meter Name</string>
+    <string name="meter_hint">Enter Meter Name</string>
+    <string name="select_room">Select Room</string>
+    <string name="select_meter_type">Select Meter Type</string>
 </resources>

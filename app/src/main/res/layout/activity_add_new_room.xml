@@ -186,7 +186,7 @@
                         android:layout_weight=".20"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:backgroundTint="@android:color/holo_red_light"
+                        android:backgroundTint="@color/md_blue_grey_400"
                         android:id="@+id/AdvanceCehckBox"/>
                     <TextView
                         android:layout_width="0dp"
@@ -249,7 +249,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"
         android:src="@drawable/ic_action_done"
-        app:backgroundTint="@color/colorRed"
+        app:backgroundTint="@color/md_blue_grey_400"
         app:fabSize="normal" />
 
 </RelativeLayout>

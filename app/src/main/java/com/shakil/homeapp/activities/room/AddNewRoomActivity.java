@@ -44,6 +44,10 @@ public class AddNewRoomActivity extends AppCompatActivity {
             }
         });
 
+        bindUIWithComponents();
+    }
+
+    private void bindUIWithComponents() {
         spinnerAdapter.setSpinnerAdapter(monthSpinner,spinnerData.setMonthData(),this);
         spinnerAdapter.setSpinnerAdapter(meterSpinner,spinnerData.setMeterData(),this);
 
@@ -81,7 +85,7 @@ public class AddNewRoomActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar);
         spinnerData = new SpinnerData();
         spinnerAdapter = new SpinnerAdapter();
-        inputValidation = new InputValidation(getApplicationContext());
+        inputValidation = new InputValidation(this);
     }
 
 
