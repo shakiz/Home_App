@@ -20,4 +20,8 @@
     <string name="meter_hint">Enter Meter Name</string>
     <string name="select_room">Select Room</string>
     <string name="select_meter_type">Select Meter Type</string>
+    <string name="no_data_message">No Data</string>
+    <string name="meter_owner">Meter Owner</string>
+    <string name="present_unit">Present Unit</string>
+    <string name="past_unit">Past Unit</string>
 </resources>
