@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".activities.meter.MeterListActivity"></activity>
+        <activity android:name=".activities.room.RoomListActivity"></activity>
+        <activity android:name=".activities.meter.MeterListActivity" />
         <activity android:name=".activities.onboard.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

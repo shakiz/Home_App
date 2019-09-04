@@ -11,6 +11,7 @@ import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.meter.AddNewMeterActivity;
 import com.shakil.homeapp.activities.meter.MeterListActivity;
 import com.shakil.homeapp.activities.room.AddNewRoomActivity;
+import com.shakil.homeapp.activities.room.RoomListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         roomCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(MainActivity.this, RoomListActivity.class));
             }
         });
     }
