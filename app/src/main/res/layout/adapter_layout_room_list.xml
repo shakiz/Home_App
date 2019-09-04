@@ -48,7 +48,7 @@
                         android:scaleType="centerInside"
                         android:background="@drawable/red_circle_border"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_action_adjust" />
+                        android:src="@drawable/ic_action_house" />
 
                 </RelativeLayout>
 
@@ -71,27 +71,27 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/meter_name"
+                            android:text="@string/room_name"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:layout_marginTop="8dp"
-                            android:id="@+id/meterName"
+                            android:id="@+id/roomName"
                             android:textColor="@color/md_grey_800"
                             android:textSize="14sp"/>
 
                         <TextView
+                            android:id="@+id/roomOwner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/meter_owner"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:id="@+id/meterOwner"
                             android:layout_gravity="center"
-                            android:gravity="center"
-                            android:scrollHorizontally="true"
                             android:layout_marginTop="4dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:scrollHorizontally="true"
+                            android:text="@string/room_owner"
                             android:textColor="@color/md_grey_800"
-                            android:textSize="14sp"/>
+                            android:textSize="14sp" />
 
                     </LinearLayout>
 
@@ -104,10 +104,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/present_unit"
+                            android:text="@string/start_rent_month"
                             android:layout_marginTop="8dp"
                             android:layout_gravity="center"
-                            android:id="@+id/presentUnit"
+                            android:id="@+id/startMonth"
                             android:gravity="center"
                             android:textColor="@color/md_blue_800"
                             android:textSize="14sp"/>
@@ -115,8 +115,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/past_unit"
-                            android:id="@+id/pastUnit"
+                            android:text="@string/last_paid"
+                            android:id="@+id/lastPaid"
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:layout_gravity="center"

@@ -43,6 +43,7 @@
             android:translationZ="4dp"
             android:id="@+id/roomDashboardCard"
             android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_marginTop="12dp"
             app:cardUseCompatPadding="true"
             app:elevation="4dp">
@@ -148,6 +149,7 @@
             android:translationZ="4dp"
             android:id="@+id/meterDashboardCard"
             android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_marginTop="12dp"
             app:cardUseCompatPadding="true"
             app:elevation="4dp">

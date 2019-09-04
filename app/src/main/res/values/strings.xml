@@ -24,4 +24,7 @@
     <string name="meter_owner">Meter Owner</string>
     <string name="present_unit">Present Unit</string>
     <string name="past_unit">Past Unit</string>
+    <string name="room_owner">Room Owner</string>
+    <string name="start_rent_month">Start Month</string>
+    <string name="last_paid">Last Paid</string>
 </resources>

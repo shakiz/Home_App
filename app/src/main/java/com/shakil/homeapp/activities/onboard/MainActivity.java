@@ -3,12 +3,10 @@ package com.shakil.homeapp.activities.onboard;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.meter.AddNewMeterActivity;
 import com.shakil.homeapp.activities.meter.MeterListActivity;
@@ -61,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, MeterListActivity.class));
             }
         });
+
+        roomCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void init() {
@@ -73,7 +78,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+        Intent exitIntent = new Intent(Intent.ACTION_MAIN);
+        exitIntent.addCategory(Intent.CATEGORY_HOME);
+        exitIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(exitIntent);
     }
 }
