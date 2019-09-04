@@ -56,25 +56,28 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="8dp"
-                    android:layout_weight="5.6"
+                    android:layout_weight="6.6"
                     android:padding="4dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:weightSum="2.5">
+                    android:weightSum="2">
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:layout_weight="1">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/meter_name"
-                            android:layout_gravity="center"
+                            android:layout_gravity="center|left"
                             android:gravity="center"
-                            android:layout_marginTop="8dp"
+                            android:drawableLeft="@drawable/ic_action_person"
+                            android:drawablePadding="4dp"
                             android:id="@+id/meterName"
                             android:textColor="@color/md_grey_800"
                             android:textSize="14sp"/>
@@ -86,7 +89,9 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:id="@+id/meterOwner"
-                            android:layout_gravity="center"
+                            android:drawableLeft="@drawable/ic_action_owner"
+                            android:drawablePadding="4dp"
+                            android:layout_gravity="center|left"
                             android:gravity="center"
                             android:scrollHorizontally="true"
                             android:layout_marginTop="4dp"
@@ -99,16 +104,21 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:layout_weight="1.5">
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/present_unit"
-                            android:layout_marginTop="8dp"
-                            android:layout_gravity="center"
+                            android:layout_gravity="center|left"
                             android:id="@+id/presentUnit"
                             android:gravity="center"
+                            android:drawableLeft="@drawable/ic_action_meter_unit"
+                            android:drawablePadding="4dp"
                             android:textColor="@color/md_blue_800"
                             android:textSize="14sp"/>
 
@@ -119,7 +129,9 @@
                             android:id="@+id/pastUnit"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:layout_gravity="center"
+                            android:drawableLeft="@drawable/ic_action_meter_unit"
+                            android:drawablePadding="4dp"
+                            android:layout_gravity="center|left"
                             android:gravity="center"
                             android:scrollHorizontally="true"
                             android:layout_marginTop="4dp"
