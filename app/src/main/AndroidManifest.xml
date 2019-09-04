@@ -9,15 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".activities.room.RoomListActivity"></activity>
-        <activity android:name=".activities.meter.MeterListActivity" />
-        <activity android:name=".activities.onboard.MainActivity">
+
+        <activity
+            android:name=".activities.onboard.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activities.room.NewRoomDetailsActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:label="@string/new_room_details"/>
+        <activity
+            android:name=".activities.meter.NewMeterDetailsActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:label="@string/new_meter_details"/>
+        <activity
+            android:name=".activities.room.RoomListActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:label="@string/room_list"/>
+        <activity
+            android:name=".activities.meter.MeterListActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:label="@string/meter_list"/>
         <activity
             android:name=".activities.meter.AddNewMeterActivity"
             android:label="@string/add_room"

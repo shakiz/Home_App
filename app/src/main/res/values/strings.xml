@@ -27,4 +27,8 @@
     <string name="room_owner">Room Owner</string>
     <string name="start_rent_month">Start Month</string>
     <string name="last_paid">Last Paid</string>
+    <string name="new_room_details">New Room Details</string>
+    <string name="new_meter_details">New Meter Details</string>
+    <string name="room_list">Room List</string>
+    <string name="meter_list">Meter List</string>
 </resources>

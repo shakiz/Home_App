@@ -8,7 +8,7 @@
     android:background="@color/md_grey_200"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".activities.meter.MeterListActivity">
+    tools:context=".activities.meter.NewMeterDetailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:id="@+id/tool_bar"
             app:navigationIcon="?attr/homeAsUpIndicator"
             style="@style/TextAppearance.Widget.Event.Toolbar.Title"
-            app:title="@string/add_meter"
+            app:title="@string/new_meter_details"
             app:titleTextColor="@color/md_grey_800">
 
         </androidx.appcompat.widget.Toolbar>
@@ -81,14 +81,7 @@
                                 android:textStyle="bold"
                                 android:visibility="gone"/>
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/mRecylerView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="4dp"
-                                android:visibility="visible"
-                                app:reverseLayout="true"
-                                app:stackFromEnd="true"/>
+
 
                         </RelativeLayout>
 
@@ -110,7 +103,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_action_add"
+        android:src="@drawable/ic_action_done"
         app:backgroundTint="@color/md_blue_grey_400"
         app:fabSize="normal" />
 
