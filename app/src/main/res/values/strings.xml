@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Home App</string>
+
+    <!--Room start-->
     <string name="no_of_rooms">Number of Rooms : 6</string>
     <string name="total_earnings">Total Earnings : 12000</string>
     <string name="no_of_meters">Number Of Meters</string>
@@ -16,10 +18,16 @@
     <string name="advance_hint2">Enter advance amount</string>
     <string name="select_meter">Select Meter</string>
     <string name="validation">Please check your value</string>
+    <!--Room end-->
+
+    <!--Meter start-->
     <string name="meter_name">Meter Name</string>
     <string name="meter_hint">Enter Meter Name</string>
     <string name="select_room">Select Room</string>
     <string name="select_meter_type">Select Meter Type</string>
+    <!--Meter end-->
+
+    <!--Adapter start-->
     <string name="no_data_message">No Data</string>
     <string name="meter_owner">Meter Owner</string>
     <string name="present_unit">Present Unit</string>
@@ -27,8 +35,16 @@
     <string name="room_owner">Room Owner</string>
     <string name="start_rent_month">Start Month</string>
     <string name="last_paid">Last Paid</string>
+    <!--Adapter end-->
+
+
     <string name="new_room_details">New Room Details</string>
     <string name="new_meter_details">New Meter Details</string>
     <string name="room_list">Room List</string>
     <string name="meter_list">Meter List</string>
+    <string name="present_month_unit">Present Month Unit</string>
+    <string name="unit_price">Unit Price</string>
+    <string name="previous_month_unit">Previous Month Unit</string>
+    <string name="total_unit_1">Total Unit 0</string>
+    <string name="total_amount">Total Electricity Bill 0Tk.</string>
 </resources>
