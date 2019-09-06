@@ -12,12 +12,14 @@ import com.shakil.homeapp.activities.meter.AddNewMeterActivity;
 import com.shakil.homeapp.activities.meter.MeterListActivity;
 import com.shakil.homeapp.activities.room.AddNewRoomActivity;
 import com.shakil.homeapp.activities.room.RoomListActivity;
+import com.shakil.homeapp.activities.utils.UtilsForAll;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView addRoom , addMeter;
     private Toolbar toolbar;
     private CardView meterCard,roomCard;
+    private UtilsForAll utilsForAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                utilsForAll.exitApp();
             }
         });
 
@@ -75,13 +77,11 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar);
         meterCard = findViewById(R.id.meterDashboardCard);
         roomCard = findViewById(R.id.roomDashboardCard);
+        utilsForAll = new UtilsForAll(this);
     }
 
     @Override
     public void onBackPressed() {
-        Intent exitIntent = new Intent(Intent.ACTION_MAIN);
-        exitIntent.addCategory(Intent.CATEGORY_HOME);
-        exitIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(exitIntent);
+        utilsForAll.exitApp();
     }
 }

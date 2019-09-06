@@ -13,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.adapter.RecyclerRoomListAdapter;
 import com.shakil.homeapp.activities.model.RoomModel;
+import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.RecyclerAdapter;
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class RoomListActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(RoomListActivity.this, MainActivity.class));
             }
         });
 
@@ -53,7 +54,7 @@ public class RoomListActivity extends AppCompatActivity {
         addNewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RoomListActivity.this,NewRoomDetailsActivity.class));
+                startActivity(new Intent(RoomListActivity.this, NewRentDetailsActivity.class));
             }
         });
     }
