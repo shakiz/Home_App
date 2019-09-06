@@ -20,20 +20,28 @@
         </activity>
 
         <activity
-            android:name=".activities.room.NewRoomDetailsActivity"
+            android:name=".activities.room.NewRentDetailsActivity"
             android:windowSoftInputMode="adjustNothing"
-            android:label="@string/new_room_details"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
+            android:label="@string/new_rent_details"/>
         <activity
             android:name=".activities.meter.NewMeterDetailsActivity"
             android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
             android:label="@string/new_meter_details"/>
         <activity
             android:name=".activities.room.RoomListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
             android:windowSoftInputMode="adjustNothing"
             android:label="@string/room_list"/>
         <activity
             android:name=".activities.meter.MeterListActivity"
             android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
             android:label="@string/meter_list"/>
         <activity
             android:name=".activities.meter.AddNewMeterActivity"

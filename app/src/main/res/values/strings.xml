@@ -38,7 +38,7 @@
     <!--Adapter end-->
 
 
-    <string name="new_room_details">New Room Details</string>
+    <string name="new_rent_details">New rent Details</string>
     <string name="new_meter_details">New Meter Details</string>
     <string name="room_list">Room List</string>
     <string name="meter_list">Meter List</string>
@@ -47,4 +47,7 @@
     <string name="previous_month_unit">Previous Month Unit</string>
     <string name="total_unit_1">Total Unit 0</string>
     <string name="total_amount">Total Electricity Bill 0Tk.</string>
+    <string name="rent_amount">Rent Amount</string>
+    <string name="rent_hint">Enter rent amount</string>
+    <string name="select_month_2">Select Month</string>
 </resources>
