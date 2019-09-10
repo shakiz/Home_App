@@ -1,21 +1,30 @@
 package com.shakil.homeapp.activities.model;
 
 public class MeterModel {
-    private String name , owner , present , past;
+    private String meterName , associateRoom , meterType , owner , present , past;
 
-    public MeterModel(String name, String owner, String present, String past) {
-        this.name = name;
+    public MeterModel(String meterName, String associateRoom, String meterType, String owner, String present, String past) {
+        this.meterName = meterName;
+        this.associateRoom = associateRoom;
+        this.meterType = meterType;
         this.owner = owner;
         this.present = present;
         this.past = past;
     }
 
-    public String getName() {
-        return name;
+    public MeterModel(String meterName, String owner, String present, String past) {
+        this.meterName = meterName;
+        this.owner = owner;
+        this.present = present;
+        this.past = past;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getMeterName() {
+        return meterName;
+    }
+
+    public void setMeterName(String meterName) {
+        this.meterName = meterName;
     }
 
     public String getOwner() {
@@ -40,5 +49,21 @@ public class MeterModel {
 
     public void setPast(String past) {
         this.past = past;
+    }
+
+    public String getAssociateRoom() {
+        return associateRoom;
+    }
+
+    public void setAssociateRoom(String associateRoom) {
+        this.associateRoom = associateRoom;
+    }
+
+    public String getMeterType() {
+        return meterType;
+    }
+
+    public void setMeterType(String meterType) {
+        this.meterType = meterType;
     }
 }

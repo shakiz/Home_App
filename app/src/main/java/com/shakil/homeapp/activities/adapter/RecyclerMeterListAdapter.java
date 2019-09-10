@@ -30,7 +30,7 @@ public class RecyclerMeterListAdapter extends RecyclerView.Adapter<RecyclerMeter
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.meterName.setText("Name : "+arrayList.get(position).getName());
+        holder.meterName.setText("Name : "+arrayList.get(position).getMeterName());
         holder.meterOwner.setText("Owner : "+arrayList.get(position).getOwner());
         holder.presentUnit.setText("Present unit : "+arrayList.get(position).getPresent());
         holder.pastUnit.setText("Past unit : "+arrayList.get(position).getPast());

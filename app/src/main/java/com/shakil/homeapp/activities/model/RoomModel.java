@@ -1,13 +1,39 @@
 package com.shakil.homeapp.activities.model;
 
 public class RoomModel {
-    private String roomName, ownerName, startDate, lastPaidMonth;
+    private String roomName, tenantName, startDate, lastPaidMonth , associateMeter;
+    private int advancedAmount;
 
-    public RoomModel(String roomName, String ownerName, String startDate, String lastPaidMonth) {
+    public RoomModel(String roomName, String tenantName, String startDate, String lastPaidMonth, String associateMeter, int advancedAmount) {
         this.roomName = roomName;
-        this.ownerName = ownerName;
+        this.tenantName = tenantName;
         this.startDate = startDate;
         this.lastPaidMonth = lastPaidMonth;
+        this.associateMeter = associateMeter;
+        this.advancedAmount = advancedAmount;
+    }
+
+    public RoomModel(String roomName, String tenantName, String startDate, String lastPaidMonth) {
+        this.roomName = roomName;
+        this.tenantName = tenantName;
+        this.startDate = startDate;
+        this.lastPaidMonth = lastPaidMonth;
+    }
+
+    public String getAssociateMeter() {
+        return associateMeter;
+    }
+
+    public void setAssociateMeter(String associateMeter) {
+        this.associateMeter = associateMeter;
+    }
+
+    public int getAdvancedAmount() {
+        return advancedAmount;
+    }
+
+    public void setAdvancedAmount(int advancedAmount) {
+        this.advancedAmount = advancedAmount;
     }
 
     public String getRoomName() {
@@ -18,12 +44,12 @@ public class RoomModel {
         this.roomName = roomName;
     }
 
-    public String getOwnerName() {
-        return ownerName;
+    public String getTenantName() {
+        return tenantName;
     }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
+    public void setTenantName(String tenant) {
+        this.tenantName = tenant;
     }
 
     public String getStartDate() {
