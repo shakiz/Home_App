@@ -1,12 +1,14 @@
 package com.shakil.homeapp.activities.model;
 
 public class DashboardModel {
-    private int total_room , total_meter , total_earnings;
+    private int total_room , total_meter , total_earnings , imageResId , totalUnit;
 
-    public DashboardModel(int total_room, int total_meter, int total_earnings) {
+    public DashboardModel(int total_room, int total_meter, int total_earnings, int imageResId, int totalUnit) {
         this.total_room = total_room;
         this.total_meter = total_meter;
         this.total_earnings = total_earnings;
+        this.imageResId = imageResId;
+        this.totalUnit = totalUnit;
     }
 
     public int getTotal_room() {
@@ -31,5 +33,21 @@ public class DashboardModel {
 
     public void setTotal_earnings(int total_earnings) {
         this.total_earnings = total_earnings;
+    }
+
+    public int getImageResId() {
+        return imageResId;
+    }
+
+    public void setImageResId(int imageResId) {
+        this.imageResId = imageResId;
+    }
+
+    public int getTotalUnit() {
+        return totalUnit;
+    }
+
+    public void setTotalUnit(int totalUnit) {
+        this.totalUnit = totalUnit;
     }
 }
