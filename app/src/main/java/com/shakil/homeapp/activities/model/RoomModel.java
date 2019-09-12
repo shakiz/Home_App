@@ -1,22 +1,25 @@
 package com.shakil.homeapp.activities.model;
 
 public class RoomModel {
-    private String roomName, tenantName, startDate, lastPaidMonth , associateMeter;
+    private String roomName, tenantName, startMonth, lastPaidMonth , associateMeter;
     private int advancedAmount;
 
-    public RoomModel(String roomName, String tenantName, String startDate, String lastPaidMonth, String associateMeter, int advancedAmount) {
+    public RoomModel() {
+    }
+
+    public RoomModel(String roomName, String tenantName, String startMonth, String lastPaidMonth, String associateMeter, int advancedAmount) {
         this.roomName = roomName;
         this.tenantName = tenantName;
-        this.startDate = startDate;
+        this.startMonth = startMonth;
         this.lastPaidMonth = lastPaidMonth;
         this.associateMeter = associateMeter;
         this.advancedAmount = advancedAmount;
     }
 
-    public RoomModel(String roomName, String tenantName, String startDate, String lastPaidMonth) {
+    public RoomModel(String roomName, String tenantName, String startMonth, String lastPaidMonth) {
         this.roomName = roomName;
         this.tenantName = tenantName;
-        this.startDate = startDate;
+        this.startMonth = startMonth;
         this.lastPaidMonth = lastPaidMonth;
     }
 
@@ -52,12 +55,12 @@ public class RoomModel {
         this.tenantName = tenant;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getStartMonth() {
+        return startMonth;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setStartMonth(String startMonth) {
+        this.startMonth = startMonth;
     }
 
     public String getLastPaidMonth() {

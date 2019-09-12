@@ -52,7 +52,7 @@ public class AddNewMeterActivity extends AppCompatActivity {
         addMeter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inputValidation.checkEditTextInput(R.id.MeterName,"Please check your data",linearLayout);
+                inputValidation.checkEditTextInput(R.id.MeterName,"Please check your data");
             }
         });
     }
@@ -65,7 +65,7 @@ public class AddNewMeterActivity extends AppCompatActivity {
         addMeter = findViewById(R.id.mSaveMeterMaster);
         linearLayout = findViewById(R.id.mainLayout);
 
-        inputValidation = new InputValidation(this);
+        inputValidation = new InputValidation(this,linearLayout);
         spinnerAdapter = new SpinnerAdapter();
         spinnerData = new SpinnerData();
     }

@@ -47,7 +47,7 @@ public class RoomDbHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_ROOM_NAME, roomModel.getRoomName());
-        values.put(COLUMN_RENT_MONTH, roomModel.getStartDate());
+        values.put(COLUMN_RENT_MONTH, roomModel.getStartMonth());
         values.put(COLUMN_ROOM_METER, roomModel.getAssociateMeter());
         values.put(COLUMN_TENANT_NAME, roomModel.getTenantName());
         values.put(COLUMN_ADVANCED_AMOUNT, roomModel.getAdvancedAmount());
@@ -56,7 +56,7 @@ public class RoomDbHelper extends SQLiteOpenHelper {
         Log.v("----------------","");
         Log.v(TAG,"");
         Log.v("Room Name : ",roomModel.getRoomName());
-        Log.v("Start Date : ",roomModel.getStartDate());
+        Log.v("Start Date : ",roomModel.getStartMonth());
         Log.v("Associate Meter : ",roomModel.getAssociateMeter());
         Log.v("Tenant Name : ",""+roomModel.getTenantName());
         Log.v("Advanced Amount : ",""+roomModel.getAdvancedAmount());

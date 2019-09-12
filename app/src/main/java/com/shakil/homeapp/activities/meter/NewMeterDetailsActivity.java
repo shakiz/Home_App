@@ -49,7 +49,7 @@ public class NewMeterDetailsActivity extends AppCompatActivity {
         addMeterDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inputValidation.checkEditTextInput(new int[]{R.id.PresentMonthUnit,R.id.UnitPrice},"Please check your value",mainLayout);
+                inputValidation.checkEditTextInput(new int[]{R.id.PresentMonthUnit,R.id.UnitPrice},"Please check your value");
             }
         });
     }
@@ -66,6 +66,6 @@ public class NewMeterDetailsActivity extends AppCompatActivity {
         previousMonthUnit = findViewById(R.id.PreviousMonthUnit);
         spinnerData = new SpinnerData();
         spinnerAdapter = new SpinnerAdapter();
-        inputValidation = new InputValidation(this);
+        inputValidation = new InputValidation(this,mainLayout);
     }
 }

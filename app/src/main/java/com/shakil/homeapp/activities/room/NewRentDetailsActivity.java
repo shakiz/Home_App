@@ -50,7 +50,7 @@ public class NewRentDetailsActivity extends AppCompatActivity {
         addRentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inputValidation.checkEditTextInput(R.id.RentAmount,"Please check your value",mainLayout);
+                inputValidation.checkEditTextInput(R.id.RentAmount,"Please check your value");
             }
         });
     }
@@ -64,6 +64,6 @@ public class NewRentDetailsActivity extends AppCompatActivity {
         mainLayout = findViewById(R.id.mainLayout);
         spinnerData = new SpinnerData();
         spinnerAdapter = new SpinnerAdapter();
-        inputValidation = new InputValidation(this);
+        inputValidation = new InputValidation(this,mainLayout);
     }
 }

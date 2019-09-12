@@ -52,4 +52,5 @@
     <string name="select_month_2">Select Month</string>
     <string name="warning_message">Please Check All Data</string>
     <string name="select_data">Select Data</string>
+    <string name="success">Successful</string>
 </resources>

@@ -5,14 +5,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.dbhelper.RoomDbHelper;
@@ -86,7 +84,16 @@ public class AddNewRoomActivity extends AppCompatActivity {
                 associateMeterStr = inputValidation.checkSpinner(R.id.MeterSpinner);
 
                 if (!startingMonthStr.equals("Select Data") && !associateMeterStr.equals("Select Data")){
-
+                    roomNameStr = roomName.getText().toString();
+                    tenantNameStr = tenantName.getText().toString();
+                    roomModel.setRoomName(roomNameStr);
+                    roomModel.setStartMonth(startingMonthStr);
+                    roomModel.setAssociateMeter(associateMeterStr);
+                    roomModel.setTenantName(tenantNameStr);
+                    roomModel.setAdvancedAmount(advancedAmountInt);
+                    roomDbHelper.addRoom(roomModel);
+                    Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(AddNewRoomActivity.this,NewRentDetailsActivity.class));
                 }
                 else{
                     Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
