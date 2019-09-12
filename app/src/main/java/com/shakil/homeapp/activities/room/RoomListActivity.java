@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.adapter.RecyclerRoomListAdapter;
+import com.shakil.homeapp.activities.dbhelper.RoomDbHelper;
 import com.shakil.homeapp.activities.model.RoomModel;
 import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.RecyclerAdapter;
@@ -25,6 +26,7 @@ public class RoomListActivity extends AppCompatActivity {
     private ArrayList<RoomModel> roomModelList;
     private Toolbar toolbar;
     private FloatingActionButton addNewDetails;
+    private RoomDbHelper roomDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +62,7 @@ public class RoomListActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        roomModelList.add(new RoomModel("Room 1","David","12 June, 2019","1 Jul,2019"));
-        roomModelList.add(new RoomModel("Room 1","David","12 June, 2019","1 Jul,2019"));
-        roomModelList.add(new RoomModel("Room 1","David","12 June, 2019","1 Jul,2019"));
-        roomModelList.add(new RoomModel("Room 1","David","12 June, 2019","1 Jul,2019"));
-        roomModelList.add(new RoomModel("Room 1","David","12 June, 2019","1 Jul,2019"));
-        roomModelList.add(new RoomModel("Room 1","David","12 June, 2019","1 Jul,2019"));
+        roomModelList = roomDbHelper.getAllRoomDetails();
     }
 
     private void init() {
@@ -74,6 +71,7 @@ public class RoomListActivity extends AppCompatActivity {
         addNewDetails = findViewById(R.id.mAddRoomMaster);
         roomModelList = new ArrayList<>();
         toolbar = findViewById(R.id.tool_bar);
+        roomDbHelper = new RoomDbHelper(this);
     }
 
     @Override

@@ -93,7 +93,7 @@ public class AddNewRoomActivity extends AppCompatActivity {
                     roomModel.setAdvancedAmount(advancedAmountInt);
                     roomDbHelper.addRoom(roomModel);
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(AddNewRoomActivity.this,NewRentDetailsActivity.class));
+                    startActivity(new Intent(AddNewRoomActivity.this,RoomListActivity.class));
                 }
                 else{
                     Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();

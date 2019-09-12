@@ -2,12 +2,14 @@ package com.shakil.homeapp.activities.dbhelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import com.shakil.homeapp.activities.model.RoomModel;
 import com.shakil.homeapp.activities.utils.Constants;
+import java.util.ArrayList;
 
 public class RoomDbHelper extends SQLiteOpenHelper {
 
@@ -62,5 +64,46 @@ public class RoomDbHelper extends SQLiteOpenHelper {
         Log.v("Advanced Amount : ",""+roomModel.getAdvancedAmount());
         Log.v("----------------","");
         db.close();
+    }
+
+    public ArrayList<RoomModel> getAllRoomDetails() {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_ROOM_NAME,
+                COLUMN_RENT_MONTH,
+                COLUMN_ROOM_METER,
+                COLUMN_TENANT_NAME,
+                COLUMN_ADVANCED_AMOUNT
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_ROOM_NAME + " ASC";
+        ArrayList<RoomModel> roomModelList = new ArrayList<RoomModel>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                RoomModel roomModel = new RoomModel();
+                roomModel.setRoomName(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_NAME)));
+                roomModel.setStartMonth(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_MONTH)));
+                roomModel.setAssociateMeter(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_METER)));
+                roomModel.setTenantName(cursor.getString(cursor.getColumnIndex(COLUMN_TENANT_NAME)));
+                roomModel.setAdvancedAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_ADVANCED_AMOUNT)));
+                // Adding food item record to list
+                roomModelList.add(roomModel);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        // return roomModelList list
+        return roomModelList;
     }
 }
