@@ -9,40 +9,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-
-        <activity
-            android:name=".activities.onboard.MainActivity">
+        <activity android:name=".activities.tenant.TenantListActivity"></activity>
+        <activity android:name=".activities.onboard.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.room.NewRentDetailsActivity"
-            android:windowSoftInputMode="adjustNothing"
+            android:label="@string/new_rent_details"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"
-            android:label="@string/new_rent_details"/>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activities.meter.NewMeterDetailsActivity"
-            android:windowSoftInputMode="adjustNothing"
+            android:label="@string/new_meter_details"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"
-            android:label="@string/new_meter_details"/>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activities.room.RoomListActivity"
+            android:label="@string/room_list"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"
-            android:windowSoftInputMode="adjustNothing"
-            android:label="@string/room_list"/>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activities.meter.MeterListActivity"
-            android:windowSoftInputMode="adjustNothing"
+            android:label="@string/meter_list"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"
-            android:label="@string/meter_list"/>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activities.meter.AddNewMeterActivity"
             android:label="@string/add_room"

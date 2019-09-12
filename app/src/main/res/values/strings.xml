@@ -2,10 +2,10 @@
     <string name="app_name">Home App</string>
 
     <!--Room start-->
-    <string name="no_of_rooms">Number of Rooms : 6</string>
-    <string name="total_earnings">Total Earnings : 12000</string>
+    <string name="no_of_rooms">Number of Rooms</string>
+    <string name="total_earnings">Total Earnings</string>
     <string name="no_of_meters">Number Of Meters</string>
-    <string name="total_unit">Total unit : 3958</string>
+    <string name="total_unit">Total unit</string>
     <string name="add_room">Add New Room</string>
     <string name="add_meter">Add New Meter</string>
     <string name="room_hint">Enter Room Name</string>
@@ -53,4 +53,8 @@
     <string name="warning_message">Please Check All Data</string>
     <string name="select_data">Select Data</string>
     <string name="success">Successful</string>
+    <string name="no_of_tenants">Number of Tenants</string>
+    <string name="this_month">This Month</string>
+    <string name="new_tenent_this_month">Tenant This Month?</string>
+    <string name="tenant_list">Tenant List</string>
 </resources>

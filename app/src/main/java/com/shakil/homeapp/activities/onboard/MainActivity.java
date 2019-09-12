@@ -12,13 +12,14 @@ import com.shakil.homeapp.activities.meter.AddNewMeterActivity;
 import com.shakil.homeapp.activities.meter.MeterListActivity;
 import com.shakil.homeapp.activities.room.AddNewRoomActivity;
 import com.shakil.homeapp.activities.room.RoomListActivity;
+import com.shakil.homeapp.activities.tenant.TenantListActivity;
 import com.shakil.homeapp.activities.utils.UtilsForAll;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView addRoom , addMeter;
     private Toolbar toolbar;
-    private CardView meterCard,roomCard;
+    private CardView meterCard,roomCard,tenantCard;
     private UtilsForAll utilsForAll;
 
     @Override
@@ -69,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, RoomListActivity.class));
             }
         });
+
+        tenantCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, TenantListActivity.class));
+            }
+        });
     }
 
     private void init() {
@@ -77,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar);
         meterCard = findViewById(R.id.meterDashboardCard);
         roomCard = findViewById(R.id.roomDashboardCard);
+        tenantCard = findViewById(R.id.tenantDashboardCard);
         utilsForAll = new UtilsForAll(this);
     }
 
