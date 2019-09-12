@@ -5,13 +5,18 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
+import com.shakil.homeapp.activities.dbhelper.RoomDbHelper;
+import com.shakil.homeapp.activities.model.RoomModel;
 import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
@@ -29,6 +34,9 @@ public class AddNewRoomActivity extends AppCompatActivity {
     private InputValidation inputValidation;
     private LinearLayout mainLayout;
     private Toolbar toolbar;
+    private RoomDbHelper roomDbHelper;
+    private String roomNameStr,startingMonthStr,associateMeterStr,tenantNameStr;
+    private int advancedAmountInt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +64,12 @@ public class AddNewRoomActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean visibilityValue) {
                 if (visibilityValue){
                     linearLayoutAdvanceAmount.setVisibility(View.VISIBLE);
-                    inputValidation.checkEditTextInput(R.id.AdvanceAmount,"Please give amount",mainLayout);
+                    if (inputValidation.checkEditTextInput(R.id.AdvanceAmount,"Please give amount")){
+                        advancedAmountInt = Integer.parseInt(advanceAmount.getText().toString());
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else{
                     linearLayoutAdvanceAmount.setVisibility(View.GONE);
@@ -67,7 +80,17 @@ public class AddNewRoomActivity extends AppCompatActivity {
         addRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inputValidation.checkEditTextInput(new int[]{R.id.RoomName,R.id.TenantName},"Please check your data",mainLayout);
+                RoomModel roomModel = new RoomModel();
+                inputValidation.checkEditTextInput(new int[]{R.id.RoomName,R.id.TenantName},"Please check your data");
+                startingMonthStr = inputValidation.checkSpinner(R.id.MonthSpinner);
+                associateMeterStr = inputValidation.checkSpinner(R.id.MeterSpinner);
+
+                if (!startingMonthStr.equals("Select Data") && !associateMeterStr.equals("Select Data")){
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -85,7 +108,8 @@ public class AddNewRoomActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar);
         spinnerData = new SpinnerData();
         spinnerAdapter = new SpinnerAdapter();
-        inputValidation = new InputValidation(this);
+        inputValidation = new InputValidation(this,mainLayout);
+        roomDbHelper = new RoomDbHelper(this);
     }
 
 

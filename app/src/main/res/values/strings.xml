@@ -50,4 +50,6 @@
     <string name="rent_amount">Rent Amount</string>
     <string name="rent_hint">Enter rent amount</string>
     <string name="select_month_2">Select Month</string>
+    <string name="warning_message">Please Check All Data</string>
+    <string name="select_data">Select Data</string>
 </resources>
