@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
@@ -24,6 +25,7 @@ public class MeterListActivity extends AppCompatActivity {
     private RecyclerMeterListAdapter recyclerMeterListAdapter;
     private RecyclerAdapter recyclerAdapter;
     private ArrayList<MeterModel> meterModelList;
+    private TextView noDataTXT;
     private Toolbar toolbar;
     private FloatingActionButton addNewDetails;
     //private MeterDbHelper meterDbHelper;
@@ -65,6 +67,10 @@ public class MeterListActivity extends AppCompatActivity {
     private void setData() {
         //meterModelList = meterDbHelper.getAllMeterDetails();
         meterModelList = dbHelperParent.getAllMeterDetails();
+        if (meterModelList.size()<=0){
+            noDataTXT.setVisibility(View.VISIBLE);
+            noDataTXT.setText(R.string.no_data_message);
+        }
     }
 
     private void init() {
@@ -75,6 +81,7 @@ public class MeterListActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar);
         //meterDbHelper = new MeterDbHelper(this);
         dbHelperParent = new DbHelperParent(this);
+        noDataTXT = findViewById(R.id.mNoDataMessage);
     }
 
     @Override

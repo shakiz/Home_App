@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.adapter.RecyclerRoomListAdapter;
@@ -21,6 +22,7 @@ public class RoomListActivity extends AppCompatActivity {
     private RecyclerView recyclerViewMeterList;
     private RecyclerRoomListAdapter recyclerRoomListAdapter;
     private RecyclerAdapter recyclerAdapter;
+    private TextView noDataTXT;
     private ArrayList<RoomModel> roomModelList;
     private Toolbar toolbar;
     private FloatingActionButton addNewDetails;
@@ -63,6 +65,10 @@ public class RoomListActivity extends AppCompatActivity {
     private void setData() {
         //roomModelList = roomDbHelper.getAllRoomDetails();
         roomModelList = dbHelperParent.getAllRoomDetails();
+        if (roomModelList.size()<=0){
+            noDataTXT.setVisibility(View.VISIBLE);
+            noDataTXT.setText(R.string.no_data_message);
+        }
     }
 
     private void init() {
@@ -73,6 +79,7 @@ public class RoomListActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar);
         //roomDbHelper = new RoomDbHelper(this);
         dbHelperParent = new DbHelperParent(this);
+        noDataTXT = findViewById(R.id.mNoDataMessage);
     }
 
     @Override
