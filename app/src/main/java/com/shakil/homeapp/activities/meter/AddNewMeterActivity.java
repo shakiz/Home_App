@@ -9,10 +9,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.dbhelper.MeterDbHelper;
+import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.model.MeterModel;
 import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.InputValidation;
@@ -29,7 +28,8 @@ public class AddNewMeterActivity extends AppCompatActivity {
     private SpinnerData spinnerData;
     private FloatingActionButton addMeter;
     private LinearLayout linearLayout;
-    private MeterDbHelper meterDbHelper;
+    //private MeterDbHelper meterDbHelper;
+    private DbHelperParent dbHelperParent;
     private String meterNameStr , roomNameStr , meterTypeStr;
 
     @Override
@@ -70,7 +70,8 @@ public class AddNewMeterActivity extends AppCompatActivity {
                     meterModel.setMeterName(meterNameStr);
                     meterModel.setAssociateRoom(roomNameStr);
                     meterModel.setMeterType(meterTypeStr);
-                    meterDbHelper.addMeter(meterModel);
+                    //meterDbHelper.addMeter(meterModel);
+                    dbHelperParent.addMeter(meterModel);
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(AddNewMeterActivity.this,MeterListActivity.class));
                 }
@@ -92,6 +93,7 @@ public class AddNewMeterActivity extends AppCompatActivity {
         inputValidation = new InputValidation(this,linearLayout);
         spinnerAdapter = new SpinnerAdapter();
         spinnerData = new SpinnerData();
-        meterDbHelper = new MeterDbHelper(this);
+        //meterDbHelper = new MeterDbHelper(this);
+        dbHelperParent = new DbHelperParent(this);
     }
 }

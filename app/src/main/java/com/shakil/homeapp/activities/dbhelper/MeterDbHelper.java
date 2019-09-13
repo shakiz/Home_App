@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class MeterDbHelper extends SQLiteOpenHelper {
 
-    private static String TABLE_NAME = "meter";
 
     private static String TAG = "MeterDbHelper";
 
@@ -22,11 +21,11 @@ public class MeterDbHelper extends SQLiteOpenHelper {
     private static final String COLUMN_METER_ROOM = "meter_room";
     private static final String COLUMN_METER_TYPE = "meter_type";
 
-    private String CREATE_METER_TABLE = "CREATE TABLE " + TABLE_NAME + "("
+    private String CREATE_METER_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_METER + "("
             + COLUMN_METER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_METER_NAME + " TEXT,"+ COLUMN_METER_ROOM + " TEXT,"
             + COLUMN_METER_TYPE + " TEXT" + ")";
 
-    private String DROP_METER_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+    private String DROP_METER_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_METER;
 
     public MeterDbHelper(@Nullable Context context) {
         super(context, Constants.DATABASE_NAME, null, Constants.DATABASE_VERSION);
@@ -50,7 +49,7 @@ public class MeterDbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_METER_ROOM, meterModel.getAssociateRoom());
         values.put(COLUMN_METER_TYPE, meterModel.getMeterType());
         // Inserting Row
-        db.insert(TABLE_NAME, null, values);
+        db.insert(Constants.TABLE_NAME_METER, null, values);
         Log.v("----------------","");
         Log.v(TAG,"");
         Log.v("Meter Name : ",meterModel.getMeterName());
@@ -73,7 +72,7 @@ public class MeterDbHelper extends SQLiteOpenHelper {
         ArrayList<MeterModel> meterModelList = new ArrayList<MeterModel>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_NAME, //Table to query
+        Cursor cursor = db.query(Constants.TABLE_NAME_METER, //Table to query
                 columns,    //columns to return
                 null,        //columns for the WHERE clause
                 null,        //The values for the WHERE clause

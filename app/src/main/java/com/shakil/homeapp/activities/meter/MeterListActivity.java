@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.adapter.RecyclerMeterListAdapter;
+import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.dbhelper.MeterDbHelper;
 import com.shakil.homeapp.activities.model.MeterModel;
 import com.shakil.homeapp.activities.utils.RecyclerAdapter;
@@ -25,7 +26,8 @@ public class MeterListActivity extends AppCompatActivity {
     private ArrayList<MeterModel> meterModelList;
     private Toolbar toolbar;
     private FloatingActionButton addNewDetails;
-    private MeterDbHelper meterDbHelper;
+    //private MeterDbHelper meterDbHelper;
+    private DbHelperParent dbHelperParent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,8 @@ public class MeterListActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        meterModelList = meterDbHelper.getAllMeterDetails();
+        //meterModelList = meterDbHelper.getAllMeterDetails();
+        meterModelList = dbHelperParent.getAllMeterDetails();
     }
 
     private void init() {
@@ -70,7 +73,8 @@ public class MeterListActivity extends AppCompatActivity {
         addNewDetails = findViewById(R.id.mAddMeterMaster);
         meterModelList = new ArrayList<>();
         toolbar = findViewById(R.id.tool_bar);
-        meterDbHelper = new MeterDbHelper(this);
+        //meterDbHelper = new MeterDbHelper(this);
+        dbHelperParent = new DbHelperParent(this);
     }
 
     @Override

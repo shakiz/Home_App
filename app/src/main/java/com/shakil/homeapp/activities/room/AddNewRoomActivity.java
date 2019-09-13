@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.dbhelper.RoomDbHelper;
+import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.model.RoomModel;
 import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.InputValidation;
@@ -32,7 +32,8 @@ public class AddNewRoomActivity extends AppCompatActivity {
     private InputValidation inputValidation;
     private LinearLayout mainLayout;
     private Toolbar toolbar;
-    private RoomDbHelper roomDbHelper;
+    //private RoomDbHelper roomDbHelper;
+    private DbHelperParent dbHelperParent;
     private String roomNameStr,startingMonthStr,associateMeterStr,tenantNameStr;
     private int advancedAmountInt;
 
@@ -91,7 +92,8 @@ public class AddNewRoomActivity extends AppCompatActivity {
                     roomModel.setAssociateMeter(associateMeterStr);
                     roomModel.setTenantName(tenantNameStr);
                     roomModel.setAdvancedAmount(advancedAmountInt);
-                    roomDbHelper.addRoom(roomModel);
+                    //roomDbHelper.addRoom(roomModel);
+                    dbHelperParent.addRoom(roomModel);
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(AddNewRoomActivity.this,RoomListActivity.class));
                 }
@@ -116,7 +118,8 @@ public class AddNewRoomActivity extends AppCompatActivity {
         spinnerData = new SpinnerData();
         spinnerAdapter = new SpinnerAdapter();
         inputValidation = new InputValidation(this,mainLayout);
-        roomDbHelper = new RoomDbHelper(this);
+        //roomDbHelper = new RoomDbHelper(this);
+        dbHelperParent = new DbHelperParent(this);
     }
 
 
