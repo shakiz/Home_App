@@ -12,11 +12,21 @@ public class MeterModel {
         this.past = past;
     }
 
+    public MeterModel(String meterName, String associateRoom, String meterType) {
+        this.meterName = meterName;
+        this.associateRoom = associateRoom;
+        this.meterType = meterType;
+    }
+
     public MeterModel(String meterName, String owner, String present, String past) {
         this.meterName = meterName;
         this.owner = owner;
         this.present = present;
         this.past = past;
+    }
+
+    public MeterModel() {
+
     }
 
     public String getMeterName() {

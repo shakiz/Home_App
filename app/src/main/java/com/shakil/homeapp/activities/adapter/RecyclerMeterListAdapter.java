@@ -31,9 +31,8 @@ public class RecyclerMeterListAdapter extends RecyclerView.Adapter<RecyclerMeter
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.meterName.setText("Name : "+arrayList.get(position).getMeterName());
-        holder.meterOwner.setText("Owner : "+arrayList.get(position).getOwner());
-        holder.presentUnit.setText("Present unit : "+arrayList.get(position).getPresent());
-        holder.pastUnit.setText("Past unit : "+arrayList.get(position).getPast());
+        holder.roomName.setText("Owner : "+arrayList.get(position).getAssociateRoom());
+        holder.meterType.setText("Present unit : "+arrayList.get(position).getMeterType());
     }
 
     @Override
@@ -42,13 +41,12 @@ public class RecyclerMeterListAdapter extends RecyclerView.Adapter<RecyclerMeter
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView meterName, meterOwner, presentUnit, pastUnit;
+        TextView meterName, roomName, meterType;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             meterName = itemView.findViewById(R.id.meterName);
-            meterOwner = itemView.findViewById(R.id.meterOwner);
-            presentUnit = itemView.findViewById(R.id.presentUnit);
-            pastUnit = itemView.findViewById(R.id.pastUnit);
+            roomName = itemView.findViewById(R.id.roomName);
+            meterType = itemView.findViewById(R.id.meterType);
         }
     }
 }

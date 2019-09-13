@@ -2,12 +2,14 @@ package com.shakil.homeapp.activities.dbhelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import com.shakil.homeapp.activities.model.MeterModel;
 import com.shakil.homeapp.activities.utils.Constants;
+import java.util.ArrayList;
 
 public class MeterDbHelper extends SQLiteOpenHelper {
 
@@ -56,5 +58,42 @@ public class MeterDbHelper extends SQLiteOpenHelper {
         Log.v("Meter Type : ",meterModel.getMeterType());
         Log.v("----------------","");
         db.close();
+    }
+
+    public ArrayList<MeterModel> getAllMeterDetails() {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_METER_NAME,
+                COLUMN_METER_ROOM,
+                COLUMN_METER_TYPE
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_METER_NAME + " ASC";
+        ArrayList<MeterModel> meterModelList = new ArrayList<MeterModel>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                MeterModel meterModel = new MeterModel();
+                meterModel.setMeterName(cursor.getString(cursor.getColumnIndex(COLUMN_METER_NAME)));
+                meterModel.setAssociateRoom(cursor.getString(cursor.getColumnIndex(COLUMN_METER_ROOM)));
+                meterModel.setMeterType(cursor.getString(cursor.getColumnIndex(COLUMN_METER_TYPE)));
+                // Adding food item record to list
+                meterModelList.add(meterModel);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        // return roomModelList list
+        return meterModelList;
     }
 }

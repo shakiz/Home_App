@@ -8,8 +8,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
+import com.shakil.homeapp.activities.dbhelper.MeterDbHelper;
+import com.shakil.homeapp.activities.model.MeterModel;
 import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
@@ -25,6 +29,8 @@ public class AddNewMeterActivity extends AppCompatActivity {
     private SpinnerData spinnerData;
     private FloatingActionButton addMeter;
     private LinearLayout linearLayout;
+    private MeterDbHelper meterDbHelper;
+    private String meterNameStr , roomNameStr , meterTypeStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +58,25 @@ public class AddNewMeterActivity extends AppCompatActivity {
         addMeter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 inputValidation.checkEditTextInput(R.id.MeterName,"Please check your data");
+
+                roomNameStr = inputValidation.checkSpinner(R.id.RoomSpinner);
+                meterTypeStr = inputValidation.checkSpinner(R.id.MeterTypeSpinner);
+
+                if (!roomNameStr.equals("Select Data") && !meterTypeStr.equals("Select Data")){
+                    meterNameStr = meterName.getText().toString();
+                    MeterModel meterModel = new MeterModel();
+                    meterModel.setMeterName(meterNameStr);
+                    meterModel.setAssociateRoom(roomNameStr);
+                    meterModel.setMeterType(meterTypeStr);
+                    meterDbHelper.addMeter(meterModel);
+                    Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(AddNewMeterActivity.this,MeterListActivity.class));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -68,5 +92,6 @@ public class AddNewMeterActivity extends AppCompatActivity {
         inputValidation = new InputValidation(this,linearLayout);
         spinnerAdapter = new SpinnerAdapter();
         spinnerData = new SpinnerData();
+        meterDbHelper = new MeterDbHelper(this);
     }
 }

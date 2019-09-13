@@ -57,4 +57,5 @@
     <string name="this_month">This Month</string>
     <string name="new_tenent_this_month">Tenant This Month?</string>
     <string name="tenant_list">Tenant List</string>
+    <string name="meter_type">Meter Type</string>
 </resources>

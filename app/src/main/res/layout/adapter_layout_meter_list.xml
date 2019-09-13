@@ -59,85 +59,67 @@
                     android:layout_weight="6.6"
                     android:padding="4dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:weightSum="2">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:layout_weight="1">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight=".5"
                             android:text="@string/meter_name"
-                            android:layout_gravity="center|left"
-                            android:gravity="center"
-                            android:drawableLeft="@drawable/ic_action_person"
+                            android:layout_gravity="center"
+                            android:gravity="center|left"
+                            android:drawableLeft="@drawable/electricity"
                             android:drawablePadding="4dp"
                             android:id="@+id/meterName"
                             android:textColor="@color/md_grey_800"
                             android:textSize="14sp"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/meter_owner"
+                            android:layout_weight=".5"
                             android:ellipsize="end"
-                            android:maxLines="1"
-                            android:id="@+id/meterOwner"
+                            android:id="@+id/roomName"
                             android:drawableLeft="@drawable/ic_action_owner"
                             android:drawablePadding="4dp"
-                            android:layout_gravity="center|left"
-                            android:gravity="center"
+                            android:text="@string/room_name"
+                            android:layout_gravity="center"
+                            android:gravity="center|left"
                             android:scrollHorizontally="true"
-                            android:layout_marginTop="4dp"
                             android:textColor="@color/md_grey_800"
                             android:textSize="14sp"/>
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="4dp"
                         android:layout_weight="1">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/present_unit"
-                            android:layout_gravity="center|left"
-                            android:id="@+id/presentUnit"
-                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:text="@string/meter_type"
+                            android:id="@+id/meterType"
+                            android:layout_gravity="center"
+                            android:gravity="center|left"
                             android:drawableLeft="@drawable/ic_action_meter_unit"
                             android:drawablePadding="4dp"
                             android:textColor="@color/md_blue_800"
                             android:textSize="14sp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/past_unit"
-                            android:id="@+id/pastUnit"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:drawableLeft="@drawable/ic_action_meter_unit"
-                            android:drawablePadding="4dp"
-                            android:layout_gravity="center|left"
-                            android:gravity="center"
-                            android:scrollHorizontally="true"
-                            android:layout_marginTop="4dp"
-                            android:textColor="@color/md_blue_800"
-                            android:textSize="14sp"/>
-
                     </LinearLayout>
 
 
