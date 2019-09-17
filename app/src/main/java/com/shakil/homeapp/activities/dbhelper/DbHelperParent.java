@@ -121,6 +121,38 @@ public class DbHelperParent extends SQLiteOpenHelper {
         return meterModelList;
     }
 
+    public ArrayList<String> getMeterNames() {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_METER_NAME,
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_METER_NAME + " ASC";
+        ArrayList<String> meterNameList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Constants.TABLE_NAME_METER, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        meterNameList.add("Select Meter Name");
+        if (cursor.moveToFirst()) {
+            do {
+                // Adding food item record to list
+                meterNameList.add(cursor.getString(cursor.getColumnIndex(COLUMN_METER_NAME)));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        // return roomModelList list
+        return meterNameList;
+    }
+
     public void addRoom(RoomModel roomModel) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -182,5 +214,37 @@ public class DbHelperParent extends SQLiteOpenHelper {
         db.close();
         // return roomModelList list
         return roomModelList;
+    }
+
+    public ArrayList<String> getRoomNames() {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_ROOM_NAME,
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_ROOM_NAME + " ASC";
+        ArrayList<String> roomNameList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Constants.TABLE_NAME_ROOM, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        roomNameList.add("Select Room Name");
+        if (cursor.moveToFirst()) {
+            do {
+                // Adding food item record to list
+                roomNameList.add(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_NAME)));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        // return roomModelList list
+        return roomNameList;
     }
 }

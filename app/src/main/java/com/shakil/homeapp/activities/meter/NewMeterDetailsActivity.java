@@ -64,7 +64,7 @@ public class NewMeterDetailsActivity extends AppCompatActivity {
         unitPrice = findViewById(R.id.UnitPrice);
         presentMonthUnit = findViewById(R.id.PresentMonthUnit);
         previousMonthUnit = findViewById(R.id.PreviousMonthUnit);
-        spinnerData = new SpinnerData();
+        spinnerData = new SpinnerData(this);
         spinnerAdapter = new SpinnerAdapter();
         inputValidation = new InputValidation(this,mainLayout);
     }

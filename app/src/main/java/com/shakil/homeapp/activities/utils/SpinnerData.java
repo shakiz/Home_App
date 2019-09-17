@@ -1,7 +1,19 @@
 package com.shakil.homeapp.activities.utils;
 
+import android.content.Context;
+import android.util.Log;
+
+import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 
 public class SpinnerData {
+
+    private Context context;
+    private DbHelperParent dbHelperParent;
+
+    public SpinnerData(Context context) {
+        this.context = context;
+        dbHelperParent = new DbHelperParent(context);
+    }
 
     public String[] setMonthData(){
         String[] spinnerValues = {"Select Data","January","February","March","April","May","June","July","August","September","October","November","December"};
@@ -9,7 +21,7 @@ public class SpinnerData {
     }
 
     public String[] setMeterData(){
-        String[] spinnerValues = {"Select Data","Meter 1","Meter 2","Meter 3","Meter 4"};
+        String[] spinnerValues = dbHelperParent.getMeterNames().toArray(new String[dbHelperParent.getMeterNames().size()]);
         return spinnerValues;
     }
 

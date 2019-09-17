@@ -62,7 +62,7 @@ public class NewRentDetailsActivity extends AppCompatActivity {
         addRentButton = findViewById(R.id.mAddRentMaster);
         rentAmount = findViewById(R.id.RentAmount);
         mainLayout = findViewById(R.id.mainLayout);
-        spinnerData = new SpinnerData();
+        spinnerData = new SpinnerData(this);
         spinnerAdapter = new SpinnerAdapter();
         inputValidation = new InputValidation(this,mainLayout);
     }

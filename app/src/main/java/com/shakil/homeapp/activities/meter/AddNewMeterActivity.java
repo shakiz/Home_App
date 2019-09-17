@@ -92,7 +92,7 @@ public class AddNewMeterActivity extends AppCompatActivity {
 
         inputValidation = new InputValidation(this,linearLayout);
         spinnerAdapter = new SpinnerAdapter();
-        spinnerData = new SpinnerData();
+        spinnerData = new SpinnerData(this);
         //meterDbHelper = new MeterDbHelper(this);
         dbHelperParent = new DbHelperParent(this);
     }

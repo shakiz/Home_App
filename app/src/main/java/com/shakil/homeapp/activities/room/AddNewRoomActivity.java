@@ -115,7 +115,7 @@ public class AddNewRoomActivity extends AppCompatActivity {
         linearLayoutAdvanceAmount = findViewById(R.id.advanceAmountLayout);
         mainLayout = findViewById(R.id.mainLayout);
         toolbar = findViewById(R.id.tool_bar);
-        spinnerData = new SpinnerData();
+        spinnerData = new SpinnerData(this);
         spinnerAdapter = new SpinnerAdapter();
         inputValidation = new InputValidation(this,mainLayout);
         //roomDbHelper = new RoomDbHelper(this);
