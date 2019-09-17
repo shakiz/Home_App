@@ -3,19 +3,18 @@ package com.shakil.homeapp.activities.meter;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.adapter.RecyclerMeterListAdapter;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.dbhelper.MeterDbHelper;
 import com.shakil.homeapp.activities.model.MeterModel;
+import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.RecyclerAdapter;
 import java.util.ArrayList;
 
@@ -42,7 +41,7 @@ public class MeterListActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(MeterListActivity.this,MainActivity.class));
             }
         });
 
@@ -59,7 +58,7 @@ public class MeterListActivity extends AppCompatActivity {
         addNewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MeterListActivity.this,NewMeterDetailsActivity.class));
+                startActivity(new Intent(MeterListActivity.this,AddNewMeterActivity.class));
             }
         });
     }
@@ -86,6 +85,6 @@ public class MeterListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(MeterListActivity.this, MainActivity.class));
     }
 }

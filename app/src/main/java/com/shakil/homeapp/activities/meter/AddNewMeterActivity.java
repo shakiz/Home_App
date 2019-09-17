@@ -44,7 +44,7 @@ public class AddNewMeterActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AddNewMeterActivity.this, MainActivity.class));
+                startActivity(new Intent(AddNewMeterActivity.this, MeterListActivity.class));
             }
         });
 

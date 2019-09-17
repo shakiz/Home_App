@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.meter.AddNewMeterActivity;
 import com.shakil.homeapp.activities.meter.MeterListActivity;
+import com.shakil.homeapp.activities.meter.NewMeterDetailsActivity;
 import com.shakil.homeapp.activities.room.AddNewRoomActivity;
+import com.shakil.homeapp.activities.room.NewRentDetailsActivity;
 import com.shakil.homeapp.activities.room.RoomListActivity;
 import com.shakil.homeapp.activities.tenant.TenantListActivity;
 import com.shakil.homeapp.activities.utils.UtilsForAll;
@@ -46,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
         addRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AddNewRoomActivity.class));
+                startActivity(new Intent(MainActivity.this, NewRentDetailsActivity.class));
             }
         });
 
         addMeter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AddNewMeterActivity.class));
+                startActivity(new Intent(MainActivity.this, NewMeterDetailsActivity.class));
             }
         });
 

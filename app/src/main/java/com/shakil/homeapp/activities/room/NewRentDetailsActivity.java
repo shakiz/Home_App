@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
+import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
@@ -38,7 +39,7 @@ public class NewRentDetailsActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NewRentDetailsActivity.this,RoomListActivity.class));
+                startActivity(new Intent(NewRentDetailsActivity.this, MainActivity.class));
             }
         });
         bindUiWithComponents();

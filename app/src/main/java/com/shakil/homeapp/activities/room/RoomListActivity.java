@@ -57,7 +57,7 @@ public class RoomListActivity extends AppCompatActivity {
         addNewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RoomListActivity.this, NewRentDetailsActivity.class));
+                startActivity(new Intent(RoomListActivity.this, AddNewRoomActivity.class));
             }
         });
     }
@@ -84,7 +84,7 @@ public class RoomListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(RoomListActivity.this,MainActivity.class));
     }
 }
 
