@@ -9,6 +9,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import com.shakil.homeapp.activities.model.MeterModel;
 import com.shakil.homeapp.activities.model.RoomModel;
+import com.shakil.homeapp.activities.model.TenantModel;
 import com.shakil.homeapp.activities.utils.Constants;
 import java.util.ArrayList;
 
@@ -33,6 +34,12 @@ public class DbHelperParent extends SQLiteOpenHelper {
     private static final String COLUMN_TENANT_NAME = "tenant_name";
     private static final String COLUMN_ADVANCED_AMOUNT = "advanced_amount";
 
+    //Tenant table columns
+    private static final String COLUMN_TENANT_ID = "tenant_id";
+    private static final String COLUMN_NEW_TENANT_NAME = "tenant_name";
+    private static final String COLUMN_STARTING_MONTH = "starting_month";
+    private static final String COLUMN_TENANT_ASSOCIATE_METER = "associate_meter";
+
     //Meter table starts
     private String CREATE_METER_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_METER + "("
             + COLUMN_METER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_METER_NAME + " TEXT,"+ COLUMN_METER_ROOM + " TEXT,"
@@ -49,6 +56,14 @@ public class DbHelperParent extends SQLiteOpenHelper {
     private String DROP_ROOM_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_ROOM;
     //Room table ends
 
+    //Tenant table starts
+    private String CREATE_TENANT_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_TENANT + "("
+            + COLUMN_TENANT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NEW_TENANT_NAME + " TEXT,"+ COLUMN_STARTING_MONTH + " TEXT,"
+            + COLUMN_TENANT_ASSOCIATE_METER + " TEXT" + ")";
+
+    private String DROP_TENANT_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_TENANT;
+    //Meter table Ends
+
     public DbHelperParent(@Nullable Context context) {
         super(context, Constants.DATABASE_NAME, null, Constants.DATABASE_VERSION);
     }
@@ -57,15 +72,18 @@ public class DbHelperParent extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_METER_TABLE);
         sqLiteDatabase.execSQL(CREATE_ROOM_TABLE);
+        sqLiteDatabase.execSQL(CREATE_TENANT_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL(DROP_METER_TABLE);
         sqLiteDatabase.execSQL(DROP_ROOM_TABLE);
+        sqLiteDatabase.execSQL(DROP_TENANT_TABLE);
     }
 
 
+    //Meter starts
     public void addMeter(MeterModel meterModel) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -152,7 +170,9 @@ public class DbHelperParent extends SQLiteOpenHelper {
         // return roomModelList list
         return meterNameList;
     }
+    //Meter ends
 
+    //Room starts
     public void addRoom(RoomModel roomModel) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -247,4 +267,94 @@ public class DbHelperParent extends SQLiteOpenHelper {
         // return roomModelList list
         return roomNameList;
     }
+    //Room ends
+
+    //Tenant starts
+    public void addTenant(TenantModel tenantModel) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NEW_TENANT_NAME, tenantModel.getTenantName());
+        values.put(COLUMN_STARTING_MONTH, tenantModel.getStartingMonth());
+        values.put(COLUMN_TENANT_ASSOCIATE_METER, tenantModel.getAssociateMeter());
+        // Inserting Row
+        db.insert(Constants.TABLE_NAME_TENANT, null, values);
+        Log.v("----------------","");
+        Log.v(TAG,"");
+        Log.v("Tenant Name : ",tenantModel.getTenantName());
+        Log.v("Start Date : ",tenantModel.getStartingMonth());
+        Log.v("Associate Meter : ",tenantModel.getAssociateMeter());
+        Log.v("----------------","");
+        db.close();
+    }
+
+    public ArrayList<TenantModel> getAllTenantDetails() {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_NEW_TENANT_NAME,
+                COLUMN_STARTING_MONTH,
+                COLUMN_TENANT_ASSOCIATE_METER
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_NEW_TENANT_NAME + " ASC";
+        ArrayList<TenantModel> tenantModels = new ArrayList<TenantModel>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Constants.TABLE_NAME_TENANT, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                TenantModel tenantModel = new TenantModel();
+                tenantModel.setTenantName(cursor.getString(cursor.getColumnIndex(COLUMN_NEW_TENANT_NAME)));
+                tenantModel.setStartingMonth(cursor.getString(cursor.getColumnIndex(COLUMN_STARTING_MONTH)));
+                tenantModel.setAssociateMeter(cursor.getString(cursor.getColumnIndex(COLUMN_TENANT_ASSOCIATE_METER)));
+                // Adding food item record to list
+                tenantModels.add(tenantModel);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        // return roomModelList list
+        return tenantModels;
+    }
+
+    public ArrayList<String> getTenantNames() {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_NEW_TENANT_NAME,
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_NEW_TENANT_NAME + " ASC";
+        ArrayList<String> tenantNameList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Constants.TABLE_NAME_TENANT, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        tenantNameList.add("Select Tenant Name");
+        if (cursor.moveToFirst()) {
+            do {
+                // Adding food item record to list
+                tenantNameList.add(cursor.getString(cursor.getColumnIndex(COLUMN_NEW_TENANT_NAME)));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        // return roomModelList list
+        return tenantNameList;
+    }
+    //Tenant ends
 }
