@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import com.shakil.homeapp.activities.model.MeterModel;
+import com.shakil.homeapp.activities.model.RentModel;
 import com.shakil.homeapp.activities.model.RoomModel;
 import com.shakil.homeapp.activities.model.TenantModel;
 import com.shakil.homeapp.activities.utils.Constants;
@@ -40,6 +41,13 @@ public class DbHelperParent extends SQLiteOpenHelper {
     private static final String COLUMN_STARTING_MONTH = "starting_month";
     private static final String COLUMN_TENANT_ASSOCIATE_METER = "associate_meter";
 
+
+    //Rent table columns
+    private static final String COLUMN_RENT_ID = "rent_id";
+    private static final String COLUMN_RENT_MONTH_NAME = "rent_month_name";
+    private static final String COLUMN_RENT_ROOM = "rent_room";
+    private static final String COLUMN_RENT_AMOUNT = "rent_amount";
+
     //Meter table starts
     private String CREATE_METER_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_METER + "("
             + COLUMN_METER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_METER_NAME + " TEXT,"+ COLUMN_METER_ROOM + " TEXT,"
@@ -64,6 +72,14 @@ public class DbHelperParent extends SQLiteOpenHelper {
     private String DROP_TENANT_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_TENANT;
     //Meter table Ends
 
+    //Tenant table starts
+    private String CREATE_RENT_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_RENT + "("
+            + COLUMN_RENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_RENT_MONTH_NAME + " TEXT,"+ COLUMN_RENT_ROOM + " TEXT,"
+            + COLUMN_RENT_AMOUNT + " REAL" + ")";
+
+    private String DROP_RENT_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_RENT;
+    //Meter table Ends
+
     public DbHelperParent(@Nullable Context context) {
         super(context, Constants.DATABASE_NAME, null, Constants.DATABASE_VERSION);
     }
@@ -73,6 +89,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_METER_TABLE);
         sqLiteDatabase.execSQL(CREATE_ROOM_TABLE);
         sqLiteDatabase.execSQL(CREATE_TENANT_TABLE);
+        sqLiteDatabase.execSQL(CREATE_RENT_TABLE);
     }
 
     @Override
@@ -80,6 +97,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DROP_METER_TABLE);
         sqLiteDatabase.execSQL(DROP_ROOM_TABLE);
         sqLiteDatabase.execSQL(DROP_TENANT_TABLE);
+        sqLiteDatabase.execSQL(DROP_RENT_TABLE);
     }
 
 
@@ -93,7 +111,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         values.put(COLUMN_METER_TYPE, meterModel.getMeterType());
         // Inserting Row
         db.insert(Constants.TABLE_NAME_METER, null, values);
-        Log.v("----------------","");
+        Log.v("----------------","Meter Data");
         Log.v(TAG,"");
         Log.v("Meter Name : ",meterModel.getMeterName());
         Log.v("Associate Room : ",meterModel.getAssociateRoom());
@@ -185,7 +203,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         // Inserting Row
         db.insert(Constants.TABLE_NAME_ROOM, null, values);
         Log.v("----------------","");
-        Log.v(TAG,"");
+        Log.v(TAG,"Room Data");
         Log.v("Room Name : ",roomModel.getRoomName());
         Log.v("Start Date : ",roomModel.getStartMonth());
         Log.v("Associate Meter : ",roomModel.getAssociateMeter());
@@ -280,7 +298,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         // Inserting Row
         db.insert(Constants.TABLE_NAME_TENANT, null, values);
         Log.v("----------------","");
-        Log.v(TAG,"");
+        Log.v(TAG,"Tenant Data");
         Log.v("Tenant Name : ",tenantModel.getTenantName());
         Log.v("Start Date : ",tenantModel.getStartingMonth());
         Log.v("Associate Meter : ",tenantModel.getAssociateMeter());
@@ -357,4 +375,62 @@ public class DbHelperParent extends SQLiteOpenHelper {
         return tenantNameList;
     }
     //Tenant ends
+
+
+    //Rent starts
+    public void addRent(RentModel rentModel) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_RENT_MONTH_NAME, rentModel.getRentForMonth());
+        values.put(COLUMN_RENT_ROOM, rentModel.getRentRoom());
+        values.put(COLUMN_RENT_AMOUNT, rentModel.getRentAmount());
+        // Inserting Row
+        db.insert(Constants.TABLE_NAME_RENT, null, values);
+        Log.v("----------------","");
+        Log.v(TAG,"Rent Data");
+        Log.v("Rent month Name : ",rentModel.getRentForMonth());
+        Log.v("Rent room : ",rentModel.getRentRoom());
+        Log.v("Amount : ",""+rentModel.getRentAmount());
+        Log.v("----------------","");
+        db.close();
+    }
+
+    public ArrayList<RentModel> getAllRentDetails() {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_RENT_MONTH_NAME,
+                COLUMN_RENT_ROOM,
+                COLUMN_RENT_AMOUNT
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_RENT_ROOM + " ASC";
+        ArrayList<RentModel> rentModels = new ArrayList<RentModel>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Constants.TABLE_NAME_RENT, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                RentModel rentModel = new RentModel();
+                rentModel.setRentForMonth(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_MONTH_NAME)));
+                rentModel.setRentRoom(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_ROOM)));
+                rentModel.setRentAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_RENT_AMOUNT)));
+                // Adding food item record to list
+                rentModels.add(rentModel);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        // return roomModelList list
+        return rentModels;
+    }
+    //Rent ends
 }
