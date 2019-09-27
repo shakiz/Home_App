@@ -2,20 +2,28 @@ package com.shakil.homeapp.activities.room;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.adapter.RecyclerRoomListAdapter;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.model.RoomModel;
+import com.shakil.homeapp.activities.mvvm.RoomModelMVVM;
+import com.shakil.homeapp.activities.mvvm.RoomViewModel;
 import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.RecyclerAdapter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RoomListActivity extends AppCompatActivity {
 
@@ -28,6 +36,8 @@ public class RoomListActivity extends AppCompatActivity {
     private FloatingActionButton addNewDetails;
     //private RoomDbHelper roomDbHelper;
     private DbHelperParent dbHelperParent;
+    //For MVVM
+    private RoomViewModel roomViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +70,18 @@ public class RoomListActivity extends AppCompatActivity {
                 startActivity(new Intent(RoomListActivity.this, AddNewRoomActivity.class));
             }
         });
+
+        //MVVM region
+
+        roomViewModel = ViewModelProviders.of(this).get(RoomViewModel.class);
+        roomViewModel.getAllRoomData().observe(this, new Observer<List<RoomModelMVVM>>() {
+            @Override
+            public void onChanged(List<RoomModelMVVM> roomModelMVVMS) {
+                Toast.makeText(getApplicationContext(),"called",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //region end
     }
 
     private void setData() {

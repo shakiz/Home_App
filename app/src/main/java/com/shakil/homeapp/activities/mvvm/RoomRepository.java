@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 import java.util.List;
 
+//Repository is not a part of android architecture component library but it considers best practices.
+
 public class RoomRepository {
     private RoomDAO roomDAO;
     private LiveData<List<RoomModelMVVM>> allRoomDetails;
@@ -27,7 +29,7 @@ public class RoomRepository {
         new RoomDeleteAsyncTask(roomDAO).execute(roomModelMVVM);
     }
 
-    public void deleteAllNodes(){
+    public void deleteAllRooms(){
         new RoomDeleteAllAsyncTask(roomDAO).execute();
     }
 
