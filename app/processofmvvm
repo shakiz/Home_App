@@ -1,0 +1,4 @@
+Room - Which will help to make sqlite table by the help of model classes
+Repository - which used to retrieve the data by the help of DAO (Data access object) in accordance of model class as a list of LiveData.
+ViewModel - which comes after the Repository and help us to access data from repository that we retrieve in LiveData , and viewModel caches those LiveData for activity or fragments.
+Activity - which does not interact with the LiveData directly but it uses an observer to observe the data behavior.
