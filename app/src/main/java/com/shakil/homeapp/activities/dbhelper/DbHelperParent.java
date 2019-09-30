@@ -213,6 +213,15 @@ public class DbHelperParent extends SQLiteOpenHelper {
         db.close();
     }
 
+    //returns number of total rooms
+    public int getTotalRoomRows(){
+        String query = "select * from "+Constants.TABLE_NAME_ROOM;
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery(query ,null);
+        int count = cursor.getCount();
+        return count;
+    }
+
     public ArrayList<RoomModel> getAllRoomDetails() {
         // array of columns to fetch
         String[] columns = {

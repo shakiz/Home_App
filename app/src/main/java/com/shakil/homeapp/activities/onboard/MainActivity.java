@@ -7,11 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.meter.AddNewMeterActivity;
+import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.meter.MeterListActivity;
 import com.shakil.homeapp.activities.meter.NewMeterDetailsActivity;
-import com.shakil.homeapp.activities.room.AddNewRoomActivity;
 import com.shakil.homeapp.activities.room.NewRentDetailsActivity;
 import com.shakil.homeapp.activities.room.RoomListActivity;
 import com.shakil.homeapp.activities.tenant.TenantListActivity;
@@ -20,9 +21,12 @@ import com.shakil.homeapp.activities.utils.UtilsForAll;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView addRoom , addMeter;
+    private TextView totalRoomsTXT ,  totalEarningsTXT;
+    private DbHelperParent dbHelperParent;
     private Toolbar toolbar;
     private CardView meterCard,roomCard,tenantCard;
     private UtilsForAll utilsForAll;
+    private LinearLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindUIWithComponents() {
+
+        setData();
 
         addRoom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,14 +87,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void setData() {
+        totalRoomsTXT.setText("Total rooms : "+dbHelperParent.getTotalRoomRows());
+        utilsForAll.setCustomDesignTextView(R.id.totalRooms);
+    }
+
     private void init() {
         addRoom = findViewById(R.id.mAddMasterRoom);
         addMeter = findViewById(R.id.mAddMasterElectricityBill);
         toolbar = findViewById(R.id.tool_bar);
+        totalRoomsTXT = findViewById(R.id.totalRooms);
+        totalEarningsTXT = findViewById(R.id.totalEarnings);
         meterCard = findViewById(R.id.meterDashboardCard);
         roomCard = findViewById(R.id.roomDashboardCard);
         tenantCard = findViewById(R.id.tenantDashboardCard);
-        utilsForAll = new UtilsForAll(this);
+        mainLayout = findViewById(R.id.mainLayout);
+        dbHelperParent = new DbHelperParent(this);
+        utilsForAll = new UtilsForAll(this,mainLayout);
     }
 
     @Override
