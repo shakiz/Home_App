@@ -59,4 +59,11 @@
     <string name="tenant_list">Tenant List</string>
     <string name="meter_type">Meter Type</string>
     <string name="add_tenant">Add New Tenant</string>
+
+    <!--NewMeterDetailsActivity starts-->
+    <string name="present_month_unit_hint">Enter Present Month Unit</string>
+    <string name="previous_month_unit_hint">Enter Previous Month Unit</string>
+    <string name="unit_price_hint">Unit Price Hint</string>
+    <string name="warning_message_unit">Present month unit value exceed</string>
+    <!--NewMeterDetailsActivity ends-->
 </resources>

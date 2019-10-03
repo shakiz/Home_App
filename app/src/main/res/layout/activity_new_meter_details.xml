@@ -89,26 +89,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="@string/present_month_unit"
+                        android:text="@string/select_room"
                         android:textColor="@color/md_grey_900"
                         android:textSize="16sp" />
 
-                    <EditText
-                        android:id="@+id/PresentMonthUnit"
+                    <Spinner
+                        style="@style/Base.TextAppearance.AppCompat.Medium"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edittext_back"
-                        android:inputType="text"
-                        android:ellipsize="end"
-                        android:scrollHorizontally="true"
-                        android:maxLines="1"
-                        android:textColorHint="@color/md_grey_700"
-                        android:hint="@string/meter_hint"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/md_grey_800"/>
+                        android:id="@+id/RoomSpinner"></Spinner>
 
                 </LinearLayout>
 
@@ -134,18 +125,55 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edittext_back"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:ellipsize="end"
                         android:scrollHorizontally="true"
                         android:maxLines="1"
                         android:textColorHint="@color/md_grey_700"
-                        android:hint="@string/meter_hint"
+                        android:hint="@string/previous_month_unit_hint"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:textSize="14sp"
                         android:textColor="@color/md_grey_800"/>
 
                 </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/present_month_unit"
+                        android:textColor="@color/md_grey_900"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/PresentMonthUnit"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/edittext_back"
+                        android:inputType="number"
+                        android:ellipsize="end"
+                        android:scrollHorizontally="true"
+                        android:maxLines="1"
+                        android:textColorHint="@color/md_grey_700"
+                        android:hint="@string/present_month_unit_hint"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/md_grey_800"/>
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -169,7 +197,7 @@
                         android:layout_gravity="center"
                         android:gravity="center|left"
                         android:textStyle="bold"
-                        android:textColor="@color/md_red_400"/>
+                        android:textColor="@color/md_grey_800"/>
 
                 </LinearLayout>
 
@@ -200,7 +228,7 @@
                         android:scrollHorizontally="true"
                         android:maxLines="1"
                         android:textColorHint="@color/md_grey_700"
-                        android:hint="@string/meter_hint"
+                        android:hint="@string/unit_price_hint"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:textSize="14sp"
@@ -230,7 +258,7 @@
                         android:layout_gravity="center"
                         android:gravity="center|left"
                         android:textStyle="bold"
-                        android:textColor="@color/md_red_400"/>
+                        android:textColor="@color/md_grey_800"/>
 
                 </LinearLayout>
 

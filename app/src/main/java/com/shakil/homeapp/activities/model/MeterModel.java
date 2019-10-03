@@ -1,15 +1,16 @@
 package com.shakil.homeapp.activities.model;
 
 public class MeterModel {
-    private String meterName , associateRoom , meterType , owner , present , past;
+    private String meterName , associateRoom , meterType , owner;
+    private int presentUnit, pastUnit;
 
-    public MeterModel(String meterName, String associateRoom, String meterType, String owner, String present, String past) {
+    public MeterModel(String meterName, String associateRoom, String meterType, String owner, int presentUnit, int pastUnit) {
         this.meterName = meterName;
         this.associateRoom = associateRoom;
         this.meterType = meterType;
         this.owner = owner;
-        this.present = present;
-        this.past = past;
+        this.presentUnit = presentUnit;
+        this.pastUnit = pastUnit;
     }
 
     public MeterModel(String meterName, String associateRoom, String meterType) {
@@ -18,11 +19,11 @@ public class MeterModel {
         this.meterType = meterType;
     }
 
-    public MeterModel(String meterName, String owner, String present, String past) {
+    public MeterModel(String meterName, String owner, int presentUnit, int pastUnit) {
         this.meterName = meterName;
         this.owner = owner;
-        this.present = present;
-        this.past = past;
+        this.presentUnit = presentUnit;
+        this.pastUnit = pastUnit;
     }
 
     public MeterModel() {
@@ -45,20 +46,20 @@ public class MeterModel {
         this.owner = owner;
     }
 
-    public String getPresent() {
-        return present;
+    public int getPresentUnit() {
+        return presentUnit;
     }
 
-    public void setPresent(String present) {
-        this.present = present;
+    public void setPresentUnit(int presentUnit) {
+        this.presentUnit = presentUnit;
     }
 
-    public String getPast() {
-        return past;
+    public int getPastUnit() {
+        return pastUnit;
     }
 
-    public void setPast(String past) {
-        this.past = past;
+    public void setPastUnit(int pastUnit) {
+        this.pastUnit = pastUnit;
     }
 
     public String getAssociateRoom() {
