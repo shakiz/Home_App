@@ -2,6 +2,7 @@ package com.shakil.homeapp.activities.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -36,5 +37,16 @@ public class UtilsForAll {
         TextView textView = view.findViewById(resId);
         textView.setTextColor(view.getResources().getColor(R.color.md_blue_grey_800));
         textView.setSingleLine();
+    }
+
+    public int toIntValue(String value){
+        try{
+            Log.v("shakil",""+Integer.parseInt(value));
+            return Integer.parseInt(value);
+        }
+        catch (Exception e){
+            Log.v("shakil",e.getMessage());
+            return 0;
+        }
     }
 }
