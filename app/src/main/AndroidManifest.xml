@@ -11,7 +11,7 @@
         android:theme="@style/AppThemeNoActionBar">
         <activity android:name=".activities.activities.tenant.AddNewTenantActivity"></activity>
         <activity android:name=".activities.activities.tenant.TenantListActivity" />
-        <activity android:name=".activities.onboard.MainActivity">
+        <activity android:name=".activities.activities.onboard.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

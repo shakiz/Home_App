@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.onboard.MainActivity;
+import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 
 public class TenantListActivity extends AppCompatActivity {
 

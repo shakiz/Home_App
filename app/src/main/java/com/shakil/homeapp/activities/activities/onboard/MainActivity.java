@@ -1,4 +1,4 @@
-package com.shakil.homeapp.activities.onboard;
+package com.shakil.homeapp.activities.activities.onboard;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         init();
 
         setSupportActionBar(toolbar);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

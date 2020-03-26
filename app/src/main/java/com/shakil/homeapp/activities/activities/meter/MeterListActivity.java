@@ -13,7 +13,7 @@ import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.adapter.RecyclerMeterListAdapter;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.model.meter.Meter;
-import com.shakil.homeapp.activities.onboard.MainActivity;
+import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.RecyclerAdapter;
 import java.util.ArrayList;
 

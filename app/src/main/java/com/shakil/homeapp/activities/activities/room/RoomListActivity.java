@@ -19,7 +19,7 @@ import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.model.room.Room;
 import com.shakil.homeapp.activities.mvvm.RoomModelMVVM;
 import com.shakil.homeapp.activities.mvvm.RoomViewModel;
-import com.shakil.homeapp.activities.onboard.MainActivity;
+import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.RecyclerAdapter;
 import java.util.ArrayList;
 import java.util.List;

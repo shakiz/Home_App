@@ -12,7 +12,7 @@ import android.widget.Spinner;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.onboard.MainActivity;
+import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;

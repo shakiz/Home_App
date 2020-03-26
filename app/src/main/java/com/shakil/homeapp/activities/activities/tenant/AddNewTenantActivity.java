@@ -10,7 +10,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.model.tenant.Tenant;
-import com.shakil.homeapp.activities.onboard.MainActivity;
+import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 
 import java.util.ArrayList;
 
