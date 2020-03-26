@@ -1,4 +1,4 @@
-package com.shakil.homeapp.activities.room;
+package com.shakil.homeapp.activities.activities.room;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
-import com.shakil.homeapp.activities.model.RoomModel;
+import com.shakil.homeapp.activities.model.room.Room;
 import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
@@ -79,7 +79,7 @@ public class AddNewRoomActivity extends AppCompatActivity {
         addRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RoomModel roomModel = new RoomModel();
+                Room room = new Room();
                 inputValidation.checkEditTextInput(new int[]{R.id.RoomName,R.id.TenantName},"Please check your data");
                 startingMonthStr = inputValidation.checkSpinner(R.id.MonthSpinner);
                 associateMeterStr = inputValidation.checkSpinner(R.id.MeterSpinner);
@@ -87,13 +87,13 @@ public class AddNewRoomActivity extends AppCompatActivity {
                 if (!startingMonthStr.equals("Select Data") && !associateMeterStr.equals("Select Data")){
                     roomNameStr = roomName.getText().toString();
                     tenantNameStr = tenantName.getText().toString();
-                    roomModel.setRoomName(roomNameStr);
-                    roomModel.setStartMonth(startingMonthStr);
-                    roomModel.setAssociateMeter(associateMeterStr);
-                    roomModel.setTenantName(tenantNameStr);
-                    roomModel.setAdvancedAmount(advancedAmountInt);
+                    room.setRoomName(roomNameStr);
+                    room.setStartMonth(startingMonthStr);
+                    room.setAssociateMeter(associateMeterStr);
+                    room.setTenantName(tenantNameStr);
+                    room.setAdvancedAmount(advancedAmountInt);
                     //roomDbHelper.addRoom(roomModel);
-                    dbHelperParent.addRoom(roomModel);
+                    dbHelperParent.addRoom(room);
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(AddNewRoomActivity.this,RoomListActivity.class));
                 }

@@ -1,15 +1,15 @@
-package com.shakil.homeapp.activities.model;
+package com.shakil.homeapp.activities.model.tenant;
 
-public class TenantModel {
+public class Tenant {
     private String tenantName , startingMonth , associateMeter;
 
-    public TenantModel(String tenantName, String startingMonth, String associateMeter) {
+    public Tenant(String tenantName, String startingMonth, String associateMeter) {
         this.tenantName = tenantName;
         this.startingMonth = startingMonth;
         this.associateMeter = associateMeter;
     }
 
-    public TenantModel() {
+    public Tenant() {
 
     }
 

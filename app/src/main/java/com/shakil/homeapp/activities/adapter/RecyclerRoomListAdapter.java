@@ -8,15 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.model.RoomModel;
+import com.shakil.homeapp.activities.model.room.Room;
 import java.util.ArrayList;
 
 public class RecyclerRoomListAdapter extends RecyclerView.Adapter<RecyclerRoomListAdapter.ViewHolder> {
 
-    private ArrayList<RoomModel> arrayList;
+    private ArrayList<Room> arrayList;
     private Context context;
 
-    public RecyclerRoomListAdapter(ArrayList<RoomModel> arrayList, Context context) {
+    public RecyclerRoomListAdapter(ArrayList<Room> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }

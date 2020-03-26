@@ -10,16 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.meter.AddNewMeterActivity;
-import com.shakil.homeapp.activities.model.DashboardModel;
+import com.shakil.homeapp.activities.activities.meter.AddNewMeterActivity;
+import com.shakil.homeapp.activities.model.dashboard.Dashboard;
 import java.util.ArrayList;
 
 public class RecyclerMeterDashboardAdapter extends RecyclerView.Adapter<RecyclerMeterDashboardAdapter.ViewHolder> {
 
-    private ArrayList<DashboardModel> dashboardList;
+    private ArrayList<Dashboard> dashboardList;
     private Context context;
 
-    public RecyclerMeterDashboardAdapter(ArrayList<DashboardModel> dashboardList, Context context) {
+    public RecyclerMeterDashboardAdapter(ArrayList<Dashboard> dashboardList, Context context) {
         this.dashboardList = dashboardList;
         this.context = context;
     }

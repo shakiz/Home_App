@@ -1,17 +1,17 @@
-package com.shakil.homeapp.activities.model;
+package com.shakil.homeapp.activities.model.room;
 
-public class RentModel {
+public class Rent {
     private String rentForMonth , rentRoom;
     private int rentAmount;
 
 
-    public RentModel(String rentForMonth, String rentRoom, int rentAmount) {
+    public Rent(String rentForMonth, String rentRoom, int rentAmount) {
         this.rentForMonth = rentForMonth;
         this.rentRoom = rentRoom;
         this.rentAmount = rentAmount;
     }
 
-    public RentModel() {
+    public Rent() {
 
     }
 

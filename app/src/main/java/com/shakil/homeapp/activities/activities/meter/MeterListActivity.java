@@ -1,4 +1,4 @@
-package com.shakil.homeapp.activities.meter;
+package com.shakil.homeapp.activities.activities.meter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,8 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.adapter.RecyclerMeterListAdapter;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
-import com.shakil.homeapp.activities.dbhelper.MeterDbHelper;
-import com.shakil.homeapp.activities.model.MeterModel;
+import com.shakil.homeapp.activities.model.meter.Meter;
 import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.RecyclerAdapter;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class MeterListActivity extends AppCompatActivity {
     private RecyclerView recyclerViewMeterList;
     private RecyclerMeterListAdapter recyclerMeterListAdapter;
     private RecyclerAdapter recyclerAdapter;
-    private ArrayList<MeterModel> meterModelList;
+    private ArrayList<Meter> meterList;
     private TextView noDataTXT;
     private Toolbar toolbar;
     private FloatingActionButton addNewDetails;
@@ -52,7 +51,7 @@ public class MeterListActivity extends AppCompatActivity {
 
         setData();
 
-        recyclerMeterListAdapter = new RecyclerMeterListAdapter(meterModelList , this);
+        recyclerMeterListAdapter = new RecyclerMeterListAdapter(meterList, this);
         recyclerAdapter.setMeterRecyclerAdapter(recyclerViewMeterList, LinearLayout.VERTICAL,recyclerMeterListAdapter);
 
         addNewDetails.setOnClickListener(new View.OnClickListener() {
@@ -65,8 +64,8 @@ public class MeterListActivity extends AppCompatActivity {
 
     private void setData() {
         //meterModelList = meterDbHelper.getAllMeterDetails();
-        meterModelList = dbHelperParent.getAllMeterDetails();
-        if (meterModelList.size()<=0){
+        meterList = dbHelperParent.getAllMeterDetails();
+        if (meterList.size()<=0){
             noDataTXT.setVisibility(View.VISIBLE);
             noDataTXT.setText(R.string.no_data_message);
         }
@@ -76,7 +75,7 @@ public class MeterListActivity extends AppCompatActivity {
         recyclerViewMeterList = findViewById(R.id.mRecylerView);
         recyclerAdapter = new RecyclerAdapter(this);
         addNewDetails = findViewById(R.id.mAddMeterMaster);
-        meterModelList = new ArrayList<>();
+        meterList = new ArrayList<>();
         toolbar = findViewById(R.id.tool_bar);
         //meterDbHelper = new MeterDbHelper(this);
         dbHelperParent = new DbHelperParent(this);

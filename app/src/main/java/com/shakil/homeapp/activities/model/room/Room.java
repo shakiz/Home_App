@@ -1,13 +1,13 @@
-package com.shakil.homeapp.activities.model;
+package com.shakil.homeapp.activities.model.room;
 
-public class RoomModel {
+public class Room {
     private String roomName, tenantName, startMonth, lastPaidMonth , associateMeter;
     private int advancedAmount;
 
-    public RoomModel() {
+    public Room() {
     }
 
-    public RoomModel(String roomName, String tenantName, String startMonth, String lastPaidMonth, String associateMeter, int advancedAmount) {
+    public Room(String roomName, String tenantName, String startMonth, String lastPaidMonth, String associateMeter, int advancedAmount) {
         this.roomName = roomName;
         this.tenantName = tenantName;
         this.startMonth = startMonth;
@@ -16,7 +16,7 @@ public class RoomModel {
         this.advancedAmount = advancedAmount;
     }
 
-    public RoomModel(String roomName, String tenantName, String startMonth, String lastPaidMonth) {
+    public Room(String roomName, String tenantName, String startMonth, String lastPaidMonth) {
         this.roomName = roomName;
         this.tenantName = tenantName;
         this.startMonth = startMonth;

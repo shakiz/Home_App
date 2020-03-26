@@ -1,4 +1,4 @@
-package com.shakil.homeapp.activities.room;
+package com.shakil.homeapp.activities.activities.room;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

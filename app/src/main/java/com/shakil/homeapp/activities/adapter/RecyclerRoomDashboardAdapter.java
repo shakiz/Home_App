@@ -10,17 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.model.DashboardModel;
-import com.shakil.homeapp.activities.room.AddNewRoomActivity;
+import com.shakil.homeapp.activities.model.dashboard.Dashboard;
+import com.shakil.homeapp.activities.activities.room.AddNewRoomActivity;
 import java.util.ArrayList;
 
 
 public class RecyclerRoomDashboardAdapter extends RecyclerView.Adapter<RecyclerRoomDashboardAdapter.ViewHolder> {
 
-    private ArrayList<DashboardModel> dashboardList;
+    private ArrayList<Dashboard> dashboardList;
     private Context context;
 
-    public RecyclerRoomDashboardAdapter(ArrayList<DashboardModel> dashboardList, Context context) {
+    public RecyclerRoomDashboardAdapter(ArrayList<Dashboard> dashboardList, Context context) {
         this.dashboardList = dashboardList;
         this.context = context;
     }

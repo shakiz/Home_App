@@ -1,9 +1,9 @@
-package com.shakil.homeapp.activities.model;
+package com.shakil.homeapp.activities.model.dashboard;
 
-public class DashboardModel {
+public class Dashboard {
     private int total_room , total_meter , total_earnings , imageResId , totalUnit;
 
-    public DashboardModel(int total_room, int total_meter, int total_earnings, int imageResId, int totalUnit) {
+    public Dashboard(int total_room, int total_meter, int total_earnings, int imageResId, int totalUnit) {
         this.total_room = total_room;
         this.total_meter = total_meter;
         this.total_earnings = total_earnings;

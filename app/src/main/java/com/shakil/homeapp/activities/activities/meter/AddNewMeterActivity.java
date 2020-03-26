@@ -1,4 +1,4 @@
-package com.shakil.homeapp.activities.meter;
+package com.shakil.homeapp.activities.activities.meter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,8 +12,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
-import com.shakil.homeapp.activities.model.MeterModel;
-import com.shakil.homeapp.activities.onboard.MainActivity;
+import com.shakil.homeapp.activities.model.meter.Meter;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
@@ -66,12 +65,12 @@ public class AddNewMeterActivity extends AppCompatActivity {
 
                 if (!roomNameStr.equals("Select Data") && !meterTypeStr.equals("Select Data")){
                     meterNameStr = meterName.getText().toString();
-                    MeterModel meterModel = new MeterModel();
-                    meterModel.setMeterName(meterNameStr);
-                    meterModel.setAssociateRoom(roomNameStr);
-                    meterModel.setMeterType(meterTypeStr);
+                    Meter meter = new Meter();
+                    meter.setMeterName(meterNameStr);
+                    meter.setAssociateRoom(roomNameStr);
+                    meter.setMeterType(meterTypeStr);
                     //meterDbHelper.addMeter(meterModel);
-                    dbHelperParent.addMeter(meterModel);
+                    dbHelperParent.addMeter(meter);
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(AddNewMeterActivity.this,MeterListActivity.class));
                 }

@@ -1,4 +1,4 @@
-package com.shakil.homeapp.activities.tenant;
+package com.shakil.homeapp.activities.activities.tenant;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

@@ -11,11 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
-import com.shakil.homeapp.activities.meter.MeterListActivity;
-import com.shakil.homeapp.activities.meter.NewMeterDetailsActivity;
-import com.shakil.homeapp.activities.room.NewRentDetailsActivity;
-import com.shakil.homeapp.activities.room.RoomListActivity;
-import com.shakil.homeapp.activities.tenant.TenantListActivity;
+import com.shakil.homeapp.activities.activities.meter.MeterListActivity;
+import com.shakil.homeapp.activities.activities.meter.NewMeterDetailsActivity;
+import com.shakil.homeapp.activities.activities.room.NewRentDetailsActivity;
+import com.shakil.homeapp.activities.activities.room.RoomListActivity;
+import com.shakil.homeapp.activities.activities.tenant.TenantListActivity;
 import com.shakil.homeapp.activities.utils.UtilsForAll;
 
 public class MainActivity extends AppCompatActivity {

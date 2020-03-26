@@ -74,6 +74,10 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
     //Room ends
 
+
+    //Android gif loader
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.0'
+
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
 
     testImplementation 'junit:junit:4.12'

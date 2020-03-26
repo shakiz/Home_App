@@ -8,15 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.model.MeterModel;
+import com.shakil.homeapp.activities.model.meter.Meter;
 import java.util.ArrayList;
 
 public class RecyclerMeterListAdapter extends RecyclerView.Adapter<RecyclerMeterListAdapter.ViewHolder> {
 
-    private ArrayList<MeterModel> arrayList;
+    private ArrayList<Meter> arrayList;
     private Context context;
 
-    public RecyclerMeterListAdapter(ArrayList<MeterModel> arrayList, Context context) {
+    public RecyclerMeterListAdapter(ArrayList<Meter> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }

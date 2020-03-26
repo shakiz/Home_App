@@ -65,5 +65,11 @@
     <string name="previous_month_unit_hint">Enter Previous Month Unit</string>
     <string name="unit_price_hint">Unit Price Hint</string>
     <string name="warning_message_unit">Present month unit value exceed</string>
+    <string name="invalid_input">Invalid Input</string>
+    <string name="check_your_data">Check Your Data</string>
+    <string name="select_valid_date">Select Valid Date</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="date_hint">21-Mar-2020</string>
+    <string name="select_correct_data">Select Correct Data</string>
     <!--NewMeterDetailsActivity ends-->
 </resources>

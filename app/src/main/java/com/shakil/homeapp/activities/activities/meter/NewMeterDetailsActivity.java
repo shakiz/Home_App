@@ -1,4 +1,4 @@
-package com.shakil.homeapp.activities.meter;
+package com.shakil.homeapp.activities.activities.meter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.model.MeterModel;
+import com.shakil.homeapp.activities.model.meter.Meter;
 import com.shakil.homeapp.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
@@ -66,7 +66,7 @@ public class NewMeterDetailsActivity extends AppCompatActivity {
                 roomNameStr = inputValidation.checkSpinner(R.id.RoomSpinner);
                 inputValidation.checkEditTextInput(new int[]{R.id.PresentMonthUnit,R.id.PreviousMonthUnit,R.id.UnitPrice},"Please check your value");
                 if (!meterNameStr.equals("Select Data") && !roomNameStr.equals("Select Data")){
-                    MeterModel meterModel = new MeterModel(meterNameStr,roomNameStr,"","",presentMonthUnitInt,previousMonthUnitInt);
+                    Meter meter = new Meter(meterNameStr,roomNameStr,"","",presentMonthUnitInt,previousMonthUnitInt);
                 }
                 else{
                     Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();

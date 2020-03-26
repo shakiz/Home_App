@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import androidx.annotation.Nullable;
-import com.shakil.homeapp.activities.model.MeterModel;
+import com.shakil.homeapp.activities.model.meter.Meter;
 import com.shakil.homeapp.activities.utils.Constants;
 import java.util.ArrayList;
 
@@ -41,25 +41,25 @@ public class MeterDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DROP_METER_TABLE);
     }
 
-    public void addMeter(MeterModel meterModel) {
+    public void addMeter(Meter meter) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_METER_NAME, meterModel.getMeterName());
-        values.put(COLUMN_METER_ROOM, meterModel.getAssociateRoom());
-        values.put(COLUMN_METER_TYPE, meterModel.getMeterType());
+        values.put(COLUMN_METER_NAME, meter.getMeterName());
+        values.put(COLUMN_METER_ROOM, meter.getAssociateRoom());
+        values.put(COLUMN_METER_TYPE, meter.getMeterType());
         // Inserting Row
         db.insert(Constants.TABLE_NAME_METER, null, values);
         Log.v("----------------","");
         Log.v(TAG,"");
-        Log.v("Meter Name : ",meterModel.getMeterName());
-        Log.v("Associate Room : ",meterModel.getAssociateRoom());
-        Log.v("Meter Type : ",meterModel.getMeterType());
+        Log.v("Meter Name : ", meter.getMeterName());
+        Log.v("Associate Room : ", meter.getAssociateRoom());
+        Log.v("Meter Type : ", meter.getMeterType());
         Log.v("----------------","");
         db.close();
     }
 
-    public ArrayList<MeterModel> getAllMeterDetails() {
+    public ArrayList<Meter> getAllMeterDetails() {
         // array of columns to fetch
         String[] columns = {
                 COLUMN_METER_NAME,
@@ -69,7 +69,7 @@ public class MeterDbHelper extends SQLiteOpenHelper {
         // sorting orders
         String sortOrder =
                 COLUMN_METER_NAME + " ASC";
-        ArrayList<MeterModel> meterModelList = new ArrayList<MeterModel>();
+        ArrayList<Meter> meterList = new ArrayList<Meter>();
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(Constants.TABLE_NAME_METER, //Table to query
@@ -82,17 +82,17 @@ public class MeterDbHelper extends SQLiteOpenHelper {
         // Traversing through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                MeterModel meterModel = new MeterModel();
-                meterModel.setMeterName(cursor.getString(cursor.getColumnIndex(COLUMN_METER_NAME)));
-                meterModel.setAssociateRoom(cursor.getString(cursor.getColumnIndex(COLUMN_METER_ROOM)));
-                meterModel.setMeterType(cursor.getString(cursor.getColumnIndex(COLUMN_METER_TYPE)));
+                Meter meter = new Meter();
+                meter.setMeterName(cursor.getString(cursor.getColumnIndex(COLUMN_METER_NAME)));
+                meter.setAssociateRoom(cursor.getString(cursor.getColumnIndex(COLUMN_METER_ROOM)));
+                meter.setMeterType(cursor.getString(cursor.getColumnIndex(COLUMN_METER_TYPE)));
                 // Adding food item record to list
-                meterModelList.add(meterModel);
+                meterList.add(meter);
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
         // return roomModelList list
-        return meterModelList;
+        return meterList;
     }
 }

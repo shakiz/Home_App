@@ -1,4 +1,4 @@
-package com.shakil.homeapp.activities.tenant;
+package com.shakil.homeapp.activities.activities.tenant;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
-import com.shakil.homeapp.activities.model.TenantModel;
+import com.shakil.homeapp.activities.model.tenant.Tenant;
 import com.shakil.homeapp.activities.onboard.MainActivity;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class AddNewTenantActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private FloatingActionButton actionButton;
     private LinearLayout mainLayout;
-    private ArrayList<TenantModel> tenantModelList;
+    private ArrayList<Tenant> tenantList;
     private DbHelperParent dbHelperParent;
 
     @Override
@@ -45,7 +45,7 @@ public class AddNewTenantActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar);
         actionButton = findViewById(R.id.mSaveTenantMaster);
         mainLayout = findViewById(R.id.mainLayout);
-        tenantModelList = new ArrayList<>();
+        tenantList = new ArrayList<>();
         dbHelperParent = new DbHelperParent(this);
     }
 

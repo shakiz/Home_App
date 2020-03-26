@@ -1,10 +1,10 @@
-package com.shakil.homeapp.activities.model;
+package com.shakil.homeapp.activities.model.meter;
 
-public class MeterModel {
+public class Meter {
     private String meterName , associateRoom , meterType , owner;
     private int presentUnit, pastUnit;
 
-    public MeterModel(String meterName, String associateRoom, String meterType, String owner, int presentUnit, int pastUnit) {
+    public Meter(String meterName, String associateRoom, String meterType, String owner, int presentUnit, int pastUnit) {
         this.meterName = meterName;
         this.associateRoom = associateRoom;
         this.meterType = meterType;
@@ -13,20 +13,20 @@ public class MeterModel {
         this.pastUnit = pastUnit;
     }
 
-    public MeterModel(String meterName, String associateRoom, String meterType) {
+    public Meter(String meterName, String associateRoom, String meterType) {
         this.meterName = meterName;
         this.associateRoom = associateRoom;
         this.meterType = meterType;
     }
 
-    public MeterModel(String meterName, String owner, int presentUnit, int pastUnit) {
+    public Meter(String meterName, String owner, int presentUnit, int pastUnit) {
         this.meterName = meterName;
         this.owner = owner;
         this.presentUnit = presentUnit;
         this.pastUnit = pastUnit;
     }
 
-    public MeterModel() {
+    public Meter() {
 
     }
 
