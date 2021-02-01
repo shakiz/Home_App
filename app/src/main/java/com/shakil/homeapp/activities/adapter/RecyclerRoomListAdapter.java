@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.model.room.Room;
@@ -21,6 +22,17 @@ public class RecyclerRoomListAdapter extends RecyclerView.Adapter<RecyclerRoomLi
         this.context = context;
     }
 
+    //region click adapter
+    public onItemClickListener onItemClickListener;
+    public interface onItemClickListener{
+        void onItemClick(Room room);
+    }
+
+    public void setOnItemClickListener(onItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+    //endregion
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -30,10 +42,19 @@ public class RecyclerRoomListAdapter extends RecyclerView.Adapter<RecyclerRoomLi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.roomName.setText(arrayList.get(position).getRoomName());
-        holder.ownerName.setText(arrayList.get(position).getTenantName());
-        holder.startDate.setText(arrayList.get(position).getStartMonth());
-        holder.lastPaid.setText(arrayList.get(position).getLastPaidMonth());
+        Room room = arrayList.get(position);
+        holder.roomName.setText(room.getRoomName());
+        holder.ownerName.setText(room.getTenantName());
+        holder.startDate.setText(room.getStartMonth());
+        holder.lastPaid.setText(room.getLastPaidMonth());
+        holder.item_card_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null){
+                    onItemClickListener.onItemClick(room);
+                }
+            }
+        });
     }
 
     @Override
@@ -43,12 +64,14 @@ public class RecyclerRoomListAdapter extends RecyclerView.Adapter<RecyclerRoomLi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView roomName, ownerName, startDate, lastPaid;
+        CardView item_card_view;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             roomName = itemView.findViewById(R.id.roomName);
             ownerName = itemView.findViewById(R.id.roomOwner);
             startDate = itemView.findViewById(R.id.startMonth);
             lastPaid = itemView.findViewById(R.id.lastPaid);
+            item_card_view = itemView.findViewById(R.id.item_card_view);
         }
     }
 }

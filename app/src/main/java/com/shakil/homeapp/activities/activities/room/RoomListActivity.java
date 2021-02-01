@@ -1,39 +1,35 @@
 package com.shakil.homeapp.activities.activities.room;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.shakil.homeapp.R;
+import com.shakil.homeapp.activities.activities.meter.NewMeterActivity;
+import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.adapter.RecyclerRoomListAdapter;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.model.room.Room;
 import com.shakil.homeapp.activities.mvvm.RoomModelMVVM;
 import com.shakil.homeapp.activities.mvvm.RoomViewModel;
-import com.shakil.homeapp.activities.activities.onboard.MainActivity;
-import com.shakil.homeapp.activities.utils.RecyclerAdapter;
+import com.shakil.homeapp.databinding.ActivityRoomListBinding;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class RoomListActivity extends AppCompatActivity {
-
-    private RecyclerView recyclerViewMeterList;
+    private ActivityRoomListBinding activityRoomListBinding;
     private RecyclerRoomListAdapter recyclerRoomListAdapter;
-    private RecyclerAdapter recyclerAdapter;
     private TextView noDataTXT;
     private ArrayList<Room> roomList;
-    private Toolbar toolbar;
-    private FloatingActionButton addNewDetails;
-    //private RoomDbHelper roomDbHelper;
     private DbHelperParent dbHelperParent;
     //For MVVM
     private RoomViewModel roomViewModel;
@@ -41,12 +37,12 @@ public class RoomListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room_list);
+        activityRoomListBinding = DataBindingUtil.setContentView(this, R.layout.activity_room_list);
 
         init();
-        setSupportActionBar(toolbar);
+        setSupportActionBar(activityRoomListBinding.toolBar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        activityRoomListBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(RoomListActivity.this, MainActivity.class));
@@ -61,9 +57,17 @@ public class RoomListActivity extends AppCompatActivity {
         setData();
 
         recyclerRoomListAdapter = new RecyclerRoomListAdapter(roomList, this);
-        recyclerAdapter.setRoomRecyclerAdapter(recyclerViewMeterList, LinearLayout.VERTICAL,recyclerRoomListAdapter);
+        activityRoomListBinding.mRecylerView.setLayoutManager(new LinearLayoutManager(this));
+        activityRoomListBinding.mRecylerView.setAdapter(recyclerRoomListAdapter);
+        recyclerRoomListAdapter.notifyDataSetChanged();
+        recyclerRoomListAdapter.setOnItemClickListener(new RecyclerRoomListAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(Room room) {
+                startActivity(new Intent(RoomListActivity.this, NewMeterActivity.class).putExtra("room", room));
+            }
+        });
 
-        addNewDetails.setOnClickListener(new View.OnClickListener() {
+        activityRoomListBinding.mAddRoomMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(RoomListActivity.this, AddNewRoomActivity.class));
@@ -79,12 +83,10 @@ public class RoomListActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"called",Toast.LENGTH_LONG).show();
             }
         });
-
         //region end
     }
 
     private void setData() {
-        //roomModelList = roomDbHelper.getAllRoomDetails();
         roomList = dbHelperParent.getAllRoomDetails();
         if (roomList.size()<=0){
             noDataTXT.setVisibility(View.VISIBLE);
@@ -93,12 +95,7 @@ public class RoomListActivity extends AppCompatActivity {
     }
 
     private void init() {
-        recyclerViewMeterList = findViewById(R.id.mRecylerView);
-        recyclerAdapter = new RecyclerAdapter(this);
-        addNewDetails = findViewById(R.id.mAddRoomMaster);
         roomList = new ArrayList<>();
-        toolbar = findViewById(R.id.tool_bar);
-        //roomDbHelper = new RoomDbHelper(this);
         dbHelperParent = new DbHelperParent(this);
         noDataTXT = findViewById(R.id.mNoDataMessage);
     }
