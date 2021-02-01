@@ -23,7 +23,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="224dp"
+            android:layout_height="240dp"
             android:background="@drawable/home_banner"
             android:scaleType="fitCenter">
 
@@ -126,7 +126,7 @@
                             android:layout_marginRight="8dp"
                             android:textColor="@color/md_grey_800"
                             android:textStyle="bold"
-                            android:text="@string/no_of_rooms"/>
+                            android:text="@string/total_rooms"/>
 
                         <TextView
                             android:id="@+id/totalEarnings"
@@ -226,7 +226,7 @@
                             android:padding="4dp"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:text="@string/no_of_meters"
+                            android:text="@string/total_meters"
                             android:textColor="@color/md_grey_800"
                             android:textStyle="bold"/>
 
@@ -328,7 +328,7 @@
                             android:padding="4dp"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:text="@string/no_of_tenants"
+                            android:text="@string/total_tenants"
                             android:textColor="@color/md_grey_800"
                             android:textStyle="bold"/>
 

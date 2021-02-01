@@ -70,7 +70,7 @@ public class MeterListActivity extends AppCompatActivity {
 
     private void setData() {
         meterList = dbHelperParent.getAllMeterDetails();
-        if (meterList.size()<=0){
+        if (meterList.size() <= 0){
             noDataTXT.setVisibility(View.VISIBLE);
             noDataTXT.setText(R.string.no_data_message);
         }

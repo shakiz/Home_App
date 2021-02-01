@@ -39,11 +39,10 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardBackgroundColor="@color/md_grey_100"
+            app:cardBackgroundColor="@color/md_white_1000"
             app:cardCornerRadius="0dp"
             app:cardElevation="0dp"
             android:elevation="0dp"
-            android:layout_margin="8dp"
             android:translationZ="0dp">
 
             <LinearLayout

@@ -8,7 +8,7 @@
     android:background="@color/md_grey_200"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".activities.activities.meter.NewMeterDetailsActivity">
+    tools:context=".activities.activities.meter.MeterCostDetailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

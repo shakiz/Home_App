@@ -31,7 +31,7 @@ public class NewMeterActivity extends AppCompatActivity {
         activityNewMeterBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_meter);
 
         //region get intent data
-        getIntentData();
+        //getIntentData();
         //endregion
 
         init();
@@ -75,7 +75,6 @@ public class NewMeterActivity extends AppCompatActivity {
                     meter.setMeterName(meterNameStr);
                     meter.setAssociateRoom(roomNameStr);
                     meter.setMeterType(meterTypeStr);
-                    //meterDbHelper.addMeter(meterModel);
                     dbHelperParent.addMeter(meter);
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(NewMeterActivity.this,MeterListActivity.class));
@@ -88,7 +87,7 @@ public class NewMeterActivity extends AppCompatActivity {
     }
 
     private void init() {
-        inputValidation = new InputValidation(this,activityNewMeterBinding.mSaveMeterMaster);
+        inputValidation = new InputValidation(this,activityNewMeterBinding.mainLayout);
         spinnerAdapter = new SpinnerAdapter();
         spinnerData = new SpinnerData(this);
         dbHelperParent = new DbHelperParent(this);

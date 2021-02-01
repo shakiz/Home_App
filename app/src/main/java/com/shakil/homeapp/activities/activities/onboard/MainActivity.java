@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.activities.meter.MeterListActivity;
-import com.shakil.homeapp.activities.activities.meter.NewMeterDetailsActivity;
+import com.shakil.homeapp.activities.activities.meter.MeterCostDetailsActivity;
 import com.shakil.homeapp.activities.activities.room.NewRentDetailsActivity;
 import com.shakil.homeapp.activities.activities.room.RoomListActivity;
 import com.shakil.homeapp.activities.activities.tenant.TenantListActivity;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         addMeter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, NewMeterDetailsActivity.class));
+                startActivity(new Intent(MainActivity.this, MeterCostDetailsActivity.class));
             }
         });
 

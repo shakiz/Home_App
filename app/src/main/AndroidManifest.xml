@@ -25,7 +25,7 @@
             android:theme="@style/AppThemeNoActionBar"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".activities.activities.meter.NewMeterDetailsActivity"
+            android:name=".activities.activities.meter.MeterCostDetailsActivity"
             android:label="@string/new_meter_details"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"

@@ -71,5 +71,8 @@
     <string name="expiry_date">Expiry Date</string>
     <string name="date_hint">21-Mar-2020</string>
     <string name="select_correct_data">Select Correct Data</string>
+    <string name="total_rooms">Total Rooms</string>
+    <string name="total_meters">Total Meters</string>
+    <string name="total_tenants">Total Tenants</string>
     <!--NewMeterDetailsActivity ends-->
 </resources>

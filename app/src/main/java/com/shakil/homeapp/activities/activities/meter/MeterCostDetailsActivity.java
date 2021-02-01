@@ -22,7 +22,7 @@ import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
 import com.shakil.homeapp.activities.utils.UtilsForAll;
 
-public class NewMeterDetailsActivity extends AppCompatActivity {
+public class MeterCostDetailsActivity extends AppCompatActivity {
 
     private Spinner meterSpinner,roomSpinner;
     private TextView totalUnitTXT , totalPriceTXT;
@@ -40,7 +40,7 @@ public class NewMeterDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_meter_details);
+        setContentView(R.layout.activity_meter_cost_details);
 
         init();
         setSupportActionBar(toolbar);
@@ -48,7 +48,7 @@ public class NewMeterDetailsActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NewMeterDetailsActivity.this, MainActivity.class));
+                startActivity(new Intent(MeterCostDetailsActivity.this, MainActivity.class));
             }
         });
         bindUiWithComponents();

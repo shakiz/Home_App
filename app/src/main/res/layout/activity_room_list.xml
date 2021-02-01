@@ -21,7 +21,7 @@
             android:id="@+id/tool_bar"
             app:navigationIcon="?attr/homeAsUpIndicator"
             style="@style/TextAppearance.Widget.Event.Toolbar.Title"
-            app:title="@string/add_meter"
+            app:title="@string/room_list"
             app:titleTextColor="@color/md_grey_800">
 
         </androidx.appcompat.widget.Toolbar>
@@ -39,10 +39,11 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardCornerRadius="12dp"
-            android:elevation="4dp"
-            android:layout_margin="8dp"
-            android:translationZ="4dp">
+            app:cardBackgroundColor="@color/md_white_1000"
+            app:cardCornerRadius="0dp"
+            android:elevation="0dp"
+            app:cardElevation="0dp"
+            android:translationZ="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
