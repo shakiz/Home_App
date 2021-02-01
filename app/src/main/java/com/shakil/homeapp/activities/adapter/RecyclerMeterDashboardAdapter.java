@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.activities.meter.AddNewMeterActivity;
+import com.shakil.homeapp.activities.activities.meter.NewMeterActivity;
 import com.shakil.homeapp.activities.model.dashboard.Dashboard;
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class RecyclerMeterDashboardAdapter extends RecyclerView.Adapter<Recycler
         holder.adddNewMeter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, AddNewMeterActivity.class));
+                context.startActivity(new Intent(context, NewMeterActivity.class));
             }
         });
     }

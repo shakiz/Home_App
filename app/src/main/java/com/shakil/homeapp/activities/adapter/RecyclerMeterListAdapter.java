@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.model.meter.Meter;
@@ -21,6 +22,17 @@ public class RecyclerMeterListAdapter extends RecyclerView.Adapter<RecyclerMeter
         this.context = context;
     }
 
+    //region click adapter
+    public onItemClickListener onItemClickListener;
+    public interface onItemClickListener{
+        void onItemClick(Meter meter);
+    }
+
+    public void setOnItemClickListener(onItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+    //endregion
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -30,9 +42,18 @@ public class RecyclerMeterListAdapter extends RecyclerView.Adapter<RecyclerMeter
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.meterName.setText("Name : "+arrayList.get(position).getMeterName());
-        holder.roomName.setText("Room : "+arrayList.get(position).getAssociateRoom());
-        holder.meterType.setText("Meter Type : "+arrayList.get(position).getMeterType());
+        Meter meter = arrayList.get(position);
+        holder.meterName.setText("Name : "+meter.getMeterName());
+        holder.roomName.setText("Room : "+meter.getAssociateRoom());
+        holder.meterType.setText("Meter Type : "+meter.getMeterType());
+        holder.item_card_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null){
+                    onItemClickListener.onItemClick(meter);
+                }
+            }
+        });
     }
 
     @Override
@@ -42,11 +63,13 @@ public class RecyclerMeterListAdapter extends RecyclerView.Adapter<RecyclerMeter
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView meterName, roomName, meterType;
+        CardView item_card_view;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             meterName = itemView.findViewById(R.id.meterName);
             roomName = itemView.findViewById(R.id.roomName);
             meterType = itemView.findViewById(R.id.meterType);
+            item_card_view = itemView.findViewById(R.id.item_card_view);
         }
     }
 }

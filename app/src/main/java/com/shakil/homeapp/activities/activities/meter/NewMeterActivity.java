@@ -1,60 +1,66 @@
 package com.shakil.homeapp.activities.activities.meter;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.Toast;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.model.meter.Meter;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
+import com.shakil.homeapp.databinding.ActivityNewMeterBinding;
 
-public class AddNewMeterActivity extends AppCompatActivity {
-
-    private Toolbar toolbar;
-    private EditText meterName;
-    private Spinner roomSpinner, meterTypeSpinner;
+public class NewMeterActivity extends AppCompatActivity {
+    private ActivityNewMeterBinding activityNewMeterBinding;
     private InputValidation inputValidation;
     private SpinnerAdapter spinnerAdapter;
     private SpinnerData spinnerData;
-    private FloatingActionButton addMeter;
-    private LinearLayout linearLayout;
-    //private MeterDbHelper meterDbHelper;
     private DbHelperParent dbHelperParent;
-    private String meterNameStr , roomNameStr , meterTypeStr;
+    private String meterNameStr, roomNameStr, meterTypeStr;
+    private Meter meter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_meter);
+        activityNewMeterBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_meter);
+
+        //region get intent data
+        getIntentData();
+        //endregion
 
         init();
 
-        setSupportActionBar(toolbar);
+        setSupportActionBar(activityNewMeterBinding.toolBar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        activityNewMeterBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AddNewMeterActivity.this, MeterListActivity.class));
+                startActivity(new Intent(NewMeterActivity.this, MeterListActivity.class));
             }
         });
 
         bindUIWithComponents();
     }
 
-    private void bindUIWithComponents() {
-        spinnerAdapter.setSpinnerAdapter(roomSpinner,spinnerData.setRoomData(),this);
-        spinnerAdapter.setSpinnerAdapter(meterTypeSpinner,spinnerData.setMeterTypeData(),this);
+    //region get intent data
+    private void getIntentData(){
+        if (getIntent().getExtras().getParcelable("meter") != null){
+            meter = getIntent().getExtras().getParcelable("meter");
+        }
+    }
+    //endregion
 
-        addMeter.setOnClickListener(new View.OnClickListener() {
+    private void bindUIWithComponents() {
+        spinnerAdapter.setSpinnerAdapter(activityNewMeterBinding.RoomSpinner,spinnerData.setRoomData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityNewMeterBinding.MeterTypeSpinner,spinnerData.setMeterTypeData(),this);
+
+        activityNewMeterBinding.mSaveMeterMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -64,7 +70,7 @@ public class AddNewMeterActivity extends AppCompatActivity {
                 meterTypeStr = inputValidation.checkSpinner(R.id.MeterTypeSpinner);
 
                 if (!roomNameStr.equals("Select Data") && !meterTypeStr.equals("Select Data")){
-                    meterNameStr = meterName.getText().toString();
+                    meterNameStr = activityNewMeterBinding.MeterName.getText().toString();
                     Meter meter = new Meter();
                     meter.setMeterName(meterNameStr);
                     meter.setAssociateRoom(roomNameStr);
@@ -72,7 +78,7 @@ public class AddNewMeterActivity extends AppCompatActivity {
                     //meterDbHelper.addMeter(meterModel);
                     dbHelperParent.addMeter(meter);
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(AddNewMeterActivity.this,MeterListActivity.class));
+                    startActivity(new Intent(NewMeterActivity.this,MeterListActivity.class));
                 }
                 else{
                     Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
@@ -82,17 +88,9 @@ public class AddNewMeterActivity extends AppCompatActivity {
     }
 
     private void init() {
-        toolbar = findViewById(R.id.tool_bar);
-        meterName = findViewById(R.id.MeterName);
-        roomSpinner = findViewById(R.id.RoomSpinner);
-        meterTypeSpinner = findViewById(R.id.MeterTypeSpinner);
-        addMeter = findViewById(R.id.mSaveMeterMaster);
-        linearLayout = findViewById(R.id.mainLayout);
-
-        inputValidation = new InputValidation(this,linearLayout);
+        inputValidation = new InputValidation(this,activityNewMeterBinding.mSaveMeterMaster);
         spinnerAdapter = new SpinnerAdapter();
         spinnerData = new SpinnerData(this);
-        //meterDbHelper = new MeterDbHelper(this);
         dbHelperParent = new DbHelperParent(this);
     }
 }
