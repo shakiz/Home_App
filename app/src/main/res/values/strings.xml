@@ -74,5 +74,11 @@
     <string name="total_rooms">Total Rooms</string>
     <string name="total_meters">Total Meters</string>
     <string name="total_tenants">Total Tenants</string>
+    <string name="demo_room_name">Demo Room Name</string>
+    <string name="demo_room_owner_name">Rahim Hasan</string>
+    <string name="demo_month">DD-MM-YYYY</string>
+    <string name="demo_last_paid_date">12-Jan-2020</string>
+    <string name="demo_meter_name">Demo Meter 1</string>
+    <string name="demo_meter_type">Sub Meter</string>
     <!--NewMeterDetailsActivity ends-->
 </resources>

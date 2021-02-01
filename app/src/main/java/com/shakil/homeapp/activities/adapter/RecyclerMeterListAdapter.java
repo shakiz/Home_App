@@ -43,9 +43,9 @@ public class RecyclerMeterListAdapter extends RecyclerView.Adapter<RecyclerMeter
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Meter meter = arrayList.get(position);
-        holder.meterName.setText("Name : "+meter.getMeterName());
-        holder.roomName.setText("Room : "+meter.getAssociateRoom());
-        holder.meterType.setText("Meter Type : "+meter.getMeterType());
+        holder.meterName.setText(meter.getMeterName());
+        holder.roomName.setText(meter.getAssociateRoom());
+        holder.meterType.setText(meter.getMeterType());
         holder.item_card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

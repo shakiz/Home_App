@@ -21,7 +21,7 @@
             android:id="@+id/tool_bar"
             app:navigationIcon="?attr/homeAsUpIndicator"
             style="@style/TextAppearance.Widget.Event.Toolbar.Title"
-            app:title="@string/add_meter"
+            app:title="@string/meter_list"
             app:titleTextColor="@color/md_grey_800">
 
         </androidx.appcompat.widget.Toolbar>

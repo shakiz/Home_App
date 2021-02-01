@@ -120,6 +120,14 @@ public class DbHelperParent extends SQLiteOpenHelper {
         db.close();
     }
 
+    public int getTotalMeterRows(){
+        String query = "select * from "+Constants.TABLE_NAME_METER;
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery(query ,null);
+        int count = cursor.getCount();
+        return count;
+    }
+
     public ArrayList<Meter> getAllMeterDetails() {
         // array of columns to fetch
         String[] columns = {

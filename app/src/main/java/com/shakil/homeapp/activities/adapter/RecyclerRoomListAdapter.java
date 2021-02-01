@@ -30,10 +30,10 @@ public class RecyclerRoomListAdapter extends RecyclerView.Adapter<RecyclerRoomLi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.roomName.setText("Name : "+arrayList.get(position).getRoomName());
-        holder.ownerName.setText("Owner : "+arrayList.get(position).getTenantName());
-        holder.startDate.setText("Start Month : "+arrayList.get(position).getStartMonth());
-        holder.lastPaid.setText("Last Paid : "+arrayList.get(position).getLastPaidMonth());
+        holder.roomName.setText(arrayList.get(position).getRoomName());
+        holder.ownerName.setText(arrayList.get(position).getTenantName());
+        holder.startDate.setText(arrayList.get(position).getStartMonth());
+        holder.lastPaid.setText(arrayList.get(position).getLastPaidMonth());
     }
 
     @Override

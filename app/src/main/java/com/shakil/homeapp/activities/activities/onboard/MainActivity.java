@@ -1,37 +1,35 @@
 package com.shakil.homeapp.activities.activities.onboard;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
+
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
-import com.shakil.homeapp.activities.activities.meter.MeterListActivity;
 import com.shakil.homeapp.activities.activities.meter.MeterCostDetailsActivity;
+import com.shakil.homeapp.activities.activities.meter.MeterListActivity;
 import com.shakil.homeapp.activities.activities.room.NewRentDetailsActivity;
 import com.shakil.homeapp.activities.activities.room.RoomListActivity;
 import com.shakil.homeapp.activities.activities.tenant.TenantListActivity;
+import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.utils.UtilsForAll;
+import com.shakil.homeapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ImageView addRoom , addMeter;
-    private TextView totalRoomsTXT ,  totalEarningsTXT;
+    private ActivityMainBinding activityMainBinding;
     private DbHelperParent dbHelperParent;
     private Toolbar toolbar;
-    private CardView meterCard,roomCard,tenantCard;
     private UtilsForAll utilsForAll;
     private LinearLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         init();
 
@@ -50,35 +48,35 @@ public class MainActivity extends AppCompatActivity {
 
         setData();
 
-        addRoom.setOnClickListener(new View.OnClickListener() {
+        activityMainBinding.mAddMasterRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, NewRentDetailsActivity.class));
             }
         });
 
-        addMeter.setOnClickListener(new View.OnClickListener() {
+        activityMainBinding.mAddMasterElectricityBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, MeterCostDetailsActivity.class));
             }
         });
 
-        meterCard.setOnClickListener(new View.OnClickListener() {
+        activityMainBinding.meterDashboardCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, MeterListActivity.class));
             }
         });
 
-        roomCard.setOnClickListener(new View.OnClickListener() {
+        activityMainBinding.roomDashboardCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, RoomListActivity.class));
             }
         });
 
-        tenantCard.setOnClickListener(new View.OnClickListener() {
+        activityMainBinding.tenantDashboardCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, TenantListActivity.class));
@@ -87,19 +85,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        totalRoomsTXT.setText("Total rooms : "+dbHelperParent.getTotalRoomRows());
+        activityMainBinding.totalRooms.setText(getString(R.string.total_rooms)+" : "+dbHelperParent.getTotalRoomRows());
+        activityMainBinding.totalMeters.setText(getString(R.string.total_meters)+" : "+dbHelperParent.getTotalMeterRows());
         utilsForAll.setCustomDesignTextView(R.id.totalRooms);
     }
 
     private void init() {
-        addRoom = findViewById(R.id.mAddMasterRoom);
-        addMeter = findViewById(R.id.mAddMasterElectricityBill);
         toolbar = findViewById(R.id.tool_bar);
-        totalRoomsTXT = findViewById(R.id.totalRooms);
-        totalEarningsTXT = findViewById(R.id.totalEarnings);
-        meterCard = findViewById(R.id.meterDashboardCard);
-        roomCard = findViewById(R.id.roomDashboardCard);
-        tenantCard = findViewById(R.id.tenantDashboardCard);
         mainLayout = findViewById(R.id.mainLayout);
         dbHelperParent = new DbHelperParent(this);
         utilsForAll = new UtilsForAll(this,mainLayout);
