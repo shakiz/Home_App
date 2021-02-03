@@ -1,29 +1,21 @@
 package com.shakil.homeapp.activities.activities.room;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
+import com.shakil.homeapp.databinding.ActivityNewRentDetailsBinding;
 
 public class NewRentDetailsActivity extends AppCompatActivity {
-
-    private Toolbar toolbar;
-    private Spinner monthSpinner, roomSpinner;
-    private FloatingActionButton addRentButton;
-    private EditText rentAmount;
-    private LinearLayout mainLayout;
+    private ActivityNewRentDetailsBinding activityNewRentDetailsBinding;
     private SpinnerData spinnerData;
     private InputValidation inputValidation;
     private SpinnerAdapter spinnerAdapter;
@@ -31,12 +23,12 @@ public class NewRentDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_rent_details);
+        activityNewRentDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_rent_details);
 
         init();
-        setSupportActionBar(toolbar);
+        setSupportActionBar(activityNewRentDetailsBinding.toolBar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        activityNewRentDetailsBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(NewRentDetailsActivity.this, MainActivity.class));
@@ -45,10 +37,10 @@ public class NewRentDetailsActivity extends AppCompatActivity {
         bindUiWithComponents();
     }
     private void bindUiWithComponents() {
-        spinnerAdapter.setSpinnerAdapter(monthSpinner,spinnerData.setMonthData(),this);
-        spinnerAdapter.setSpinnerAdapter(roomSpinner,spinnerData.setRoomData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityNewRentDetailsBinding.MonthSpinner,spinnerData.setMonthData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityNewRentDetailsBinding.RoomSpinner,spinnerData.setRoomData(),this);
 
-        addRentButton.setOnClickListener(new View.OnClickListener() {
+        activityNewRentDetailsBinding.mAddRentMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 inputValidation.checkEditTextInput(R.id.RentAmount,"Please check your value");
@@ -57,14 +49,8 @@ public class NewRentDetailsActivity extends AppCompatActivity {
     }
 
     private void init() {
-        toolbar = findViewById(R.id.tool_bar);
-        monthSpinner = findViewById(R.id.MonthSpinner);
-        roomSpinner = findViewById(R.id.RoomSpinner);
-        addRentButton = findViewById(R.id.mAddRentMaster);
-        rentAmount = findViewById(R.id.RentAmount);
-        mainLayout = findViewById(R.id.mainLayout);
         spinnerData = new SpinnerData(this);
         spinnerAdapter = new SpinnerAdapter();
-        inputValidation = new InputValidation(this,mainLayout);
+        inputValidation = new InputValidation(this, activityNewRentDetailsBinding.mainLayout);
     }
 }
