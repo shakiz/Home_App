@@ -6,37 +6,34 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.adapter.RecyclerMeterListAdapter;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.model.meter.Meter;
+import com.shakil.homeapp.databinding.ActivityMeterListBinding;
 
 import java.util.ArrayList;
 
 public class MeterListActivity extends AppCompatActivity {
-    private RecyclerView recyclerViewMeterList;
+    private ActivityMeterListBinding activityMeterListBinding;
     private RecyclerMeterListAdapter recyclerMeterListAdapter;
     private ArrayList<Meter> meterList;
     private TextView noDataTXT;
-    private Toolbar toolbar;
-    private FloatingActionButton addNewDetails;
     private DbHelperParent dbHelperParent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meter_list);
+       activityMeterListBinding = DataBindingUtil.setContentView(this, R.layout.activity_meter_list);
 
         init();
-        setSupportActionBar(toolbar);
+        setSupportActionBar(activityMeterListBinding.toolBar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        activityMeterListBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MeterListActivity.this,MainActivity.class));
@@ -50,8 +47,8 @@ public class MeterListActivity extends AppCompatActivity {
         setData();
 
         recyclerMeterListAdapter = new RecyclerMeterListAdapter(meterList, this);
-        recyclerViewMeterList.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewMeterList.setAdapter(recyclerMeterListAdapter);
+        activityMeterListBinding.mRecylerView.setLayoutManager(new LinearLayoutManager(this));
+        activityMeterListBinding.mRecylerView.setAdapter(recyclerMeterListAdapter);
         recyclerMeterListAdapter.notifyDataSetChanged();
         recyclerMeterListAdapter.setOnItemClickListener(new RecyclerMeterListAdapter.onItemClickListener() {
             @Override
@@ -60,7 +57,7 @@ public class MeterListActivity extends AppCompatActivity {
             }
         });
 
-        addNewDetails.setOnClickListener(new View.OnClickListener() {
+        activityMeterListBinding.mAddMeterMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MeterListActivity.this, NewMeterActivity.class));
@@ -77,10 +74,7 @@ public class MeterListActivity extends AppCompatActivity {
     }
 
     private void init() {
-        recyclerViewMeterList = findViewById(R.id.mRecylerView);
-        addNewDetails = findViewById(R.id.mAddMeterMaster);
         meterList = new ArrayList<>();
-        toolbar = findViewById(R.id.tool_bar);
         dbHelperParent = new DbHelperParent(this);
         noDataTXT = findViewById(R.id.mNoDataMessage);
     }

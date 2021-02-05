@@ -1,38 +1,28 @@
 package com.shakil.homeapp.activities.activities.room;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.Toast;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.shakil.homeapp.R;
+import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.model.room.Room;
-import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
+import com.shakil.homeapp.databinding.ActivityAddNewRoomBinding;
 
 public class AddNewRoomActivity extends AppCompatActivity {
-
-    private Spinner monthSpinner, meterSpinner;
-    private FloatingActionButton addRoomButton;
-    private EditText roomName,tenantName,advanceAmount;
-    private CheckBox checkBoxAdvance;
-    private LinearLayout linearLayoutAdvanceAmount;
+    private ActivityAddNewRoomBinding activityAddNewRoomBinding;
     private SpinnerData spinnerData;
     private SpinnerAdapter spinnerAdapter;
     private InputValidation inputValidation;
-    private LinearLayout mainLayout;
-    private Toolbar toolbar;
-    //private RoomDbHelper roomDbHelper;
     private DbHelperParent dbHelperParent;
     private String roomNameStr,startingMonthStr,associateMeterStr,tenantNameStr;
     private int advancedAmountInt;
@@ -40,11 +30,11 @@ public class AddNewRoomActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_room);
+        activityAddNewRoomBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_new_room);
         init();
-        setSupportActionBar(toolbar);
+        setSupportActionBar(activityAddNewRoomBinding.toolBar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        activityAddNewRoomBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AddNewRoomActivity.this,RoomListActivity.class));
@@ -55,28 +45,28 @@ public class AddNewRoomActivity extends AppCompatActivity {
     }
 
     private void bindUIWithComponents() {
-        spinnerAdapter.setSpinnerAdapter(monthSpinner,spinnerData.setMonthData(),this);
-        spinnerAdapter.setSpinnerAdapter(meterSpinner,spinnerData.setMeterData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityAddNewRoomBinding.MonthSpinner,spinnerData.setMonthData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityAddNewRoomBinding.MeterSpinner,spinnerData.setMeterData(),this);
 
-        checkBoxAdvance.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        activityAddNewRoomBinding.AdvanceCehckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean visibilityValue) {
                 if (visibilityValue){
-                    linearLayoutAdvanceAmount.setVisibility(View.VISIBLE);
+                    activityAddNewRoomBinding.advanceAmountLayout.setVisibility(View.VISIBLE);
                     if (inputValidation.checkEditTextInput(R.id.AdvanceAmount,"Please give amount")){
-                        advancedAmountInt = Integer.parseInt(advanceAmount.getText().toString());
+                        advancedAmountInt = Integer.parseInt(activityAddNewRoomBinding.AdvanceAmount.getText().toString());
                     }
                     else{
                         Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
                     }
                 }
                 else{
-                    linearLayoutAdvanceAmount.setVisibility(View.GONE);
+                    activityAddNewRoomBinding.advanceAmountLayout.setVisibility(View.GONE);
                 }
             }
         });
 
-        addRoomButton.setOnClickListener(new View.OnClickListener() {
+        activityAddNewRoomBinding.mSaveRoomMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Room room = new Room();
@@ -85,8 +75,8 @@ public class AddNewRoomActivity extends AppCompatActivity {
                 associateMeterStr = inputValidation.checkSpinner(R.id.MeterSpinner);
 
                 if (!startingMonthStr.equals("Select Data") && !associateMeterStr.equals("Select Data")){
-                    roomNameStr = roomName.getText().toString();
-                    tenantNameStr = tenantName.getText().toString();
+                    roomNameStr = activityAddNewRoomBinding.RoomName.getText().toString();
+                    tenantNameStr = activityAddNewRoomBinding.TenantName.getText().toString();
                     room.setRoomName(roomNameStr);
                     room.setStartMonth(startingMonthStr);
                     room.setAssociateMeter(associateMeterStr);
@@ -105,19 +95,9 @@ public class AddNewRoomActivity extends AppCompatActivity {
     }
 
     private void init() {
-        monthSpinner = findViewById(R.id.MonthSpinner);
-        meterSpinner = findViewById(R.id.MeterSpinner);
-        addRoomButton = findViewById(R.id.mSaveRoomMaster);
-        roomName = findViewById(R.id.RoomName);
-        tenantName = findViewById(R.id.TenantName);
-        advanceAmount = findViewById(R.id.AdvanceAmount);
-        checkBoxAdvance = findViewById(R.id.AdvanceCehckBox);
-        linearLayoutAdvanceAmount = findViewById(R.id.advanceAmountLayout);
-        mainLayout = findViewById(R.id.mainLayout);
-        toolbar = findViewById(R.id.tool_bar);
         spinnerData = new SpinnerData(this);
         spinnerAdapter = new SpinnerAdapter();
-        inputValidation = new InputValidation(this,mainLayout);
+        inputValidation = new InputValidation(this,activityAddNewRoomBinding.mainLayout);
         //roomDbHelper = new RoomDbHelper(this);
         dbHelperParent = new DbHelperParent(this);
     }

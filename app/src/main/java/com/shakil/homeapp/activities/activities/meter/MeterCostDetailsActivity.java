@@ -1,37 +1,29 @@
 package com.shakil.homeapp.activities.activities.meter;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.model.meter.Meter;
 import com.shakil.homeapp.activities.activities.onboard.MainActivity;
+import com.shakil.homeapp.activities.model.meter.Meter;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
 import com.shakil.homeapp.activities.utils.UtilsForAll;
+import com.shakil.homeapp.databinding.ActivityMeterCostDetailsBinding;
 
 public class MeterCostDetailsActivity extends AppCompatActivity {
-
-    private Spinner meterSpinner,roomSpinner;
-    private TextView totalUnitTXT , totalPriceTXT;
-    private EditText unitPrice, presentMonthUnit , previousMonthUnit;
-    private FloatingActionButton addMeterDetails;
-    private Toolbar toolbar;
+    private ActivityMeterCostDetailsBinding activityMeterCostDetailsBinding;
     private String meterNameStr, roomNameStr;
-    private int totalUnitInt , previousMonthUnitInt , presentMonthUnitInt , unitPriceInt , totalElectricityBillInt;
-    private LinearLayout mainLayout;
+    private int totalUnitInt, previousMonthUnitInt, presentMonthUnitInt, unitPriceInt, totalElectricityBillInt;
     private SpinnerData spinnerData;
     private SpinnerAdapter spinnerAdapter;
     private InputValidation inputValidation;
@@ -40,12 +32,12 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meter_cost_details);
+        activityMeterCostDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_meter_cost_details);
 
         init();
-        setSupportActionBar(toolbar);
+        setSupportActionBar(activityMeterCostDetailsBinding.toolBar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        activityMeterCostDetailsBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MeterCostDetailsActivity.this, MainActivity.class));
@@ -55,11 +47,11 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
     }
 
     private void bindUiWithComponents() {
-        spinnerAdapter.setSpinnerAdapter(meterSpinner,spinnerData.setMeterData(),this);
-        spinnerAdapter.setSpinnerAdapter(roomSpinner,spinnerData.setRoomData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityMeterCostDetailsBinding.MeterSpinner,spinnerData.setMeterData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityMeterCostDetailsBinding.RoomSpinner,spinnerData.setRoomData(),this);
 
         //region Adding new details
-        addMeterDetails.setOnClickListener(new View.OnClickListener() {
+        activityMeterCostDetailsBinding.mAddMeterDetailsMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 meterNameStr = inputValidation.checkSpinner(R.id.MeterSpinner);
@@ -76,7 +68,7 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
         //region end
 
         //region present month unit on change
-        previousMonthUnit.addTextChangedListener(new TextWatcher() {
+        activityMeterCostDetailsBinding.PreviousMonthUnit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -96,7 +88,7 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
         //region end
 
         //region previous month unit on change
-        presentMonthUnit.addTextChangedListener(new TextWatcher() {
+        activityMeterCostDetailsBinding.PresentMonthUnit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -116,7 +108,7 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
         //region end
 
         //region unit price on change
-        unitPrice.addTextChangedListener(new TextWatcher() {
+        activityMeterCostDetailsBinding.UnitPrice.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -126,7 +118,7 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 unitPriceInt = utilsForAll.toIntValue(charSequence.toString());
                 totalElectricityBillInt = unitPriceInt*totalUnitInt;
-                totalPriceTXT.setText("Total Electricity Bill "+ totalElectricityBillInt);
+                activityMeterCostDetailsBinding.TotalAmount.setText("Total Electricity Bill "+ totalElectricityBillInt);
             }
 
             @Override
@@ -139,14 +131,14 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
     private int calculateUnit(int previousMonthUnitValue , int presentMonthUnitValue){
         if (presentMonthUnitValue >0 ){
             totalUnitInt = previousMonthUnitValue - presentMonthUnitValue;
-            totalUnitTXT.setText("Total Unit "+totalUnitInt);
-            totalUnitTXT.setTextColor(getResources().getColor(R.color.md_grey_800));
+            activityMeterCostDetailsBinding.TotalUnit.setText("Total Unit "+totalUnitInt);
+            activityMeterCostDetailsBinding.TotalUnit.setTextColor(getResources().getColor(R.color.md_grey_800));
         }
         else {
             Toast.makeText(getApplicationContext(),"Please check unit value",Toast.LENGTH_SHORT).show();
             totalUnitInt = 0;
-            totalUnitTXT.setText("Total Unit "+totalUnitInt);
-            totalUnitTXT.setTextColor(getResources().getColor(R.color.md_red_400));
+            activityMeterCostDetailsBinding.TotalUnit.setText("Total Unit "+totalUnitInt);
+            activityMeterCostDetailsBinding.TotalUnit.setTextColor(getResources().getColor(R.color.md_red_400));
         }
         return totalUnitInt;
     }
@@ -158,26 +150,16 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
         else {
             Toast.makeText(getApplicationContext(), R.string.warning_message_unit, Toast.LENGTH_SHORT).show();
             totalUnitInt = 0;
-            totalUnitTXT.setText("Total Unit "+totalUnitInt);
-            totalUnitTXT.setTextColor(getResources().getColor(R.color.md_red_400));
+            activityMeterCostDetailsBinding.TotalUnit.setText("Total Unit "+totalUnitInt);
+            activityMeterCostDetailsBinding.TotalUnit.setTextColor(getResources().getColor(R.color.md_red_400));
         }
     }
 
 
     private void init() {
-        toolbar = findViewById(R.id.tool_bar);
-        meterSpinner = findViewById(R.id.MeterSpinner);
-        roomSpinner = findViewById(R.id.RoomSpinner);
-        addMeterDetails = findViewById(R.id.mAddMeterDetailsMaster);
-        totalUnitTXT = findViewById(R.id.TotalUnit);
-        mainLayout = findViewById(R.id.mainLayout);
-        totalPriceTXT = findViewById(R.id.TotalAmount);
-        unitPrice = findViewById(R.id.UnitPrice);
-        presentMonthUnit = findViewById(R.id.PresentMonthUnit);
-        previousMonthUnit = findViewById(R.id.PreviousMonthUnit);
         spinnerData = new SpinnerData(this);
         spinnerAdapter = new SpinnerAdapter();
-        inputValidation = new InputValidation(this,mainLayout);
-        utilsForAll = new UtilsForAll(this,mainLayout);
+        inputValidation = new InputValidation(this,activityMeterCostDetailsBinding.mainLayout);
+        utilsForAll = new UtilsForAll(this,activityMeterCostDetailsBinding.mainLayout);
     }
 }
