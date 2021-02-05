@@ -81,4 +81,7 @@
     <string name="demo_meter_name">Demo Meter 1</string>
     <string name="demo_meter_type">Sub Meter</string>
     <!--NewMeterDetailsActivity ends-->
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

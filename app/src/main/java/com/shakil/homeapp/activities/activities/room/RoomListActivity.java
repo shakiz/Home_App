@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.activities.meter.NewMeterActivity;
 import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.adapter.RecyclerRoomListAdapter;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
@@ -63,14 +62,14 @@ public class RoomListActivity extends AppCompatActivity {
         recyclerRoomListAdapter.setOnItemClickListener(new RecyclerRoomListAdapter.onItemClickListener() {
             @Override
             public void onItemClick(Room room) {
-                startActivity(new Intent(RoomListActivity.this, NewMeterActivity.class).putExtra("room", room));
+                startActivity(new Intent(RoomListActivity.this, NewRoomActivity.class).putExtra("room", room));
             }
         });
 
         activityRoomListBinding.mAddRoomMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RoomListActivity.this, AddNewRoomActivity.class));
+                startActivity(new Intent(RoomListActivity.this, NewRoomActivity.class));
             }
         });
 

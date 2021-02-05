@@ -18,7 +18,7 @@ import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
 import com.shakil.homeapp.databinding.ActivityAddNewRoomBinding;
 
-public class AddNewRoomActivity extends AppCompatActivity {
+public class NewRoomActivity extends AppCompatActivity {
     private ActivityAddNewRoomBinding activityAddNewRoomBinding;
     private SpinnerData spinnerData;
     private SpinnerAdapter spinnerAdapter;
@@ -37,7 +37,7 @@ public class AddNewRoomActivity extends AppCompatActivity {
         activityAddNewRoomBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AddNewRoomActivity.this,RoomListActivity.class));
+                startActivity(new Intent(NewRoomActivity.this,RoomListActivity.class));
             }
         });
 
@@ -85,7 +85,7 @@ public class AddNewRoomActivity extends AppCompatActivity {
                     //roomDbHelper.addRoom(roomModel);
                     dbHelperParent.addRoom(room);
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(AddNewRoomActivity.this,RoomListActivity.class));
+                    startActivity(new Intent(NewRoomActivity.this,RoomListActivity.class));
                 }
                 else{
                     Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
@@ -105,6 +105,6 @@ public class AddNewRoomActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(AddNewRoomActivity.this, MainActivity.class));
+        startActivity(new Intent(NewRoomActivity.this, MainActivity.class));
     }
 }

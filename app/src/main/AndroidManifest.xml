@@ -49,7 +49,7 @@
             android:theme="@style/AppThemeNoActionBar"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".activities.activities.room.AddNewRoomActivity"
+            android:name=".activities.activities.room.NewRoomActivity"
             android:label="@string/add_meter"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"
