@@ -107,4 +107,10 @@ public class NewRoomActivity extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(NewRoomActivity.this, MainActivity.class));
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelperParent.close();
+    }
 }

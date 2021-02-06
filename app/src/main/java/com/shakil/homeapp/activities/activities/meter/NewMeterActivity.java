@@ -92,4 +92,10 @@ public class NewMeterActivity extends AppCompatActivity {
         spinnerData = new SpinnerData(this);
         dbHelperParent = new DbHelperParent(this);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelperParent.close();
+    }
 }

@@ -16,6 +16,7 @@ import com.shakil.homeapp.activities.activities.meter.MeterCostDetailsActivity;
 import com.shakil.homeapp.activities.activities.meter.MeterListActivity;
 import com.shakil.homeapp.activities.activities.room.NewRentDetailsActivity;
 import com.shakil.homeapp.activities.activities.room.RoomListActivity;
+import com.shakil.homeapp.activities.activities.tenant.NewTenantActivity;
 import com.shakil.homeapp.activities.activities.tenant.TenantListActivity;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.activities.utils.UtilsForAll;
@@ -79,21 +80,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         activityMainBinding.meterDashboardCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MeterListActivity.class));
+                startActivity(new Intent(MainActivity.this, MeterCostDetailsActivity.class));
             }
         });
 
         activityMainBinding.roomDashboardCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, RoomListActivity.class));
+                startActivity(new Intent(MainActivity.this, NewRentDetailsActivity.class));
             }
         });
 
         activityMainBinding.tenantDashboardCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, TenantListActivity.class));
+                startActivity(new Intent(MainActivity.this, NewTenantActivity.class));
             }
         });
     }

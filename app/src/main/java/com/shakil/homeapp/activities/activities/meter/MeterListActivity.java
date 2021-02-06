@@ -83,4 +83,10 @@ public class MeterListActivity extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(MeterListActivity.this, MainActivity.class));
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelperParent.close();
+    }
 }

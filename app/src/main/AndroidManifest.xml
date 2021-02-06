@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".activities.activities.tenant.AddNewTenantActivity"></activity>
+        <activity android:name=".activities.activities.tenant.NewTenantActivity"></activity>
         <activity android:name=".activities.activities.tenant.TenantListActivity" />
         <activity android:name=".activities.activities.onboard.MainActivity">
             <intent-filter>

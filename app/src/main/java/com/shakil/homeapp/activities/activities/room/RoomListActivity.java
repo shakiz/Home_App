@@ -103,5 +103,11 @@ public class RoomListActivity extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(RoomListActivity.this,MainActivity.class));
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelperParent.close();
+    }
 }
 

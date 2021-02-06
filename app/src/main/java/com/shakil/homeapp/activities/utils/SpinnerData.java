@@ -31,7 +31,7 @@ public class SpinnerData {
     }
 
     public String[] setRoomData(){
-        String[] spinnerValues = {"Select Data","Room 1","Room 2","Room 3","Room 4"};
+        String[] spinnerValues = dbHelperParent.getRoomNames().toArray(new String[dbHelperParent.getMeterNames().size()]);
         return spinnerValues;
     }
 }
