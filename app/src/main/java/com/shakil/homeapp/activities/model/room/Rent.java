@@ -1,13 +1,16 @@
 package com.shakil.homeapp.activities.model.room;
 
 public class Rent {
-    private String rentForMonth , rentRoom;
+    private String MonthName;
+    private int MonthId;
+    private String AssociateRoomName;
+    private int AssociateRoomId;
     private int rentAmount;
 
 
     public Rent(String rentForMonth, String rentRoom, int rentAmount) {
-        this.rentForMonth = rentForMonth;
-        this.rentRoom = rentRoom;
+        this.MonthName = rentForMonth;
+        this.AssociateRoomName = rentRoom;
         this.rentAmount = rentAmount;
     }
 
@@ -15,20 +18,36 @@ public class Rent {
 
     }
 
-    public String getRentForMonth() {
-        return rentForMonth;
+    public String getMonthName() {
+        return MonthName;
     }
 
-    public void setRentForMonth(String rentForMonth) {
-        this.rentForMonth = rentForMonth;
+    public void setMonthName(String monthName) {
+        MonthName = monthName;
     }
 
-    public String getRentRoom() {
-        return rentRoom;
+    public int getMonthId() {
+        return MonthId;
     }
 
-    public void setRentRoom(String rentRoom) {
-        this.rentRoom = rentRoom;
+    public void setMonthId(int monthId) {
+        MonthId = monthId;
+    }
+
+    public String getAssociateRoomName() {
+        return AssociateRoomName;
+    }
+
+    public void setAssociateRoomName(String associateRoomName) {
+        AssociateRoomName = associateRoomName;
+    }
+
+    public int getAssociateRoomId() {
+        return AssociateRoomId;
+    }
+
+    public void setAssociateRoomId(int associateRoomId) {
+        AssociateRoomId = associateRoomId;
     }
 
     public int getRentAmount() {

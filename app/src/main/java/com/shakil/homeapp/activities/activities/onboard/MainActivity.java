@@ -12,9 +12,9 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.navigation.NavigationView;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.activities.meter.MeterCostDetailsActivity;
+import com.shakil.homeapp.activities.activities.meter.MeterCostListActivity;
 import com.shakil.homeapp.activities.activities.meter.MeterListActivity;
-import com.shakil.homeapp.activities.activities.room.NewRentDetailsActivity;
+import com.shakil.homeapp.activities.activities.room.RentListActivity;
 import com.shakil.homeapp.activities.activities.room.RoomListActivity;
 import com.shakil.homeapp.activities.activities.tenant.NewTenantActivity;
 import com.shakil.homeapp.activities.activities.tenant.TenantListActivity;
@@ -66,28 +66,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         activityMainBinding.mAddMasterRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, NewRentDetailsActivity.class));
+                startActivity(new Intent(MainActivity.this, RentListActivity.class));
             }
         });
 
         activityMainBinding.mAddMasterElectricityBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MeterCostDetailsActivity.class));
+                startActivity(new Intent(MainActivity.this, MeterCostListActivity.class));
             }
         });
 
         activityMainBinding.meterDashboardCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MeterCostDetailsActivity.class));
+                startActivity(new Intent(MainActivity.this, MeterListActivity.class));
             }
         });
 
         activityMainBinding.roomDashboardCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, NewRentDetailsActivity.class));
+                startActivity(new Intent(MainActivity.this, RoomListActivity.class));
             }
         });
 

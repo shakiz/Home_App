@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.activities.onboard.MainActivity;
 import com.shakil.homeapp.activities.model.meter.Meter;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
@@ -40,25 +39,25 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
         activityMeterCostDetailsBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MeterCostDetailsActivity.this, MainActivity.class));
+                onBackPressed();
             }
         });
         bindUiWithComponents();
     }
 
     private void bindUiWithComponents() {
-        spinnerAdapter.setSpinnerAdapter(activityMeterCostDetailsBinding.MeterSpinner,spinnerData.setMeterData(),this);
-        spinnerAdapter.setSpinnerAdapter(activityMeterCostDetailsBinding.RoomSpinner,spinnerData.setRoomData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityMeterCostDetailsBinding.AssociateMeterId,spinnerData.setMeterData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityMeterCostDetailsBinding.AssociateRoomId,spinnerData.setRoomData(),this);
 
         //region Adding new details
         activityMeterCostDetailsBinding.mAddMeterDetailsMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                meterNameStr = inputValidation.checkSpinner(R.id.MeterSpinner);
-                roomNameStr = inputValidation.checkSpinner(R.id.RoomSpinner);
-                inputValidation.checkEditTextInput(new int[]{R.id.PresentMonthUnit,R.id.PreviousMonthUnit,R.id.UnitPrice},"Please check your value");
+                meterNameStr = inputValidation.checkSpinner(R.id.AssociateMeterId);
+                roomNameStr = inputValidation.checkSpinner(R.id.AssociateRoomId);
+                inputValidation.checkEditTextInput(new int[]{R.id.PresentUnit,R.id.PastUnit,R.id.UnitPrice},"Please check your value");
                 if (!meterNameStr.equals("Select Data") && !roomNameStr.equals("Select Data")){
-                    Meter meter = new Meter(meterNameStr,roomNameStr,"","",presentMonthUnitInt,previousMonthUnitInt);
+                    Meter meter = new Meter(meterNameStr,roomNameStr,"",presentMonthUnitInt,previousMonthUnitInt);
                 }
                 else{
                     Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
@@ -68,7 +67,7 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
         //region end
 
         //region present month unit on change
-        activityMeterCostDetailsBinding.PreviousMonthUnit.addTextChangedListener(new TextWatcher() {
+        activityMeterCostDetailsBinding.PastUnit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -88,7 +87,7 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
         //region end
 
         //region previous month unit on change
-        activityMeterCostDetailsBinding.PresentMonthUnit.addTextChangedListener(new TextWatcher() {
+        activityMeterCostDetailsBinding.PresentUnit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -162,4 +161,11 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
         inputValidation = new InputValidation(this,activityMeterCostDetailsBinding.mainLayout);
         utilsForAll = new UtilsForAll(this,activityMeterCostDetailsBinding.mainLayout);
     }
+
+    //region activity components
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(MeterCostDetailsActivity.this, MeterCostListActivity.class));
+    }
+    //endregion
 }

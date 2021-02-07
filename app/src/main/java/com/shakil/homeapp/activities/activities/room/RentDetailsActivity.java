@@ -14,7 +14,7 @@ import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
 import com.shakil.homeapp.databinding.ActivityNewRentDetailsBinding;
 
-public class NewRentDetailsActivity extends AppCompatActivity {
+public class RentDetailsActivity extends AppCompatActivity {
     private ActivityNewRentDetailsBinding activityNewRentDetailsBinding;
     private SpinnerData spinnerData;
     private InputValidation inputValidation;
@@ -31,14 +31,14 @@ public class NewRentDetailsActivity extends AppCompatActivity {
         activityNewRentDetailsBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NewRentDetailsActivity.this, MainActivity.class));
+                startActivity(new Intent(RentDetailsActivity.this, MainActivity.class));
             }
         });
         bindUiWithComponents();
     }
     private void bindUiWithComponents() {
-        spinnerAdapter.setSpinnerAdapter(activityNewRentDetailsBinding.MonthSpinner,spinnerData.setMonthData(),this);
-        spinnerAdapter.setSpinnerAdapter(activityNewRentDetailsBinding.RoomSpinner,spinnerData.setRoomData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityNewRentDetailsBinding.MonthId,spinnerData.setMonthData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityNewRentDetailsBinding.AssociateRoomId,spinnerData.setRoomData(),this);
 
         activityNewRentDetailsBinding.mAddRentMaster.setOnClickListener(new View.OnClickListener() {
             @Override

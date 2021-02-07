@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.model.dashboard.Dashboard;
-import com.shakil.homeapp.activities.activities.room.NewRoomActivity;
+import com.shakil.homeapp.activities.activities.room.RoomActivity;
 import java.util.ArrayList;
 
 
@@ -39,7 +39,7 @@ public class RecyclerRoomDashboardAdapter extends RecyclerView.Adapter<RecyclerR
         holder.adddNewRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, NewRoomActivity.class));
+                context.startActivity(new Intent(context, RoomActivity.class));
             }
         });
     }

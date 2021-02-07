@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".activities.activities.tenant.NewTenantActivity"></activity>
+        <activity android:name=".activities.activities.room.RentListActivity"></activity>
+        <activity android:name=".activities.activities.meter.MeterCostListActivity" />
+        <activity android:name=".activities.activities.tenant.NewTenantActivity" />
         <activity android:name=".activities.activities.tenant.TenantListActivity" />
         <activity android:name=".activities.activities.onboard.MainActivity">
             <intent-filter>
@@ -19,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.activities.room.NewRentDetailsActivity"
+            android:name=".activities.activities.room.RentDetailsActivity"
             android:label="@string/new_rent_details"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"
@@ -49,7 +51,7 @@
             android:theme="@style/AppThemeNoActionBar"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".activities.activities.room.NewRoomActivity"
+            android:name=".activities.activities.room.RoomActivity"
             android:label="@string/add_meter"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"

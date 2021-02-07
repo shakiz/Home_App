@@ -1,39 +1,49 @@
 package com.shakil.homeapp.activities.model.tenant;
 
 public class Tenant {
-    private String tenantName , startingMonth , associateMeter;
-
-    public Tenant(String tenantName, String startingMonth, String associateMeter) {
-        this.tenantName = tenantName;
-        this.startingMonth = startingMonth;
-        this.associateMeter = associateMeter;
-    }
-
-    public Tenant() {
-
-    }
+    private String TenantName;
+    private String StartingMonth;
+    private int StartingMonthId;
+    private String  AssociateMeter;
+    private int  AssociateMeterId;
 
     public String getTenantName() {
-        return tenantName;
+        return TenantName;
     }
 
     public void setTenantName(String tenantName) {
-        this.tenantName = tenantName;
+        TenantName = tenantName;
     }
 
     public String getStartingMonth() {
-        return startingMonth;
+        return StartingMonth;
     }
 
     public void setStartingMonth(String startingMonth) {
-        this.startingMonth = startingMonth;
+        StartingMonth = startingMonth;
+    }
+
+    public int getStartingMonthId() {
+        return StartingMonthId;
+    }
+
+    public void setStartingMonthId(int startingMonthId) {
+        StartingMonthId = startingMonthId;
     }
 
     public String getAssociateMeter() {
-        return associateMeter;
+        return AssociateMeter;
     }
 
     public void setAssociateMeter(String associateMeter) {
-        this.associateMeter = associateMeter;
+        AssociateMeter = associateMeter;
+    }
+
+    public int getAssociateMeterId() {
+        return AssociateMeterId;
+    }
+
+    public void setAssociateMeterId(int associateMeterId) {
+        AssociateMeterId = associateMeterId;
     }
 }

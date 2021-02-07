@@ -17,7 +17,7 @@
         android:background="@color/md_grey_200"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        tools:context=".activities.activities.room.NewRoomActivity">
+        tools:context=".activities.activities.room.RoomActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

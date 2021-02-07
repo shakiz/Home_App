@@ -41,7 +41,7 @@ public class NewMeterActivity extends AppCompatActivity {
         activityNewMeterBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NewMeterActivity.this, MeterListActivity.class));
+                onBackPressed();
             }
         });
 
@@ -97,5 +97,10 @@ public class NewMeterActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         dbHelperParent.close();
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(NewMeterActivity.this, MeterListActivity.class));
     }
 }

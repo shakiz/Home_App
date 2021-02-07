@@ -18,7 +18,7 @@ import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
 import com.shakil.homeapp.databinding.ActivityAddNewRoomBinding;
 
-public class NewRoomActivity extends AppCompatActivity {
+public class RoomActivity extends AppCompatActivity {
     private ActivityAddNewRoomBinding activityAddNewRoomBinding;
     private SpinnerData spinnerData;
     private SpinnerAdapter spinnerAdapter;
@@ -37,7 +37,7 @@ public class NewRoomActivity extends AppCompatActivity {
         activityAddNewRoomBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NewRoomActivity.this,RoomListActivity.class));
+                onBackPressed();
             }
         });
 
@@ -45,8 +45,8 @@ public class NewRoomActivity extends AppCompatActivity {
     }
 
     private void bindUIWithComponents() {
-        spinnerAdapter.setSpinnerAdapter(activityAddNewRoomBinding.MonthSpinner,spinnerData.setMonthData(),this);
-        spinnerAdapter.setSpinnerAdapter(activityAddNewRoomBinding.MeterSpinner,spinnerData.setMeterData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityAddNewRoomBinding.StartMonthId,spinnerData.setMonthData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityAddNewRoomBinding.AssociateMeterId,spinnerData.setMeterData(),this);
 
         activityAddNewRoomBinding.AdvanceCehckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -78,14 +78,14 @@ public class NewRoomActivity extends AppCompatActivity {
                     roomNameStr = activityAddNewRoomBinding.RoomName.getText().toString();
                     tenantNameStr = activityAddNewRoomBinding.TenantName.getText().toString();
                     room.setRoomName(roomNameStr);
-                    room.setStartMonth(startingMonthStr);
-                    room.setAssociateMeter(associateMeterStr);
+                    room.setStartMonthName(startingMonthStr);
+                    room.setAssociateMeterName(associateMeterStr);
                     room.setTenantName(tenantNameStr);
                     room.setAdvancedAmount(advancedAmountInt);
                     //roomDbHelper.addRoom(roomModel);
                     dbHelperParent.addRoom(room);
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(NewRoomActivity.this,RoomListActivity.class));
+                    startActivity(new Intent(RoomActivity.this,RoomListActivity.class));
                 }
                 else{
                     Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
@@ -105,7 +105,7 @@ public class NewRoomActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(NewRoomActivity.this, MainActivity.class));
+        startActivity(new Intent(RoomActivity.this, RoomListActivity.class));
     }
 
     @Override

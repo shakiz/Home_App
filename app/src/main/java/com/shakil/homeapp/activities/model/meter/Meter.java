@@ -4,29 +4,33 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Meter implements Parcelable {
-    private String meterName , associateRoom , meterType , owner;
-    private int presentUnit, pastUnit;
+    private String MeterName;
+    private String AssociateRoom;
+    private int AssociateRoomId;
+    private String MeterType;
+    private String AssociateMeterName;
+    private int AssociateMeterId;
+    private int PresentUnit;
+    private int PastUnit;
 
-    public Meter(String meterName, String associateRoom, String meterType, String owner, int presentUnit, int pastUnit) {
-        this.meterName = meterName;
-        this.associateRoom = associateRoom;
-        this.meterType = meterType;
-        this.owner = owner;
-        this.presentUnit = presentUnit;
-        this.pastUnit = pastUnit;
+    public Meter(String meterName, String associateRoom, String meterType, int presentUnit, int pastUnit) {
+        this.MeterName = meterName;
+        this.AssociateRoom = associateRoom;
+        this.MeterType = meterType;
+        this.PresentUnit = presentUnit;
+        this.PastUnit = pastUnit;
     }
 
     public Meter(String meterName, String associateRoom, String meterType) {
-        this.meterName = meterName;
-        this.associateRoom = associateRoom;
-        this.meterType = meterType;
+        this.MeterName = meterName;
+        this.AssociateRoom = associateRoom;
+        this.MeterType = meterType;
     }
 
     public Meter(String meterName, String owner, int presentUnit, int pastUnit) {
-        this.meterName = meterName;
-        this.owner = owner;
-        this.presentUnit = presentUnit;
-        this.pastUnit = pastUnit;
+        this.MeterName = meterName;
+        this.PresentUnit = presentUnit;
+        this.PastUnit = pastUnit;
     }
 
     public Meter() {
@@ -34,51 +38,67 @@ public class Meter implements Parcelable {
     }
 
     public String getMeterName() {
-        return meterName;
+        return MeterName;
     }
 
     public void setMeterName(String meterName) {
-        this.meterName = meterName;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    public int getPresentUnit() {
-        return presentUnit;
-    }
-
-    public void setPresentUnit(int presentUnit) {
-        this.presentUnit = presentUnit;
-    }
-
-    public int getPastUnit() {
-        return pastUnit;
-    }
-
-    public void setPastUnit(int pastUnit) {
-        this.pastUnit = pastUnit;
+        MeterName = meterName;
     }
 
     public String getAssociateRoom() {
-        return associateRoom;
+        return AssociateRoom;
     }
 
     public void setAssociateRoom(String associateRoom) {
-        this.associateRoom = associateRoom;
+        AssociateRoom = associateRoom;
+    }
+
+    public int getAssociateRoomId() {
+        return AssociateRoomId;
+    }
+
+    public void setAssociateRoomId(int associateRoomId) {
+        AssociateRoomId = associateRoomId;
     }
 
     public String getMeterType() {
-        return meterType;
+        return MeterType;
     }
 
     public void setMeterType(String meterType) {
-        this.meterType = meterType;
+        MeterType = meterType;
+    }
+
+    public String getAssociateMeterName() {
+        return AssociateMeterName;
+    }
+
+    public void setAssociateMeterName(String associateMeterName) {
+        AssociateMeterName = associateMeterName;
+    }
+
+    public int getAssociateMeterId() {
+        return AssociateMeterId;
+    }
+
+    public void setAssociateMeterId(int associateMeterId) {
+        AssociateMeterId = associateMeterId;
+    }
+
+    public int getPresentUnit() {
+        return PresentUnit;
+    }
+
+    public void setPresentUnit(int presentUnit) {
+        PresentUnit = presentUnit;
+    }
+
+    public int getPastUnit() {
+        return PastUnit;
+    }
+
+    public void setPastUnit(int pastUnit) {
+        PastUnit = pastUnit;
     }
 
     @Override
@@ -88,21 +108,19 @@ public class Meter implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(meterName);
-        dest.writeString(associateRoom);
-        dest.writeString(meterType);
-        dest.writeString(owner);
-        dest.writeInt(presentUnit);
-        dest.writeInt(pastUnit);
+        dest.writeString(MeterName);
+        dest.writeString(AssociateRoom);
+        dest.writeString(MeterType);
+        dest.writeInt(PresentUnit);
+        dest.writeInt(PastUnit);
     }
 
     protected Meter(Parcel in) {
-        meterName = in.readString();
-        associateRoom = in.readString();
-        meterType = in.readString();
-        owner = in.readString();
-        presentUnit = in.readInt();
-        pastUnit = in.readInt();
+        MeterName = in.readString();
+        AssociateRoom = in.readString();
+        MeterType = in.readString();
+        PresentUnit = in.readInt();
+        PastUnit = in.readInt();
     }
 
     public static final Creator<Meter> CREATOR = new Creator<Meter>() {

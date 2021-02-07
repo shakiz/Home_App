@@ -58,8 +58,8 @@ public class NewTenantActivity extends AppCompatActivity {
     }
 
     private void bindUiWithComponents(){
-        spinnerAdapter.setSpinnerAdapter(activityAddNewTenantBinding.MonthSpinner,spinnerData.setMonthData(),this);
-        spinnerAdapter.setSpinnerAdapter(activityAddNewTenantBinding.MeterSpinner,spinnerData.setMeterData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityAddNewTenantBinding.StartingMonthId,spinnerData.setMonthData(),this);
+        spinnerAdapter.setSpinnerAdapter(activityAddNewTenantBinding.AssociateMeterId,spinnerData.setMeterData(),this);
 
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override

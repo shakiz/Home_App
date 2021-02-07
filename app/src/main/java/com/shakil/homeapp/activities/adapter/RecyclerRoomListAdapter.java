@@ -1,6 +1,7 @@
 package com.shakil.homeapp.activities.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +46,12 @@ public class RecyclerRoomListAdapter extends RecyclerView.Adapter<RecyclerRoomLi
         Room room = arrayList.get(position);
         holder.roomName.setText(room.getRoomName());
         holder.ownerName.setText(room.getTenantName());
-        holder.startDate.setText(room.getStartMonth());
-        holder.lastPaid.setText(room.getLastPaidMonth());
+        holder.startDate.setText(room.getStartMonthName());
+        if (!TextUtils.isDigitsOnly(room.getLastPaidMonth())) {
+            holder.lastPaid.setText(room.getLastPaidMonth());
+        } else {
+            holder.lastPaid.setText("No Data Found");
+        }
         holder.item_card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

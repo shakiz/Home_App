@@ -4,35 +4,41 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Room implements Parcelable {
-    private String roomName, tenantName, startMonth, lastPaidMonth , associateMeter;
-    private int advancedAmount;
+    private String RoomName;
+    private String TenantName;
+    private String StartMonthName;
+    private int StartMonthId;
+    private String LastPaidMonth;
+    private String AssociateMeterName;
+    private int AssociateMeterId;
+    private int AdvancedAmount;
 
     public Room() {
     }
 
     public Room(String roomName, String tenantName, String startMonth, String lastPaidMonth, String associateMeter, int advancedAmount) {
-        this.roomName = roomName;
-        this.tenantName = tenantName;
-        this.startMonth = startMonth;
-        this.lastPaidMonth = lastPaidMonth;
-        this.associateMeter = associateMeter;
-        this.advancedAmount = advancedAmount;
+        this.RoomName = roomName;
+        this.TenantName = tenantName;
+        this.StartMonthName = startMonth;
+        this.LastPaidMonth = lastPaidMonth;
+        this.AssociateMeterName = associateMeter;
+        this.AdvancedAmount = advancedAmount;
     }
 
     public Room(String roomName, String tenantName, String startMonth, String lastPaidMonth) {
-        this.roomName = roomName;
-        this.tenantName = tenantName;
-        this.startMonth = startMonth;
-        this.lastPaidMonth = lastPaidMonth;
+        this.RoomName = roomName;
+        this.TenantName = tenantName;
+        this.StartMonthName = startMonth;
+        this.LastPaidMonth = lastPaidMonth;
     }
 
     protected Room(Parcel in) {
-        roomName = in.readString();
-        tenantName = in.readString();
-        startMonth = in.readString();
-        lastPaidMonth = in.readString();
-        associateMeter = in.readString();
-        advancedAmount = in.readInt();
+        RoomName = in.readString();
+        TenantName = in.readString();
+        StartMonthName = in.readString();
+        LastPaidMonth = in.readString();
+        AssociateMeterName = in.readString();
+        AdvancedAmount = in.readInt();
     }
 
     public static final Creator<Room> CREATOR = new Creator<Room>() {
@@ -47,52 +53,68 @@ public class Room implements Parcelable {
         }
     };
 
-    public String getAssociateMeter() {
-        return associateMeter;
-    }
-
-    public void setAssociateMeter(String associateMeter) {
-        this.associateMeter = associateMeter;
-    }
-
-    public int getAdvancedAmount() {
-        return advancedAmount;
-    }
-
-    public void setAdvancedAmount(int advancedAmount) {
-        this.advancedAmount = advancedAmount;
-    }
-
     public String getRoomName() {
-        return roomName;
+        return RoomName;
     }
 
     public void setRoomName(String roomName) {
-        this.roomName = roomName;
+        RoomName = roomName;
     }
 
     public String getTenantName() {
-        return tenantName;
+        return TenantName;
     }
 
-    public void setTenantName(String tenant) {
-        this.tenantName = tenant;
+    public void setTenantName(String tenantName) {
+        TenantName = tenantName;
     }
 
-    public String getStartMonth() {
-        return startMonth;
+    public String getStartMonthName() {
+        return StartMonthName;
     }
 
-    public void setStartMonth(String startMonth) {
-        this.startMonth = startMonth;
+    public void setStartMonthName(String startMonthName) {
+        StartMonthName = startMonthName;
+    }
+
+    public int getStartMonthId() {
+        return StartMonthId;
+    }
+
+    public void setStartMonthId(int startMonthId) {
+        StartMonthId = startMonthId;
     }
 
     public String getLastPaidMonth() {
-        return lastPaidMonth;
+        return LastPaidMonth;
     }
 
     public void setLastPaidMonth(String lastPaidMonth) {
-        this.lastPaidMonth = lastPaidMonth;
+        LastPaidMonth = lastPaidMonth;
+    }
+
+    public String getAssociateMeterName() {
+        return AssociateMeterName;
+    }
+
+    public void setAssociateMeterName(String associateMeterName) {
+        AssociateMeterName = associateMeterName;
+    }
+
+    public int getAssociateMeterId() {
+        return AssociateMeterId;
+    }
+
+    public void setAssociateMeterId(int associateMeterId) {
+        AssociateMeterId = associateMeterId;
+    }
+
+    public int getAdvancedAmount() {
+        return AdvancedAmount;
+    }
+
+    public void setAdvancedAmount(int advancedAmount) {
+        AdvancedAmount = advancedAmount;
     }
 
     @Override
@@ -102,11 +124,11 @@ public class Room implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(roomName);
-        dest.writeString(tenantName);
-        dest.writeString(startMonth);
-        dest.writeString(lastPaidMonth);
-        dest.writeString(associateMeter);
-        dest.writeInt(advancedAmount);
+        dest.writeString(RoomName);
+        dest.writeString(TenantName);
+        dest.writeString(StartMonthName);
+        dest.writeString(LastPaidMonth);
+        dest.writeString(AssociateMeterName);
+        dest.writeInt(AdvancedAmount);
     }
 }
