@@ -8,8 +8,8 @@ public class Meter implements Parcelable {
     private String AssociateRoom;
     private int AssociateRoomId;
     private String MeterType;
-    private String AssociateMeterName;
-    private int AssociateMeterId;
+    private String MeterTypeName;
+    private int MeterTypeId;
     private int PresentUnit;
     private int PastUnit;
 
@@ -36,6 +36,29 @@ public class Meter implements Parcelable {
     public Meter() {
 
     }
+
+    protected Meter(Parcel in) {
+        MeterName = in.readString();
+        AssociateRoom = in.readString();
+        AssociateRoomId = in.readInt();
+        MeterType = in.readString();
+        MeterTypeName = in.readString();
+        MeterTypeId = in.readInt();
+        PresentUnit = in.readInt();
+        PastUnit = in.readInt();
+    }
+
+    public static final Creator<Meter> CREATOR = new Creator<Meter>() {
+        @Override
+        public Meter createFromParcel(Parcel in) {
+            return new Meter(in);
+        }
+
+        @Override
+        public Meter[] newArray(int size) {
+            return new Meter[size];
+        }
+    };
 
     public String getMeterName() {
         return MeterName;
@@ -69,20 +92,20 @@ public class Meter implements Parcelable {
         MeterType = meterType;
     }
 
-    public String getAssociateMeterName() {
-        return AssociateMeterName;
+    public String getMeterTypeName() {
+        return MeterTypeName;
     }
 
-    public void setAssociateMeterName(String associateMeterName) {
-        AssociateMeterName = associateMeterName;
+    public void setMeterTypeName(String meterTypeName) {
+        MeterTypeName = meterTypeName;
     }
 
-    public int getAssociateMeterId() {
-        return AssociateMeterId;
+    public int getMeterTypeId() {
+        return MeterTypeId;
     }
 
-    public void setAssociateMeterId(int associateMeterId) {
-        AssociateMeterId = associateMeterId;
+    public void setMeterTypeId(int meterTypeId) {
+        MeterTypeId = meterTypeId;
     }
 
     public int getPresentUnit() {
@@ -110,28 +133,11 @@ public class Meter implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(MeterName);
         dest.writeString(AssociateRoom);
+        dest.writeInt(AssociateRoomId);
         dest.writeString(MeterType);
+        dest.writeString(MeterTypeName);
+        dest.writeInt(MeterTypeId);
         dest.writeInt(PresentUnit);
         dest.writeInt(PastUnit);
     }
-
-    protected Meter(Parcel in) {
-        MeterName = in.readString();
-        AssociateRoom = in.readString();
-        MeterType = in.readString();
-        PresentUnit = in.readInt();
-        PastUnit = in.readInt();
-    }
-
-    public static final Creator<Meter> CREATOR = new Creator<Meter>() {
-        @Override
-        public Meter createFromParcel(Parcel in) {
-            return new Meter(in);
-        }
-
-        @Override
-        public Meter[] newArray(int size) {
-            return new Meter[size];
-        }
-    };
 }

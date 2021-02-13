@@ -47,8 +47,8 @@ public class RoomDbHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_ROOM_NAME, room.getRoomName());
-        values.put(COLUMN_RENT_MONTH, room.getStartMonth());
-        values.put(COLUMN_ROOM_METER, room.getAssociateMeter());
+        values.put(COLUMN_RENT_MONTH, room.getStartMonthName());
+        values.put(COLUMN_ROOM_METER, room.getAssociateMeterName());
         values.put(COLUMN_TENANT_NAME, room.getTenantName());
         values.put(COLUMN_ADVANCED_AMOUNT, room.getAdvancedAmount());
         // Inserting Row
@@ -56,8 +56,8 @@ public class RoomDbHelper extends SQLiteOpenHelper {
         Log.v("----------------","");
         Log.v(TAG,"");
         Log.v("Room Name : ", room.getRoomName());
-        Log.v("Start Date : ", room.getStartMonth());
-        Log.v("Associate Meter : ", room.getAssociateMeter());
+        Log.v("Start Date : ", room.getStartMonthName());
+        Log.v("Associate Meter : ", room.getAssociateMeterName());
         Log.v("Tenant Name : ",""+ room.getTenantName());
         Log.v("Advanced Amount : ",""+ room.getAdvancedAmount());
         Log.v("----------------","");
@@ -90,8 +90,8 @@ public class RoomDbHelper extends SQLiteOpenHelper {
             do {
                 Room room = new Room();
                 room.setRoomName(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_NAME)));
-                room.setStartMonth(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_MONTH)));
-                room.setAssociateMeter(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_METER)));
+                room.setStartMonthName(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_MONTH)));
+                room.setAssociateMeterName(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_METER)));
                 room.setTenantName(cursor.getString(cursor.getColumnIndex(COLUMN_TENANT_NAME)));
                 room.setAdvancedAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_ADVANCED_AMOUNT)));
                 // Adding food item record to list

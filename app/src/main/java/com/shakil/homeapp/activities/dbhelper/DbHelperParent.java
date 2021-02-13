@@ -204,8 +204,8 @@ public class DbHelperParent extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_ROOM_NAME, room.getRoomName());
-        values.put(COLUMN_RENT_MONTH, room.getStartMonth());
-        values.put(COLUMN_ROOM_METER, room.getAssociateMeter());
+        values.put(COLUMN_RENT_MONTH, room.getStartMonthName());
+        values.put(COLUMN_ROOM_METER, room.getAssociateMeterName());
         values.put(COLUMN_TENANT_NAME, room.getTenantName());
         values.put(COLUMN_ADVANCED_AMOUNT, room.getAdvancedAmount());
         // Inserting Row
@@ -213,8 +213,8 @@ public class DbHelperParent extends SQLiteOpenHelper {
         Log.v("----------------","");
         Log.v(TAG,"Room Data");
         Log.v("Room Name : ", room.getRoomName());
-        Log.v("Start Date : ", room.getStartMonth());
-        Log.v("Associate Meter : ", room.getAssociateMeter());
+        Log.v("Start Date : ", room.getStartMonthName());
+        Log.v("Associate Meter : ", room.getAssociateMeterName());
         Log.v("Tenant Name : ",""+ room.getTenantName());
         Log.v("Advanced Amount : ",""+ room.getAdvancedAmount());
         Log.v("----------------","");
@@ -257,8 +257,8 @@ public class DbHelperParent extends SQLiteOpenHelper {
             do {
                 Room room = new Room();
                 room.setRoomName(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_NAME)));
-                room.setStartMonth(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_MONTH)));
-                room.setAssociateMeter(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_METER)));
+                room.setStartMonthName(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_MONTH)));
+                room.setAssociateMeterName(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_METER)));
                 room.setTenantName(cursor.getString(cursor.getColumnIndex(COLUMN_TENANT_NAME)));
                 room.setAdvancedAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_ADVANCED_AMOUNT)));
                 // Adding food item record to list
@@ -399,15 +399,15 @@ public class DbHelperParent extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_RENT_MONTH_NAME, rent.getRentForMonth());
-        values.put(COLUMN_RENT_ROOM, rent.getRentRoom());
+        values.put(COLUMN_RENT_MONTH_NAME, rent.getMonthName());
+        values.put(COLUMN_RENT_ROOM, rent.getAssociateRoomName());
         values.put(COLUMN_RENT_AMOUNT, rent.getRentAmount());
         // Inserting Row
         db.insert(Constants.TABLE_NAME_RENT, null, values);
         Log.v("----------------","");
         Log.v(TAG,"Rent Data");
-        Log.v("Rent month Name : ", rent.getRentForMonth());
-        Log.v("Rent room : ", rent.getRentRoom());
+        Log.v("Rent month Name : ", rent.getMonthName());
+        Log.v("Rent room : ", rent.getAssociateRoomName());
         Log.v("Amount : ",""+ rent.getRentAmount());
         Log.v("----------------","");
         db.close();
@@ -437,8 +437,8 @@ public class DbHelperParent extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Rent rent = new Rent();
-                rent.setRentForMonth(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_MONTH_NAME)));
-                rent.setRentRoom(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_ROOM)));
+                rent.setMonthName(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_MONTH_NAME)));
+                rent.setAssociateRoomName(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_ROOM)));
                 rent.setRentAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_RENT_AMOUNT)));
                 // Adding food item record to list
                 rents.add(rent);

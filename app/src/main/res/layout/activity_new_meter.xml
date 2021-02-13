@@ -31,12 +31,9 @@
                 app:navigationIcon="?attr/homeAsUpIndicator"
                 style="@style/TextAppearance.Widget.Event.Toolbar.Title"
                 app:title="@string/add_meter"
-                app:titleTextColor="@color/md_grey_800">
-
-            </androidx.appcompat.widget.Toolbar>
+                app:titleTextColor="@color/md_grey_800"/>
 
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -116,7 +113,7 @@
                             android:layout_height="40dp"
                             android:layout_marginTop="5dp"
                             android:background="@drawable/edittext_back"
-                            android:id="@+id/RoomSpinner"></Spinner>
+                            android:id="@+id/RoomSpinner"/>
 
                     </LinearLayout>
 
@@ -142,7 +139,7 @@
                             android:layout_height="40dp"
                             android:layout_marginTop="5dp"
                             android:background="@drawable/edittext_back"
-                            android:id="@+id/MeterTypeSpinner"></Spinner>
+                            android:id="@+id/MeterTypeName"/>
 
                     </LinearLayout>
 

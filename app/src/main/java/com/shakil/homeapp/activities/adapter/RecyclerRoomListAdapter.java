@@ -47,7 +47,7 @@ public class RecyclerRoomListAdapter extends RecyclerView.Adapter<RecyclerRoomLi
         holder.roomName.setText(room.getRoomName());
         holder.ownerName.setText(room.getTenantName());
         holder.startDate.setText(room.getStartMonthName());
-        if (!TextUtils.isDigitsOnly(room.getLastPaidMonth())) {
+        if (!TextUtils.isEmpty(room.getLastPaidMonth())) {
             holder.lastPaid.setText(room.getLastPaidMonth());
         } else {
             holder.lastPaid.setText("No Data Found");
