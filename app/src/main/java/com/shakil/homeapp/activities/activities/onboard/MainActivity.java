@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void setData() {
         activityMainBinding.totalRooms.setText(getString(R.string.total_rooms)+" : "+dbHelperParent.getTotalRoomRows());
         activityMainBinding.totalMeters.setText(getString(R.string.total_meters)+" : "+dbHelperParent.getTotalMeterRows());
+        activityMainBinding.totalMeters.setText(getString(R.string.total_tenants));
         utilsForAll.setCustomDesignTextView(R.id.totalRooms);
     }
 
