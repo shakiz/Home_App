@@ -27,7 +27,8 @@ public class RoomActivity extends AppCompatActivity {
     private String roomNameStr, startMonthStr,associateMeterStr,tenantNameStr;
     private int StartMonthId, AssociateMeterId;
     private int advancedAmountInt;
-    private Room room;
+    private Room room = new Room();
+    private String command = "add";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +58,18 @@ public class RoomActivity extends AppCompatActivity {
 
     //region get intent data
     private void getIntentData(){
-        if (getIntent().getExtras().getParcelable("room") != null){
-            room = getIntent().getExtras().getParcelable("room");
+        if (getIntent().getExtras() != null) {
+            if (getIntent().getExtras().getParcelable("room") != null){
+                room = getIntent().getExtras().getParcelable("room");
+            }
         }
     }
     //endregion
 
     //region load intent data to UI
     private void loadData(){
-        if (room != null) {
+        if (room.getRoomId() != 0) {
+            command = "update";
             activityAddNewRoomBinding.TenantName.setText(room.getTenantName());
             activityAddNewRoomBinding.RoomName.setText(room.getRoomName());
             activityAddNewRoomBinding.StartMonthId.setSelection(room.getStartMonthId(), true);
@@ -127,7 +131,6 @@ public class RoomActivity extends AppCompatActivity {
         activityAddNewRoomBinding.mSaveRoomMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Room room = new Room();
                 inputValidation.checkEditTextInput(new int[]{R.id.RoomName,R.id.TenantName},"Please check your data");
 
                 //region validation and save
@@ -141,8 +144,11 @@ public class RoomActivity extends AppCompatActivity {
                     room.setAssociateMeterId(AssociateMeterId);
                     room.setTenantName(tenantNameStr);
                     room.setAdvancedAmount(advancedAmountInt);
-                    //roomDbHelper.addRoom(roomModel);
-                    dbHelperParent.addRoom(room);
+                    if (command.equals("add")) {
+                        dbHelperParent.addRoom(room);
+                    } else if (command.equals("update")){
+                        dbHelperParent.updateRoom(room, room.getRoomId());
+                    }
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(RoomActivity.this,RoomListActivity.class));
                 }

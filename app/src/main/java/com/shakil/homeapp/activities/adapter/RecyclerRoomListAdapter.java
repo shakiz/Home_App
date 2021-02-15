@@ -47,11 +47,6 @@ public class RecyclerRoomListAdapter extends RecyclerView.Adapter<RecyclerRoomLi
         holder.roomName.setText(room.getRoomName());
         holder.ownerName.setText(room.getTenantName());
         holder.startDate.setText(room.getStartMonthName());
-        if (!TextUtils.isEmpty(room.getLastPaidMonth())) {
-            holder.lastPaid.setText(room.getLastPaidMonth());
-        } else {
-            holder.lastPaid.setText("No Data Found");
-        }
         holder.item_card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,14 +63,13 @@ public class RecyclerRoomListAdapter extends RecyclerView.Adapter<RecyclerRoomLi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView roomName, ownerName, startDate, lastPaid;
+        TextView roomName, ownerName, startDate;
         CardView item_card_view;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             roomName = itemView.findViewById(R.id.roomName);
             ownerName = itemView.findViewById(R.id.roomOwner);
             startDate = itemView.findViewById(R.id.startMonth);
-            lastPaid = itemView.findViewById(R.id.lastPaid);
             item_card_view = itemView.findViewById(R.id.item_card_view);
         }
     }

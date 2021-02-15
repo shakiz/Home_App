@@ -4,11 +4,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Room implements Parcelable {
+    private int RoomId;
     private String RoomName;
     private String TenantName;
     private String StartMonthName;
     private int StartMonthId;
-    private String LastPaidMonth;
     private String AssociateMeterName;
     private int AssociateMeterId;
     private int AdvancedAmount;
@@ -16,29 +16,46 @@ public class Room implements Parcelable {
     public Room() {
     }
 
-    public Room(String roomName, String tenantName, String startMonth, String lastPaidMonth, String associateMeter, int advancedAmount) {
+    public Room(String roomName, String tenantName, String startMonth, String associateMeter, int advancedAmount) {
         this.RoomName = roomName;
         this.TenantName = tenantName;
         this.StartMonthName = startMonth;
-        this.LastPaidMonth = lastPaidMonth;
         this.AssociateMeterName = associateMeter;
         this.AdvancedAmount = advancedAmount;
     }
 
-    public Room(String roomName, String tenantName, String startMonth, String lastPaidMonth) {
+    public Room(String roomName, String tenantName, String startMonth) {
         this.RoomName = roomName;
         this.TenantName = tenantName;
         this.StartMonthName = startMonth;
-        this.LastPaidMonth = lastPaidMonth;
     }
 
     protected Room(Parcel in) {
+        RoomId = in.readInt();
         RoomName = in.readString();
         TenantName = in.readString();
         StartMonthName = in.readString();
-        LastPaidMonth = in.readString();
+        StartMonthId = in.readInt();
         AssociateMeterName = in.readString();
+        AssociateMeterId = in.readInt();
         AdvancedAmount = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(RoomId);
+        dest.writeString(RoomName);
+        dest.writeString(TenantName);
+        dest.writeString(StartMonthName);
+        dest.writeInt(StartMonthId);
+        dest.writeString(AssociateMeterName);
+        dest.writeInt(AssociateMeterId);
+        dest.writeInt(AdvancedAmount);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Room> CREATOR = new Creator<Room>() {
@@ -52,6 +69,14 @@ public class Room implements Parcelable {
             return new Room[size];
         }
     };
+
+    public int getRoomId() {
+        return RoomId;
+    }
+
+    public void setRoomId(int roomId) {
+        RoomId = roomId;
+    }
 
     public String getRoomName() {
         return RoomName;
@@ -85,14 +110,6 @@ public class Room implements Parcelable {
         StartMonthId = startMonthId;
     }
 
-    public String getLastPaidMonth() {
-        return LastPaidMonth;
-    }
-
-    public void setLastPaidMonth(String lastPaidMonth) {
-        LastPaidMonth = lastPaidMonth;
-    }
-
     public String getAssociateMeterName() {
         return AssociateMeterName;
     }
@@ -115,20 +132,5 @@ public class Room implements Parcelable {
 
     public void setAdvancedAmount(int advancedAmount) {
         AdvancedAmount = advancedAmount;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(RoomName);
-        dest.writeString(TenantName);
-        dest.writeString(StartMonthName);
-        dest.writeString(LastPaidMonth);
-        dest.writeString(AssociateMeterName);
-        dest.writeInt(AdvancedAmount);
     }
 }
