@@ -102,7 +102,7 @@ public class NewMeterActivity extends AppCompatActivity {
                     meter.setMeterName(meterNameStr);
                     meter.setAssociateRoom(roomNameStr);
                     meter.setAssociateRoomId(AssociateRoomId);
-                    meter.setMeterType(meterTypeStr);
+                    meter.setMeterTypeName(meterTypeStr);
                     meter.setMeterTypeId(MeterTypeId);
                     dbHelperParent.addMeter(meter);
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();

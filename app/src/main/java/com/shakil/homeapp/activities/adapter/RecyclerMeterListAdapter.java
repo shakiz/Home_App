@@ -45,7 +45,7 @@ public class RecyclerMeterListAdapter extends RecyclerView.Adapter<RecyclerMeter
         Meter meter = arrayList.get(position);
         holder.meterName.setText(meter.getMeterName());
         holder.roomName.setText(meter.getAssociateRoom());
-        holder.meterType.setText(meter.getMeterType());
+        holder.meterType.setText(meter.getMeterTypeName());
         holder.item_card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

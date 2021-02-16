@@ -20,12 +20,15 @@ public class DbHelperParent extends SQLiteOpenHelper {
     private String DROP_TABLE_QUERY;
     private static String TAG = "DbHelperParent";
 
-
     //Meter table columns
     private static final String COLUMN_METER_ID = "meter_id";
     private static final String COLUMN_METER_NAME = "meter_name";
-    private static final String COLUMN_METER_ROOM = "meter_room";
-    private static final String COLUMN_METER_TYPE = "meter_type";
+    private static final String COLUMN_ASSOCIATE_ROOM_NAME = "associate_room_name";
+    private static final String COLUMN_ASSOCIATE_ROOM_ID = "associate_room_id";
+    private static final String COLUMN_METER_TYPE_NAME = "meter_type_name";
+    private static final String COLUMN_METER_TYPE_ID = "meter_type_id";
+    private static final String COLUMN_METER_PRESENT_UNIT = "present_unit";
+    private static final String COLUMN_METER_PAST_UNIT = "past_unit";
 
     //region Room table columns
     private static final String COLUMN_ROOM_ID = "room_id";
@@ -52,8 +55,11 @@ public class DbHelperParent extends SQLiteOpenHelper {
 
     //Meter table starts
     private String CREATE_METER_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_METER + "("
-            + COLUMN_METER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_METER_NAME + " TEXT,"+ COLUMN_METER_ROOM + " TEXT,"
-            + COLUMN_METER_TYPE + " TEXT" + ")";
+            + COLUMN_METER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_METER_NAME + " TEXT,"
+            + COLUMN_ASSOCIATE_ROOM_NAME + " TEXT," + COLUMN_ASSOCIATE_ROOM_ID + " REAL,"
+            + COLUMN_METER_TYPE_NAME + " TEXT," + COLUMN_METER_TYPE_ID + " REAL,"
+            + COLUMN_METER_PRESENT_UNIT + " REAL,"
+            + COLUMN_METER_PAST_UNIT + " REAL" + ")";
 
     private String DROP_METER_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_METER;
     //Meter table Ends
@@ -61,7 +67,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
     //Room table starts
     private String CREATE_ROOM_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_ROOM + "("
             + COLUMN_ROOM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ROOM_NAME + " TEXT,"
-            + COLUMN_START_MONTH_NAME + " TEXT,"+ COLUMN_START_MONTH_ID + " REAL, "
+            + COLUMN_START_MONTH_NAME + " TEXT,"+ COLUMN_ASSOCIATE_ROOM_NAME + " REAL, "
             + COLUMN_ASSOCIATE_METER_NAME + " TEXT," + COLUMN_ASSOCIATE_METER_ID + " REAL,"
             + COLUMN_TENANT_NAME + " TEXT," + COLUMN_ADVANCED_AMOUNT + " REAL" + ")";
 
@@ -111,15 +117,20 @@ public class DbHelperParent extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_METER_NAME, meter.getMeterName());
-        values.put(COLUMN_METER_ROOM, meter.getAssociateRoom());
-        values.put(COLUMN_METER_TYPE, meter.getMeterType());
+        values.put(COLUMN_METER_NAME, meter.getMeterName());
+        values.put(COLUMN_ASSOCIATE_ROOM_NAME, meter.getAssociateRoom());
+        values.put(COLUMN_ASSOCIATE_ROOM_ID, meter.getAssociateRoomId());
+        values.put(COLUMN_METER_TYPE_NAME, meter.getMeterTypeName());
+        values.put(COLUMN_METER_TYPE_ID, meter.getMeterTypeId());
+        values.put(COLUMN_METER_PRESENT_UNIT, meter.getPresentUnit());
+        values.put(COLUMN_METER_PAST_UNIT, meter.getPastUnit());
         // Inserting Row
         db.insert(Constants.TABLE_NAME_METER, null, values);
         Log.v("----------------","Meter Data");
         Log.v(TAG,"");
         Log.v("Meter Name : ", meter.getMeterName());
         Log.v("Associate Room : ", meter.getAssociateRoom());
-        Log.v("Meter Type : ", meter.getMeterType());
+        Log.v("Meter Type : ", meter.getMeterTypeName());
         Log.v("----------------","");
         db.close();
     }
@@ -136,8 +147,12 @@ public class DbHelperParent extends SQLiteOpenHelper {
         // array of columns to fetch
         String[] columns = {
                 COLUMN_METER_NAME,
-                COLUMN_METER_ROOM,
-                COLUMN_METER_TYPE
+                COLUMN_ASSOCIATE_ROOM_NAME,
+                COLUMN_ASSOCIATE_ROOM_ID,
+                COLUMN_METER_TYPE_NAME,
+                COLUMN_METER_TYPE_ID,
+                COLUMN_METER_PRESENT_UNIT,
+                COLUMN_METER_PAST_UNIT
         };
         // sorting orders
         String sortOrder =
@@ -156,9 +171,14 @@ public class DbHelperParent extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Meter meter = new Meter();
+                meter.setMeterId(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_ID)));
                 meter.setMeterName(cursor.getString(cursor.getColumnIndex(COLUMN_METER_NAME)));
-                meter.setAssociateRoom(cursor.getString(cursor.getColumnIndex(COLUMN_METER_ROOM)));
-                meter.setMeterType(cursor.getString(cursor.getColumnIndex(COLUMN_METER_TYPE)));
+                meter.setAssociateRoom(cursor.getString(cursor.getColumnIndex(COLUMN_ASSOCIATE_ROOM_NAME)));
+                meter.setAssociateRoomId(cursor.getInt(cursor.getColumnIndex(COLUMN_ASSOCIATE_ROOM_ID)));
+                meter.setMeterTypeName(cursor.getString(cursor.getColumnIndex(COLUMN_METER_TYPE_NAME)));
+                meter.setMeterTypeId(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_TYPE_ID)));
+                meter.setPresentUnit(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_PRESENT_UNIT)));
+                meter.setPastUnit(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_PAST_UNIT)));
                 // Adding food item record to list
                 meterList.add(meter);
             } while (cursor.moveToNext());
@@ -210,7 +230,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         values.put(COLUMN_ROOM_NAME, room.getRoomName());
         values.put(COLUMN_TENANT_NAME, room.getTenantName());
         values.put(COLUMN_START_MONTH_NAME, room.getStartMonthName());
-        values.put(COLUMN_START_MONTH_ID, room.getStartMonthId());
+        values.put(COLUMN_ASSOCIATE_ROOM_NAME, room.getStartMonthId());
         values.put(COLUMN_ASSOCIATE_METER_NAME, room.getAssociateMeterName());
         values.put(COLUMN_ASSOCIATE_METER_ID, room.getAssociateMeterId());
         values.put(COLUMN_ADVANCED_AMOUNT, room.getAdvancedAmount());
@@ -236,7 +256,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         values.put(COLUMN_ROOM_NAME, record.getRoomName());
         values.put(COLUMN_TENANT_NAME, record.getTenantName());
         values.put(COLUMN_START_MONTH_NAME, record.getStartMonthName());
-        values.put(COLUMN_START_MONTH_ID, record.getStartMonthId());
+        values.put(COLUMN_ASSOCIATE_ROOM_NAME, record.getStartMonthId());
         values.put(COLUMN_ASSOCIATE_METER_NAME, record.getAssociateMeterName());
         values.put(COLUMN_ASSOCIATE_METER_ID, record.getAssociateMeterId());
         values.put(COLUMN_ADVANCED_AMOUNT, record.getAdvancedAmount());
@@ -264,7 +284,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
                 COLUMN_ROOM_NAME,
                 COLUMN_TENANT_NAME,
                 COLUMN_START_MONTH_NAME,
-                COLUMN_START_MONTH_ID,
+                COLUMN_ASSOCIATE_ROOM_NAME,
                 COLUMN_ASSOCIATE_METER_NAME,
                 COLUMN_ASSOCIATE_METER_ID,
                 COLUMN_ADVANCED_AMOUNT
@@ -290,7 +310,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
                 room.setRoomName(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_NAME)));
                 room.setTenantName(cursor.getString(cursor.getColumnIndex(COLUMN_TENANT_NAME)));
                 room.setStartMonthName(cursor.getString(cursor.getColumnIndex(COLUMN_START_MONTH_NAME)));
-                room.setStartMonthId(cursor.getInt(cursor.getColumnIndex(COLUMN_START_MONTH_ID)));
+                room.setStartMonthId(cursor.getInt(cursor.getColumnIndex(COLUMN_ASSOCIATE_ROOM_NAME)));
                 room.setAssociateMeterName(cursor.getString(cursor.getColumnIndex(COLUMN_ASSOCIATE_METER_NAME)));
                 room.setAssociateMeterId(cursor.getInt(cursor.getColumnIndex(COLUMN_ASSOCIATE_METER_ID)));
                 room.setAdvancedAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_ADVANCED_AMOUNT)));
