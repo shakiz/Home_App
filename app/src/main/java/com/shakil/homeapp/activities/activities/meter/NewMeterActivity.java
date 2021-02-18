@@ -34,7 +34,7 @@ public class NewMeterActivity extends AppCompatActivity {
         activityNewMeterBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_meter);
 
         //region get intent data
-        //getIntentData();
+        getIntentData();
         //endregion
 
         init();
@@ -49,12 +49,29 @@ public class NewMeterActivity extends AppCompatActivity {
         });
 
         bindUIWithComponents();
+
+        //region load intent data to UI
+        loadData();
+        //endregion
     }
 
     //region get intent data
     private void getIntentData(){
-        if (getIntent().getExtras().getParcelable("meter") != null){
-            meter = getIntent().getExtras().getParcelable("meter");
+        if (getIntent().getExtras() != null) {
+            if (getIntent().getExtras().getParcelable("meter") != null){
+                meter = getIntent().getExtras().getParcelable("meter");
+            }
+        }
+    }
+    //endregion
+
+    //region load intent data to UI
+    private void loadData(){
+        if (meter.getMeterId() != 0) {
+            command = "update";
+            activityNewMeterBinding.MeterName.setText(meter.getMeterName());
+            activityNewMeterBinding.RoomSpinner.setSelection(meter.getAssociateRoomId(),true);
+            activityNewMeterBinding.MeterTypeName.setSelection(meter.getMeterTypeId(),true);
         }
     }
     //endregion
@@ -99,13 +116,17 @@ public class NewMeterActivity extends AppCompatActivity {
                 //region validation and save data
                 if (!roomNameStr.equals("Select Data") && !meterTypeStr.equals("Select Data")){
                     meterNameStr = activityNewMeterBinding.MeterName.getText().toString();
-                    Meter meter = new Meter();
                     meter.setMeterName(meterNameStr);
                     meter.setAssociateRoom(roomNameStr);
                     meter.setAssociateRoomId(AssociateRoomId);
                     meter.setMeterTypeName(meterTypeStr);
                     meter.setMeterTypeId(MeterTypeId);
-                    dbHelperParent.addMeter(meter);
+                    if (command.equals("add")){
+                        dbHelperParent.addMeter(meter);
+                    }
+                    else if (command.equals("update")){
+                        dbHelperParent.updateMeter(meter, meter.getMeterId());
+                    }
                     Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(NewMeterActivity.this,MeterListActivity.class));
                 }

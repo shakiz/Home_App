@@ -12,7 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.model.meter.Meter;
+import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
+import com.shakil.homeapp.activities.model.meter.ElectricityBill;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
@@ -27,6 +28,7 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
     private SpinnerAdapter spinnerAdapter;
     private InputValidation inputValidation;
     private UtilsForAll utilsForAll;
+    private DbHelperParent dbHelperParent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,13 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
                 roomNameStr = inputValidation.checkSpinner(R.id.AssociateRoomId);
                 inputValidation.checkEditTextInput(new int[]{R.id.PresentUnit,R.id.PastUnit,R.id.UnitPrice},"Please check your value");
                 if (!meterNameStr.equals("Select Data") && !roomNameStr.equals("Select Data")){
-                    Meter meter = new Meter(meterNameStr,roomNameStr,"",presentMonthUnitInt,previousMonthUnitInt);
+                    ElectricityBill electricityBill = new ElectricityBill();
+                    electricityBill.setMeterId(1);
+                    electricityBill.setRoomId(1);
+                    electricityBill.setPresentUnit(1200);
+                    electricityBill.setPastUnit(120);
+                    electricityBill.setTotalUnit(12);
+                    electricityBill.setTotalBill(12000);
                 }
                 else{
                     Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
@@ -158,6 +166,7 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
     private void init() {
         spinnerData = new SpinnerData(this);
         spinnerAdapter = new SpinnerAdapter();
+        dbHelperParent = new DbHelperParent(this);
         inputValidation = new InputValidation(this,activityMeterCostDetailsBinding.mainLayout);
         utilsForAll = new UtilsForAll(this,activityMeterCostDetailsBinding.mainLayout);
     }
@@ -167,5 +176,12 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(MeterCostDetailsActivity.this, MeterCostListActivity.class));
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelperParent.close();
+    }
+
     //endregion
 }

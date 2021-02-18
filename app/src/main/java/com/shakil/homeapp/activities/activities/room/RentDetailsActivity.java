@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.activities.onboard.MainActivity;
+import com.shakil.homeapp.activities.model.room.Rent;
 import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
@@ -44,6 +45,7 @@ public class RentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 inputValidation.checkEditTextInput(R.id.RentAmount,"Please check your value");
+                Rent rent = new Rent();
             }
         });
     }

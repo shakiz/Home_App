@@ -15,9 +15,6 @@ import com.shakil.homeapp.activities.utils.Constants;
 import java.util.ArrayList;
 
 public class DbHelperParent extends SQLiteOpenHelper {
-
-    private String CREATE_TABLE_QUERY;
-    private String DROP_TABLE_QUERY;
     private static String TAG = "DbHelperParent";
 
     //Meter table columns
@@ -67,7 +64,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
     //Room table starts
     private String CREATE_ROOM_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_ROOM + "("
             + COLUMN_ROOM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ROOM_NAME + " TEXT,"
-            + COLUMN_START_MONTH_NAME + " TEXT,"+ COLUMN_ASSOCIATE_ROOM_NAME + " REAL, "
+            + COLUMN_START_MONTH_NAME + " TEXT,"+ COLUMN_START_MONTH_ID + " REAL, "
             + COLUMN_ASSOCIATE_METER_NAME + " TEXT," + COLUMN_ASSOCIATE_METER_ID + " REAL,"
             + COLUMN_TENANT_NAME + " TEXT," + COLUMN_ADVANCED_AMOUNT + " REAL" + ")";
 
@@ -146,6 +143,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
     public ArrayList<Meter> getAllMeterDetails() {
         // array of columns to fetch
         String[] columns = {
+                COLUMN_METER_ID,
                 COLUMN_METER_NAME,
                 COLUMN_ASSOCIATE_ROOM_NAME,
                 COLUMN_ASSOCIATE_ROOM_ID,
@@ -189,6 +187,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         return meterList;
     }
 
+    //region get meter names
     public ArrayList<String> getMeterNames() {
         // array of columns to fetch
         String[] columns = {
@@ -220,7 +219,25 @@ public class DbHelperParent extends SQLiteOpenHelper {
         // return roomModelList list
         return meterNameList;
     }
-    //Meter ends
+    //endregion
+
+    //region update meter entry
+    public void updateMeter(Meter record, int meterId) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_METER_NAME, record.getMeterName());
+        values.put(COLUMN_ASSOCIATE_ROOM_NAME, record.getAssociateRoom());
+        values.put(COLUMN_ASSOCIATE_ROOM_ID, record.getAssociateRoomId());
+        values.put(COLUMN_METER_TYPE_NAME, record.getMeterTypeName());
+        values.put(COLUMN_METER_TYPE_ID, record.getMeterTypeId());
+        values.put(COLUMN_METER_PRESENT_UNIT, record.getPresentUnit());
+        values.put(COLUMN_METER_PAST_UNIT, record.getPastUnit());
+
+        //updating Row
+        sqLiteDatabase.update(Constants.TABLE_NAME_METER, values, COLUMN_METER_ID +" = "+meterId, null);
+    }
+    //endregion
 
     //region add room
     public void addRoom(Room room) {
@@ -230,7 +247,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         values.put(COLUMN_ROOM_NAME, room.getRoomName());
         values.put(COLUMN_TENANT_NAME, room.getTenantName());
         values.put(COLUMN_START_MONTH_NAME, room.getStartMonthName());
-        values.put(COLUMN_ASSOCIATE_ROOM_NAME, room.getStartMonthId());
+        values.put(COLUMN_START_MONTH_ID, room.getStartMonthId());
         values.put(COLUMN_ASSOCIATE_METER_NAME, room.getAssociateMeterName());
         values.put(COLUMN_ASSOCIATE_METER_ID, room.getAssociateMeterId());
         values.put(COLUMN_ADVANCED_AMOUNT, room.getAdvancedAmount());
@@ -256,7 +273,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         values.put(COLUMN_ROOM_NAME, record.getRoomName());
         values.put(COLUMN_TENANT_NAME, record.getTenantName());
         values.put(COLUMN_START_MONTH_NAME, record.getStartMonthName());
-        values.put(COLUMN_ASSOCIATE_ROOM_NAME, record.getStartMonthId());
+        values.put(COLUMN_START_MONTH_ID, record.getStartMonthId());
         values.put(COLUMN_ASSOCIATE_METER_NAME, record.getAssociateMeterName());
         values.put(COLUMN_ASSOCIATE_METER_ID, record.getAssociateMeterId());
         values.put(COLUMN_ADVANCED_AMOUNT, record.getAdvancedAmount());
@@ -284,7 +301,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
                 COLUMN_ROOM_NAME,
                 COLUMN_TENANT_NAME,
                 COLUMN_START_MONTH_NAME,
-                COLUMN_ASSOCIATE_ROOM_NAME,
+                COLUMN_START_MONTH_ID,
                 COLUMN_ASSOCIATE_METER_NAME,
                 COLUMN_ASSOCIATE_METER_ID,
                 COLUMN_ADVANCED_AMOUNT
@@ -310,7 +327,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
                 room.setRoomName(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_NAME)));
                 room.setTenantName(cursor.getString(cursor.getColumnIndex(COLUMN_TENANT_NAME)));
                 room.setStartMonthName(cursor.getString(cursor.getColumnIndex(COLUMN_START_MONTH_NAME)));
-                room.setStartMonthId(cursor.getInt(cursor.getColumnIndex(COLUMN_ASSOCIATE_ROOM_NAME)));
+                room.setStartMonthId(cursor.getInt(cursor.getColumnIndex(COLUMN_START_MONTH_ID)));
                 room.setAssociateMeterName(cursor.getString(cursor.getColumnIndex(COLUMN_ASSOCIATE_METER_NAME)));
                 room.setAssociateMeterId(cursor.getInt(cursor.getColumnIndex(COLUMN_ASSOCIATE_METER_ID)));
                 room.setAdvancedAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_ADVANCED_AMOUNT)));

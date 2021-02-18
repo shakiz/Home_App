@@ -1,12 +1,12 @@
 package com.shakil.homeapp.activities.model.room;
 
 public class Rent {
+    private int RentId;
     private String MonthName;
     private int MonthId;
     private String AssociateRoomName;
     private int AssociateRoomId;
     private int rentAmount;
-
 
     public Rent(String rentForMonth, String rentRoom, int rentAmount) {
         this.MonthName = rentForMonth;
@@ -16,6 +16,14 @@ public class Rent {
 
     public Rent() {
 
+    }
+
+    public int getRentId() {
+        return RentId;
+    }
+
+    public void setRentId(int rentId) {
+        RentId = rentId;
     }
 
     public String getMonthName() {

@@ -1,8 +1,6 @@
 package com.shakil.homeapp.activities.utils;
 
 import android.content.Context;
-import android.util.Log;
-
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 
 public class SpinnerData {
