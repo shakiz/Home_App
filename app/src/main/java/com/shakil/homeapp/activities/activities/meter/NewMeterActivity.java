@@ -25,7 +25,8 @@ public class NewMeterActivity extends AppCompatActivity {
     private DbHelperParent dbHelperParent;
     private String meterNameStr, roomNameStr, meterTypeStr;
     private int AssociateRoomId, MeterTypeId;
-    private Meter meter;
+    private Meter meter = new Meter();
+    private String command = "add";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
