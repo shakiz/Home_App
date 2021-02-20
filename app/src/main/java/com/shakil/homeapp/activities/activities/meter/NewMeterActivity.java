@@ -80,7 +80,7 @@ public class NewMeterActivity extends AppCompatActivity {
         spinnerAdapter.setSpinnerAdapter(activityNewMeterBinding.RoomSpinner,spinnerData.setRoomData(),this);
         spinnerAdapter.setSpinnerAdapter(activityNewMeterBinding.MeterTypeName,spinnerData.setMeterTypeData(),this);
 
-        //region room name select spinner
+        //region select spinner
         activityNewMeterBinding.RoomSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -106,6 +106,7 @@ public class NewMeterActivity extends AppCompatActivity {
 
             }
         });
+        //endregion
 
         activityNewMeterBinding.mSaveMeterMaster.setOnClickListener(new View.OnClickListener() {
             @Override

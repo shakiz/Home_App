@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,11 +30,18 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
     private InputValidation inputValidation;
     private UtilsForAll utilsForAll;
     private DbHelperParent dbHelperParent;
+    private ElectricityBill electricityBill = new ElectricityBill();
+    private String command = "add";
+    private int AssociateMeterId, AssociateRoomId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityMeterCostDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_meter_cost_details);
+
+        //region get intent data
+        getIntentData();
+        //endregion
 
         init();
         setSupportActionBar(activityMeterCostDetailsBinding.toolBar);
@@ -45,9 +53,59 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
             }
         });
         bindUiWithComponents();
+
+        //region load intent data to UI
+        loadData();
+        //endregion
     }
 
+    //region get intent data
+    private void getIntentData(){
+        if (getIntent().getExtras() != null) {
+            if (getIntent().getExtras().getParcelable("bill") != null){
+                electricityBill = getIntent().getExtras().getParcelable("bill");
+            }
+        }
+    }
+    //endregion
+
+    //region load intent data to UI
+    private void loadData(){
+        if (electricityBill.getBillId() != 0) {
+            command = "update";
+        }
+    }
+    //endregion
+
     private void bindUiWithComponents() {
+        //region room name select spinner
+        activityMeterCostDetailsBinding.AssociateMeterId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                meterNameStr = parent.getItemAtPosition(position).toString();
+                AssociateMeterId = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        activityMeterCostDetailsBinding.AssociateRoomId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                roomNameStr = parent.getItemAtPosition(position).toString();
+                AssociateRoomId = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //endregion
+
         spinnerAdapter.setSpinnerAdapter(activityMeterCostDetailsBinding.AssociateMeterId,spinnerData.setMeterData(),this);
         spinnerAdapter.setSpinnerAdapter(activityMeterCostDetailsBinding.AssociateRoomId,spinnerData.setRoomData(),this);
 
@@ -55,17 +113,21 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
         activityMeterCostDetailsBinding.mAddMeterDetailsMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                meterNameStr = inputValidation.checkSpinner(R.id.AssociateMeterId);
-                roomNameStr = inputValidation.checkSpinner(R.id.AssociateRoomId);
                 inputValidation.checkEditTextInput(new int[]{R.id.PresentUnit,R.id.PastUnit,R.id.UnitPrice},"Please check your value");
                 if (!meterNameStr.equals("Select Data") && !roomNameStr.equals("Select Data")){
-                    ElectricityBill electricityBill = new ElectricityBill();
                     electricityBill.setMeterId(1);
                     electricityBill.setRoomId(1);
-                    electricityBill.setPresentUnit(1200);
-                    electricityBill.setPastUnit(120);
-                    electricityBill.setTotalUnit(12);
-                    electricityBill.setTotalBill(12000);
+                    electricityBill.setPresentUnit(Integer.parseInt(activityMeterCostDetailsBinding.PresentUnit.getText().toString()));
+                    electricityBill.setPastUnit(Integer.parseInt(activityMeterCostDetailsBinding.PastUnit.getText().toString()));
+                    electricityBill.setTotalUnit(Integer.parseInt(activityMeterCostDetailsBinding.TotalUnit.getText().toString()));
+                    electricityBill.setTotalBill(Integer.parseInt(activityMeterCostDetailsBinding.TotalUnit.getText().toString()));
+
+                    if (command.equals("add")){
+
+                    }
+                    else if (command.equals("update")){
+
+                    }
                 }
                 else{
                     Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
