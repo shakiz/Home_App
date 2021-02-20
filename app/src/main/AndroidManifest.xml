@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
         <activity android:name=".activities.activities.room.RentListActivity"></activity>
-        <activity android:name=".activities.activities.meter.MeterCostListActivity" />
+        <activity android:name=".activities.activities.meter.ElectricityBillListActivity" />
         <activity android:name=".activities.activities.tenant.NewTenantActivity" />
         <activity android:name=".activities.activities.tenant.TenantListActivity" />
         <activity android:name=".activities.activities.onboard.MainActivity">
@@ -27,7 +27,7 @@
             android:theme="@style/AppThemeNoActionBar"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".activities.activities.meter.MeterCostDetailsActivity"
+            android:name=".activities.activities.meter.ElectricityBillDetailsActivity"
             android:label="@string/new_meter_details"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar"

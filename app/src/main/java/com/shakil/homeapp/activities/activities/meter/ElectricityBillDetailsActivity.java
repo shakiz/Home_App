@@ -19,10 +19,10 @@ import com.shakil.homeapp.activities.utils.InputValidation;
 import com.shakil.homeapp.activities.utils.SpinnerAdapter;
 import com.shakil.homeapp.activities.utils.SpinnerData;
 import com.shakil.homeapp.activities.utils.UtilsForAll;
-import com.shakil.homeapp.databinding.ActivityMeterCostDetailsBinding;
+import com.shakil.homeapp.databinding.ActivityElectricityBillDetailsBinding;
 
-public class MeterCostDetailsActivity extends AppCompatActivity {
-    private ActivityMeterCostDetailsBinding activityMeterCostDetailsBinding;
+public class ElectricityBillDetailsActivity extends AppCompatActivity {
+    private ActivityElectricityBillDetailsBinding activityMeterCostDetailsBinding;
     private String meterNameStr, roomNameStr;
     private int totalUnitInt, previousMonthUnitInt, presentMonthUnitInt, unitPriceInt, totalElectricityBillInt;
     private SpinnerData spinnerData;
@@ -37,7 +37,7 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityMeterCostDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_meter_cost_details);
+        activityMeterCostDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_electricity_bill_details);
 
         //region get intent data
         getIntentData();
@@ -73,6 +73,10 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
     private void loadData(){
         if (electricityBill.getBillId() != 0) {
             command = "update";
+            activityMeterCostDetailsBinding.PresentUnit.setText(String.valueOf(electricityBill.getPresentUnit()));
+            activityMeterCostDetailsBinding.PastUnit.setText(String.valueOf(electricityBill.getPastUnit()));
+            activityMeterCostDetailsBinding.TotalUnit.setText(String.valueOf(electricityBill.getTotalUnit()));
+            activityMeterCostDetailsBinding.TotalAmount.setText(String.valueOf(electricityBill.getTotalBill()));
         }
     }
     //endregion
@@ -123,11 +127,13 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
                     electricityBill.setTotalBill(Integer.parseInt(activityMeterCostDetailsBinding.TotalUnit.getText().toString()));
 
                     if (command.equals("add")){
-
+                        dbHelperParent.addElectricityBill(electricityBill);
                     }
                     else if (command.equals("update")){
-
+                        dbHelperParent.updateElectricityBill(electricityBill, electricityBill.getBillId());
                     }
+                    Toast.makeText(getApplicationContext(),R.string.success,Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(ElectricityBillDetailsActivity.this, ElectricityBillListActivity.class));
                 }
                 else{
                     Toast.makeText(getApplicationContext(),R.string.warning_message,Toast.LENGTH_SHORT).show();
@@ -236,7 +242,7 @@ public class MeterCostDetailsActivity extends AppCompatActivity {
     //region activity components
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(MeterCostDetailsActivity.this, MeterCostListActivity.class));
+        startActivity(new Intent(ElectricityBillDetailsActivity.this, ElectricityBillListActivity.class));
     }
 
     @Override

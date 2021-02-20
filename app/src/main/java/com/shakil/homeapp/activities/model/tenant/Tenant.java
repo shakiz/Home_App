@@ -1,11 +1,20 @@
 package com.shakil.homeapp.activities.model.tenant;
 
 public class Tenant {
+    public int TenantId;
     private String TenantName;
     private String StartingMonth;
     private int StartingMonthId;
     private String  AssociateMeter;
     private int  AssociateMeterId;
+
+    public int getTenantId() {
+        return TenantId;
+    }
+
+    public void setTenantId(int tenantId) {
+        TenantId = tenantId;
+    }
 
     public String getTenantName() {
         return TenantName;

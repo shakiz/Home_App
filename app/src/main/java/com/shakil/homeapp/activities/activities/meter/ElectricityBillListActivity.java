@@ -9,15 +9,15 @@ import androidx.databinding.DataBindingUtil;
 
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.activities.onboard.MainActivity;
-import com.shakil.homeapp.databinding.ActivityMeterCostListBinding;
+import com.shakil.homeapp.databinding.ActivityElectricityBillListBinding;
 
-public class MeterCostListActivity extends AppCompatActivity {
-    private ActivityMeterCostListBinding activityMeterCostListBinding;
+public class ElectricityBillListActivity extends AppCompatActivity {
+    private ActivityElectricityBillListBinding activityMeterCostListBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityMeterCostListBinding = DataBindingUtil.setContentView(this, R.layout.activity_meter_cost_list);
+        activityMeterCostListBinding = DataBindingUtil.setContentView(this, R.layout.activity_electricity_bill_list);
 
         activityMeterCostListBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +43,7 @@ public class MeterCostListActivity extends AppCompatActivity {
         activityMeterCostListBinding.mAddMeterCostMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MeterCostListActivity.this, MeterCostDetailsActivity.class));
+                startActivity(new Intent(ElectricityBillListActivity.this, ElectricityBillDetailsActivity.class));
             }
         });
     }
@@ -52,7 +52,7 @@ public class MeterCostListActivity extends AppCompatActivity {
     //region activity components
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(MeterCostListActivity.this, MainActivity.class));
+        startActivity(new Intent(ElectricityBillListActivity.this, MainActivity.class));
     }
     //endregion
 }

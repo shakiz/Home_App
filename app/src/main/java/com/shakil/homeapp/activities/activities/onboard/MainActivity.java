@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.navigation.NavigationView;
 import com.shakil.homeapp.R;
-import com.shakil.homeapp.activities.activities.meter.MeterCostListActivity;
+import com.shakil.homeapp.activities.activities.meter.ElectricityBillListActivity;
 import com.shakil.homeapp.activities.activities.meter.MeterListActivity;
 import com.shakil.homeapp.activities.activities.room.RentListActivity;
 import com.shakil.homeapp.activities.activities.room.RoomListActivity;
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         activityMainBinding.mAddMasterElectricityBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MeterCostListActivity.class));
+                startActivity(new Intent(MainActivity.this, ElectricityBillListActivity.class));
             }
         });
 

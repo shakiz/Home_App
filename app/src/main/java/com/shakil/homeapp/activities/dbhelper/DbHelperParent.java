@@ -6,51 +6,47 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
 import androidx.annotation.Nullable;
+
+import com.shakil.homeapp.activities.model.meter.ElectricityBill;
 import com.shakil.homeapp.activities.model.meter.Meter;
 import com.shakil.homeapp.activities.model.room.Rent;
 import com.shakil.homeapp.activities.model.room.Room;
 import com.shakil.homeapp.activities.model.tenant.Tenant;
 import com.shakil.homeapp.activities.utils.Constants;
+
 import java.util.ArrayList;
+
+import static com.shakil.homeapp.activities.utils.Constants.ElectricityBillTable.COLUMN_ELECTRICITY_BILL_ID;
+import static com.shakil.homeapp.activities.utils.Constants.ElectricityBillTable.COLUMN_METER_TOTAL_BILL;
+import static com.shakil.homeapp.activities.utils.Constants.ElectricityBillTable.COLUMN_METER_TOTAL_UNIT;
+import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_ASSOCIATE_ROOM_ID;
+import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_ASSOCIATE_ROOM_NAME;
+import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_METER_ID;
+import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_METER_NAME;
+import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_METER_PAST_UNIT;
+import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_METER_PRESENT_UNIT;
+import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_METER_TYPE_ID;
+import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_METER_TYPE_NAME;
+import static com.shakil.homeapp.activities.utils.Constants.RentTable.COLUMN_RENT_AMOUNT;
+import static com.shakil.homeapp.activities.utils.Constants.RentTable.COLUMN_RENT_ID;
+import static com.shakil.homeapp.activities.utils.Constants.RentTable.COLUMN_RENT_MONTH_NAME;
+import static com.shakil.homeapp.activities.utils.Constants.RentTable.COLUMN_RENT_ROOM;
+import static com.shakil.homeapp.activities.utils.Constants.RoomTable.COLUMN_ADVANCED_AMOUNT;
+import static com.shakil.homeapp.activities.utils.Constants.RoomTable.COLUMN_ASSOCIATE_METER_ID;
+import static com.shakil.homeapp.activities.utils.Constants.RoomTable.COLUMN_ASSOCIATE_METER_NAME;
+import static com.shakil.homeapp.activities.utils.Constants.RoomTable.COLUMN_ROOM_ID;
+import static com.shakil.homeapp.activities.utils.Constants.RoomTable.COLUMN_ROOM_NAME;
+import static com.shakil.homeapp.activities.utils.Constants.RoomTable.COLUMN_START_MONTH_ID;
+import static com.shakil.homeapp.activities.utils.Constants.RoomTable.COLUMN_START_MONTH_NAME;
+import static com.shakil.homeapp.activities.utils.Constants.RoomTable.COLUMN_TENANT_NAME;
+import static com.shakil.homeapp.activities.utils.Constants.TenantTable.COLUMN_TENANT_ID;
 
 public class DbHelperParent extends SQLiteOpenHelper {
     private static String TAG = "DbHelperParent";
 
-    //Meter table columns
-    private static final String COLUMN_METER_ID = "meter_id";
-    private static final String COLUMN_METER_NAME = "meter_name";
-    private static final String COLUMN_ASSOCIATE_ROOM_NAME = "associate_room_name";
-    private static final String COLUMN_ASSOCIATE_ROOM_ID = "associate_room_id";
-    private static final String COLUMN_METER_TYPE_NAME = "meter_type_name";
-    private static final String COLUMN_METER_TYPE_ID = "meter_type_id";
-    private static final String COLUMN_METER_PRESENT_UNIT = "present_unit";
-    private static final String COLUMN_METER_PAST_UNIT = "past_unit";
-
-    //region Room table columns
-    private static final String COLUMN_ROOM_ID = "room_id";
-    private static final String COLUMN_ROOM_NAME = "room_name";
-    private static final String COLUMN_TENANT_NAME = "tenant_name";
-    private static final String COLUMN_START_MONTH_NAME = "start_month_name";
-    private static final String COLUMN_START_MONTH_ID = "start_month_id";
-    private static final String COLUMN_ASSOCIATE_METER_NAME = "associate_meter_name";
-    private static final String COLUMN_ASSOCIATE_METER_ID = "associate_meter_id";
-    private static final String COLUMN_ADVANCED_AMOUNT = "advanced_amount";
-
-    //Tenant table columns
-    private static final String COLUMN_TENANT_ID = "tenant_id";
-    private static final String COLUMN_NEW_TENANT_NAME = "tenant_name";
-    private static final String COLUMN_STARTING_MONTH = "starting_month";
-    private static final String COLUMN_TENANT_ASSOCIATE_METER = "associate_meter";
-
-
-    //Rent table columns
-    private static final String COLUMN_RENT_ID = "rent_id";
-    private static final String COLUMN_RENT_MONTH_NAME = "rent_month_name";
-    private static final String COLUMN_RENT_ROOM = "rent_room";
-    private static final String COLUMN_RENT_AMOUNT = "rent_amount";
-
-    //Meter table starts
+    //region meter table starts
     private String CREATE_METER_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_METER + "("
             + COLUMN_METER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_METER_NAME + " TEXT,"
             + COLUMN_ASSOCIATE_ROOM_NAME + " TEXT," + COLUMN_ASSOCIATE_ROOM_ID + " REAL,"
@@ -59,9 +55,9 @@ public class DbHelperParent extends SQLiteOpenHelper {
             + COLUMN_METER_PAST_UNIT + " REAL" + ")";
 
     private String DROP_METER_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_METER;
-    //Meter table Ends
+    //endregion
 
-    //Room table starts
+    //region room table starts
     private String CREATE_ROOM_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_ROOM + "("
             + COLUMN_ROOM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ROOM_NAME + " TEXT,"
             + COLUMN_START_MONTH_NAME + " TEXT,"+ COLUMN_START_MONTH_ID + " REAL, "
@@ -69,24 +65,35 @@ public class DbHelperParent extends SQLiteOpenHelper {
             + COLUMN_TENANT_NAME + " TEXT," + COLUMN_ADVANCED_AMOUNT + " REAL" + ")";
 
     private String DROP_ROOM_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_ROOM;
-    //Room table ends
+    //endregion
 
-    //Tenant table starts
+    //region tenant table starts
     private String CREATE_TENANT_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_TENANT + "("
-            + COLUMN_TENANT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NEW_TENANT_NAME + " TEXT,"+ COLUMN_STARTING_MONTH + " TEXT,"
-            + COLUMN_TENANT_ASSOCIATE_METER + " TEXT" + ")";
+            + COLUMN_TENANT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + Constants.TenantTable.COLUMN_TENANT_NAME + " TEXT,"+ COLUMN_START_MONTH_NAME + " TEXT,"
+            + COLUMN_START_MONTH_ID+ " REAL," + COLUMN_ASSOCIATE_METER_ID+ " REAL,"+ COLUMN_ASSOCIATE_METER_NAME + " TEXT" + ")";
 
     private String DROP_TENANT_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_TENANT;
-    //Meter table Ends
+    //endregion
 
-    //Tenant table starts
+    //region rent table starts
+    private String CREATE_ELECTRICITY_BILL_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_ELECTRiICITY_BILL + "("
+            + COLUMN_ELECTRICITY_BILL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ROOM_ID + " INTEGER ,"
+            + COLUMN_METER_PRESENT_UNIT + " INTEGER ," + COLUMN_METER_PAST_UNIT + " INTEGER ,"
+            + COLUMN_METER_TOTAL_UNIT + " INTEGER,"
+            + COLUMN_METER_TOTAL_BILL + " REAL" + ")";
+
+    private String DROP_ELECTRICITY_BILL_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_RENT;
+    //endregion
+
+    //region rent table starts
     private String CREATE_RENT_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_RENT + "("
             + COLUMN_RENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_RENT_MONTH_NAME + " TEXT,"+ COLUMN_RENT_ROOM + " TEXT,"
             + COLUMN_RENT_AMOUNT + " REAL" + ")";
 
     private String DROP_RENT_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_RENT;
-    //Meter table Ends
+    //endregion
 
+    //region DbHelperParent methods
     public DbHelperParent(@Nullable Context context) {
         super(context, Constants.DATABASE_NAME, null, Constants.DATABASE_VERSION);
     }
@@ -97,6 +104,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_ROOM_TABLE);
         sqLiteDatabase.execSQL(CREATE_TENANT_TABLE);
         sqLiteDatabase.execSQL(CREATE_RENT_TABLE);
+        sqLiteDatabase.execSQL(CREATE_ELECTRICITY_BILL_TABLE);
     }
 
     @Override
@@ -106,9 +114,9 @@ public class DbHelperParent extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DROP_TENANT_TABLE);
         sqLiteDatabase.execSQL(DROP_RENT_TABLE);
     }
+    //endregion
 
-
-    //Meter starts
+    //region add new meter
     public void addMeter(Meter meter) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -131,7 +139,9 @@ public class DbHelperParent extends SQLiteOpenHelper {
         Log.v("----------------","");
         db.close();
     }
+    //endregion
 
+    //region get all meter count
     public int getTotalMeterRows(){
         String query = "select * from "+Constants.TABLE_NAME_METER;
         SQLiteDatabase database = this.getReadableDatabase();
@@ -139,7 +149,9 @@ public class DbHelperParent extends SQLiteOpenHelper {
         int count = cursor.getCount();
         return count;
     }
+    //endregion
 
+    //region get all meter details
     public ArrayList<Meter> getAllMeterDetails() {
         // array of columns to fetch
         String[] columns = {
@@ -186,6 +198,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         // return roomModelList list
         return meterList;
     }
+    //endregion
 
     //region get meter names
     public ArrayList<String> getMeterNames() {
@@ -376,14 +389,16 @@ public class DbHelperParent extends SQLiteOpenHelper {
     }
     //endregion
 
-    //Tenant starts
+    //region tenant starts
     public void addTenant(Tenant tenant) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NEW_TENANT_NAME, tenant.getTenantName());
-        values.put(COLUMN_STARTING_MONTH, tenant.getStartingMonth());
-        values.put(COLUMN_TENANT_ASSOCIATE_METER, tenant.getAssociateMeter());
+        values.put(Constants.TenantTable.COLUMN_TENANT_NAME, tenant.getTenantName());
+        values.put(COLUMN_START_MONTH_ID, tenant.getStartingMonthId());
+        values.put(COLUMN_START_MONTH_NAME, tenant.getStartingMonth());
+        values.put(COLUMN_ASSOCIATE_METER_ID, tenant.getAssociateMeterId());
+        values.put(COLUMN_ASSOCIATE_METER_NAME, tenant.getAssociateMeter());
         // Inserting Row
         db.insert(Constants.TABLE_NAME_TENANT, null, values);
         Log.v("----------------","");
@@ -398,13 +413,15 @@ public class DbHelperParent extends SQLiteOpenHelper {
     public ArrayList<Tenant> getAllTenantDetails() {
         // array of columns to fetch
         String[] columns = {
-                COLUMN_NEW_TENANT_NAME,
-                COLUMN_STARTING_MONTH,
-                COLUMN_TENANT_ASSOCIATE_METER
+                Constants.TenantTable.COLUMN_TENANT_NAME,
+                COLUMN_START_MONTH_ID,
+                COLUMN_START_MONTH_NAME,
+                COLUMN_ASSOCIATE_METER_ID,
+                COLUMN_ASSOCIATE_METER_NAME
         };
         // sorting orders
         String sortOrder =
-                COLUMN_NEW_TENANT_NAME + " ASC";
+                Constants.TenantTable.COLUMN_TENANT_NAME + " ASC";
         ArrayList<Tenant> tenants = new ArrayList<Tenant>();
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -419,9 +436,12 @@ public class DbHelperParent extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Tenant tenant = new Tenant();
-                tenant.setTenantName(cursor.getString(cursor.getColumnIndex(COLUMN_NEW_TENANT_NAME)));
-                tenant.setStartingMonth(cursor.getString(cursor.getColumnIndex(COLUMN_STARTING_MONTH)));
-                tenant.setAssociateMeter(cursor.getString(cursor.getColumnIndex(COLUMN_TENANT_ASSOCIATE_METER)));
+                tenant.setTenantId(cursor.getInt(cursor.getColumnIndex(COLUMN_TENANT_ID)));
+                tenant.setTenantName(cursor.getString(cursor.getColumnIndex(Constants.TenantTable.COLUMN_TENANT_NAME)));
+                tenant.setStartingMonthId(cursor.getInt(cursor.getColumnIndex(COLUMN_START_MONTH_ID)));
+                tenant.setStartingMonth(cursor.getString(cursor.getColumnIndex(COLUMN_START_MONTH_NAME)));
+                tenant.setAssociateMeterId(cursor.getInt(cursor.getColumnIndex(COLUMN_ASSOCIATE_METER_ID)));
+                tenant.setAssociateMeter(cursor.getString(cursor.getColumnIndex(COLUMN_ASSOCIATE_METER_NAME)));
                 // Adding food item record to list
                 tenants.add(tenant);
             } while (cursor.moveToNext());
@@ -435,11 +455,11 @@ public class DbHelperParent extends SQLiteOpenHelper {
     public ArrayList<String> getTenantNames() {
         // array of columns to fetch
         String[] columns = {
-                COLUMN_NEW_TENANT_NAME,
+                Constants.TenantTable.COLUMN_TENANT_NAME,
         };
         // sorting orders
         String sortOrder =
-                COLUMN_NEW_TENANT_NAME + " ASC";
+                Constants.TenantTable.COLUMN_TENANT_NAME + " ASC";
         ArrayList<String> tenantNameList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -455,7 +475,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 // Adding food item record to list
-                tenantNameList.add(cursor.getString(cursor.getColumnIndex(COLUMN_NEW_TENANT_NAME)));
+                tenantNameList.add(cursor.getString(cursor.getColumnIndex(Constants.TenantTable.COLUMN_TENANT_NAME)));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -463,10 +483,9 @@ public class DbHelperParent extends SQLiteOpenHelper {
         // return roomModelList list
         return tenantNameList;
     }
-    //Tenant ends
+    //endregion
 
-
-    //Rent starts
+    //region rent starts
     public void addRent(Rent rent) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -521,5 +540,39 @@ public class DbHelperParent extends SQLiteOpenHelper {
         // return roomModelList list
         return rents;
     }
-    //Rent ends
+    //endregion
+
+    //region add new electricity bill
+    public void addElectricityBill(ElectricityBill electricityBill) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_METER_ID, electricityBill.getMeterId());
+        values.put(COLUMN_ROOM_ID, electricityBill.getRoomId());
+        values.put(COLUMN_METER_PRESENT_UNIT, electricityBill.getPresentUnit());
+        values.put(COLUMN_METER_PAST_UNIT, electricityBill.getPastUnit());
+        values.put(COLUMN_METER_TOTAL_UNIT, electricityBill.getTotalUnit());
+        values.put(COLUMN_METER_TOTAL_BILL, electricityBill.getTotalBill());
+        // Inserting Row
+        db.insert(Constants.TABLE_NAME_ELECTRiICITY_BILL, null, values);
+        db.close();
+    }
+    //endregion
+
+    //region update an electricity bill
+    public void updateElectricityBill(ElectricityBill electricityBill, int billId) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_METER_ID, electricityBill.getMeterId());
+        values.put(COLUMN_ROOM_ID, electricityBill.getRoomId());
+        values.put(COLUMN_METER_PRESENT_UNIT, electricityBill.getPresentUnit());
+        values.put(COLUMN_METER_PAST_UNIT, electricityBill.getPastUnit());
+        values.put(COLUMN_METER_TOTAL_UNIT, electricityBill.getTotalUnit());
+        values.put(COLUMN_METER_PAST_UNIT, electricityBill.getTotalBill());
+
+        //updating Row
+        sqLiteDatabase.update(Constants.TABLE_NAME_ELECTRiICITY_BILL, values, COLUMN_ELECTRICITY_BILL_ID +" = "+billId, null);
+    }
+    //endregion
 }
