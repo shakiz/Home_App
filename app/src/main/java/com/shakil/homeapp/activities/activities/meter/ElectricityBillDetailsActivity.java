@@ -62,8 +62,8 @@ public class ElectricityBillDetailsActivity extends AppCompatActivity {
     //region get intent data
     private void getIntentData(){
         if (getIntent().getExtras() != null) {
-            if (getIntent().getExtras().getParcelable("bill") != null){
-                electricityBill = getIntent().getExtras().getParcelable("bill");
+            if (getIntent().getExtras().getParcelable("electricityBill") != null){
+                electricityBill = getIntent().getExtras().getParcelable("electricityBill");
             }
         }
     }
@@ -73,10 +73,11 @@ public class ElectricityBillDetailsActivity extends AppCompatActivity {
     private void loadData(){
         if (electricityBill.getBillId() != 0) {
             command = "update";
+            activityMeterCostDetailsBinding.UnitPrice.setText(String.valueOf(electricityBill.getUnitPrice()));
             activityMeterCostDetailsBinding.PresentUnit.setText(String.valueOf(electricityBill.getPresentUnit()));
             activityMeterCostDetailsBinding.PastUnit.setText(String.valueOf(electricityBill.getPastUnit()));
             activityMeterCostDetailsBinding.TotalUnit.setText(String.valueOf(electricityBill.getTotalUnit()));
-            activityMeterCostDetailsBinding.TotalAmount.setText(String.valueOf(electricityBill.getTotalBill()));
+            activityMeterCostDetailsBinding.TotalAmount.setText(String.valueOf(electricityBill.getTotalUnit() * electricityBill.getUnitPrice()));
         }
     }
     //endregion
@@ -121,6 +122,7 @@ public class ElectricityBillDetailsActivity extends AppCompatActivity {
                 if (!meterNameStr.equals("Select Data") && !roomNameStr.equals("Select Data")){
                     electricityBill.setMeterId(1);
                     electricityBill.setRoomId(1);
+                    electricityBill.setUnitPrice(Integer.parseInt(activityMeterCostDetailsBinding.UnitPrice.getText().toString()));
                     electricityBill.setPresentUnit(Integer.parseInt(activityMeterCostDetailsBinding.PresentUnit.getText().toString()));
                     electricityBill.setPastUnit(Integer.parseInt(activityMeterCostDetailsBinding.PastUnit.getText().toString()));
                     electricityBill.setTotalUnit(Integer.parseInt(activityMeterCostDetailsBinding.TotalUnit.getText().toString()));
@@ -193,7 +195,7 @@ public class ElectricityBillDetailsActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 unitPriceInt = utilsForAll.toIntValue(charSequence.toString());
                 totalElectricityBillInt = unitPriceInt*totalUnitInt;
-                activityMeterCostDetailsBinding.TotalAmount.setText("Total Electricity Bill "+ totalElectricityBillInt);
+                activityMeterCostDetailsBinding.TotalAmount.setText(String.valueOf(totalElectricityBillInt));
             }
 
             @Override
@@ -206,13 +208,13 @@ public class ElectricityBillDetailsActivity extends AppCompatActivity {
     private int calculateUnit(int previousMonthUnitValue , int presentMonthUnitValue){
         if (presentMonthUnitValue >0 ){
             totalUnitInt = previousMonthUnitValue - presentMonthUnitValue;
-            activityMeterCostDetailsBinding.TotalUnit.setText("Total Unit "+totalUnitInt);
+            activityMeterCostDetailsBinding.TotalUnit.setText(String.valueOf(totalUnitInt));
             activityMeterCostDetailsBinding.TotalUnit.setTextColor(getResources().getColor(R.color.md_grey_800));
         }
         else {
             Toast.makeText(getApplicationContext(),"Please check unit value",Toast.LENGTH_SHORT).show();
             totalUnitInt = 0;
-            activityMeterCostDetailsBinding.TotalUnit.setText("Total Unit "+totalUnitInt);
+            activityMeterCostDetailsBinding.TotalUnit.setText(String.valueOf(totalUnitInt));
             activityMeterCostDetailsBinding.TotalUnit.setTextColor(getResources().getColor(R.color.md_red_400));
         }
         return totalUnitInt;
@@ -225,7 +227,7 @@ public class ElectricityBillDetailsActivity extends AppCompatActivity {
         else {
             Toast.makeText(getApplicationContext(), R.string.warning_message_unit, Toast.LENGTH_SHORT).show();
             totalUnitInt = 0;
-            activityMeterCostDetailsBinding.TotalUnit.setText("Total Unit "+totalUnitInt);
+            activityMeterCostDetailsBinding.TotalUnit.setText(String.valueOf(totalUnitInt));
             activityMeterCostDetailsBinding.TotalUnit.setTextColor(getResources().getColor(R.color.md_red_400));
         }
     }

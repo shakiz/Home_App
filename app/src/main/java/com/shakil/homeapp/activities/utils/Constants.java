@@ -48,6 +48,7 @@ public class Constants {
         public static final String COLUMN_METER_ID = "meter_id";
         public static final String COLUMN_METER_PRESENT_UNIT = "present_unit";
         public static final String COLUMN_METER_PAST_UNIT = "past_unit";
+        public static final String COLUMN_UNIT_PRICE = "unit_price";
         public static final String COLUMN_METER_TOTAL_UNIT = "total_unit";
         public static final String COLUMN_METER_TOTAL_BILL = "total_bill";
     }

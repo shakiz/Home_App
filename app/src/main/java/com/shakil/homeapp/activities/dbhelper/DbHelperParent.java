@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import static com.shakil.homeapp.activities.utils.Constants.ElectricityBillTable.COLUMN_ELECTRICITY_BILL_ID;
 import static com.shakil.homeapp.activities.utils.Constants.ElectricityBillTable.COLUMN_METER_TOTAL_BILL;
 import static com.shakil.homeapp.activities.utils.Constants.ElectricityBillTable.COLUMN_METER_TOTAL_UNIT;
+import static com.shakil.homeapp.activities.utils.Constants.ElectricityBillTable.COLUMN_UNIT_PRICE;
 import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_ASSOCIATE_ROOM_ID;
 import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_ASSOCIATE_ROOM_NAME;
 import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_METER_ID;
@@ -75,10 +76,10 @@ public class DbHelperParent extends SQLiteOpenHelper {
     private String DROP_TENANT_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_TENANT;
     //endregion
 
-    //region rent table starts
+    //region electricity bill table starts
     private String CREATE_ELECTRICITY_BILL_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_ELECTRiICITY_BILL + "("
-            + COLUMN_ELECTRICITY_BILL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ROOM_ID + " INTEGER ,"
-            + COLUMN_METER_PRESENT_UNIT + " INTEGER ," + COLUMN_METER_PAST_UNIT + " INTEGER ,"
+            + COLUMN_ELECTRICITY_BILL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ROOM_ID + " INTEGER ," + COLUMN_METER_ID + " INTEGER ,"
+            + COLUMN_METER_PRESENT_UNIT + " INTEGER ," + COLUMN_METER_PAST_UNIT + " INTEGER ," + COLUMN_UNIT_PRICE + " REAL ,"
             + COLUMN_METER_TOTAL_UNIT + " INTEGER,"
             + COLUMN_METER_TOTAL_BILL + " REAL" + ")";
 
@@ -112,6 +113,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DROP_METER_TABLE);
         sqLiteDatabase.execSQL(DROP_ROOM_TABLE);
         sqLiteDatabase.execSQL(DROP_TENANT_TABLE);
+        sqLiteDatabase.execSQL(DROP_ELECTRICITY_BILL_TABLE);
         sqLiteDatabase.execSQL(DROP_RENT_TABLE);
     }
     //endregion
@@ -549,6 +551,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_METER_ID, electricityBill.getMeterId());
         values.put(COLUMN_ROOM_ID, electricityBill.getRoomId());
+        values.put(COLUMN_UNIT_PRICE, electricityBill.getUnitPrice());
         values.put(COLUMN_METER_PRESENT_UNIT, electricityBill.getPresentUnit());
         values.put(COLUMN_METER_PAST_UNIT, electricityBill.getPastUnit());
         values.put(COLUMN_METER_TOTAL_UNIT, electricityBill.getTotalUnit());
@@ -566,6 +569,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_METER_ID, electricityBill.getMeterId());
         values.put(COLUMN_ROOM_ID, electricityBill.getRoomId());
+        values.put(COLUMN_UNIT_PRICE, electricityBill.getUnitPrice());
         values.put(COLUMN_METER_PRESENT_UNIT, electricityBill.getPresentUnit());
         values.put(COLUMN_METER_PAST_UNIT, electricityBill.getPastUnit());
         values.put(COLUMN_METER_TOTAL_UNIT, electricityBill.getTotalUnit());
@@ -573,6 +577,55 @@ public class DbHelperParent extends SQLiteOpenHelper {
 
         //updating Row
         sqLiteDatabase.update(Constants.TABLE_NAME_ELECTRiICITY_BILL, values, COLUMN_ELECTRICITY_BILL_ID +" = "+billId, null);
+    }
+    //endregion
+
+    //region get all electricity bills
+    public ArrayList<ElectricityBill> getAllElectricityBills() {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_ELECTRICITY_BILL_ID,
+                COLUMN_METER_ID,
+                COLUMN_ROOM_ID,
+                COLUMN_UNIT_PRICE,
+                COLUMN_METER_PRESENT_UNIT,
+                COLUMN_METER_PAST_UNIT,
+                COLUMN_METER_TOTAL_UNIT,
+                COLUMN_METER_TOTAL_BILL
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_ELECTRICITY_BILL_ID + " DESC";
+        ArrayList<ElectricityBill> billList = new ArrayList<ElectricityBill>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Constants.TABLE_NAME_ELECTRiICITY_BILL, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                ElectricityBill electricityBill = new ElectricityBill();
+                electricityBill.setBillId(cursor.getInt(cursor.getColumnIndex(COLUMN_ELECTRICITY_BILL_ID)));
+                electricityBill.setMeterId(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_ID)));
+                electricityBill.setRoomId(cursor.getInt(cursor.getColumnIndex(COLUMN_ROOM_ID)));
+                electricityBill.setUnitPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_UNIT_PRICE)));
+                electricityBill.setPresentUnit(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_PRESENT_UNIT)));
+                electricityBill.setPastUnit(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_PAST_UNIT)));
+                electricityBill.setTotalUnit(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_TOTAL_UNIT)));
+                electricityBill.setTotalBill(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_TOTAL_BILL)));
+                // Adding food item record to list
+                billList.add(electricityBill);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        // return roomModelList list
+        return billList;
     }
     //endregion
 }

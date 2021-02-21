@@ -24,7 +24,7 @@
                 android:id="@+id/tool_bar"
                 app:navigationIcon="?attr/homeAsUpIndicator"
                 style="@style/TextAppearance.Widget.Event.Toolbar.Title"
-                app:title="@string/meter_cost_list"
+                app:title="@string/electricity_bills"
                 app:titleTextColor="@color/md_grey_800">
 
             </androidx.appcompat.widget.Toolbar>
@@ -86,7 +86,7 @@
                                     android:visibility="gone"/>
 
                                 <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/mRecyclerView"
+                                    android:id="@+id/mRecylerView"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="4dp"
@@ -108,7 +108,7 @@
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/mAddMeterCostMaster"
+            android:id="@+id/mAddMeterMaster"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

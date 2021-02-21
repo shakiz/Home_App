@@ -86,4 +86,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="meter_cost_list">Meter Cost List</string>
     <string name="rent_list">Rent List</string>
+    <string name="electricity_bills">Electricity Bill List</string>
+    <string name="total_bill">Total bill</string>
+    <string name="zero">0</string>
+    <string name="total_electricity_bill">Total Electricity Bill</string>
 </resources>
