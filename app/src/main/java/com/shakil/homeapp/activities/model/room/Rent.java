@@ -1,22 +1,61 @@
 package com.shakil.homeapp.activities.model.room;
 
-public class Rent {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Rent implements Parcelable {
     private int RentId;
     private String MonthName;
     private int MonthId;
     private String AssociateRoomName;
     private int AssociateRoomId;
-    private int rentAmount;
+    private int RentAmount;
 
     public Rent(String rentForMonth, String rentRoom, int rentAmount) {
         this.MonthName = rentForMonth;
         this.AssociateRoomName = rentRoom;
-        this.rentAmount = rentAmount;
+        this.RentAmount = rentAmount;
     }
 
     public Rent() {
 
     }
+
+    protected Rent(Parcel in) {
+        RentId = in.readInt();
+        MonthName = in.readString();
+        MonthId = in.readInt();
+        AssociateRoomName = in.readString();
+        AssociateRoomId = in.readInt();
+        RentAmount = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(RentId);
+        dest.writeString(MonthName);
+        dest.writeInt(MonthId);
+        dest.writeString(AssociateRoomName);
+        dest.writeInt(AssociateRoomId);
+        dest.writeInt(RentAmount);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Rent> CREATOR = new Creator<Rent>() {
+        @Override
+        public Rent createFromParcel(Parcel in) {
+            return new Rent(in);
+        }
+
+        @Override
+        public Rent[] newArray(int size) {
+            return new Rent[size];
+        }
+    };
 
     public int getRentId() {
         return RentId;
@@ -59,10 +98,10 @@ public class Rent {
     }
 
     public int getRentAmount() {
-        return rentAmount;
+        return RentAmount;
     }
 
     public void setRentAmount(int rentAmount) {
-        this.rentAmount = rentAmount;
+        RentAmount = rentAmount;
     }
 }

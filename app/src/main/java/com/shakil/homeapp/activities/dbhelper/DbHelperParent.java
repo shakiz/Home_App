@@ -497,7 +497,9 @@ public class DbHelperParent extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_RENT_MONTH_NAME, rent.getMonthName());
-        values.put(COLUMN_RENT_ROOM, rent.getAssociateRoomName());
+        values.put(COLUMN_RENT_MONTH_ID, rent.getMonthId());
+        values.put(COLUMN_RENT_ROOM_NAME, rent.getAssociateRoomName());
+        values.put(COLUMN_RENT_ROOM_ID, rent.getAssociateRoomId());
         values.put(COLUMN_RENT_AMOUNT, rent.getRentAmount());
         // Inserting Row
         db.insert(Constants.TABLE_NAME_RENT, null, values);
@@ -509,17 +511,38 @@ public class DbHelperParent extends SQLiteOpenHelper {
         Log.v("----------------","");
         db.close();
     }
+    //endregion
 
+    //region update an electricity bill
+    public void updateRent(Rent rent, int rentId) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_RENT_MONTH_NAME, rent.getMonthName());
+        values.put(COLUMN_RENT_MONTH_ID, rent.getMonthId());
+        values.put(COLUMN_RENT_ROOM_NAME, rent.getAssociateRoomName());
+        values.put(COLUMN_RENT_ROOM_ID, rent.getAssociateRoomId());
+        values.put(COLUMN_RENT_AMOUNT, rent.getRentAmount());
+
+        //updating Row
+        sqLiteDatabase.update(Constants.TABLE_NAME_RENT, values, COLUMN_RENT_ID +" = "+rentId, null);
+    }
+    //endregion
+
+    //region get all rent details
     public ArrayList<Rent> getAllRentDetails() {
         // array of columns to fetch
         String[] columns = {
+                COLUMN_RENT_ID,
                 COLUMN_RENT_MONTH_NAME,
-                COLUMN_RENT_ROOM,
+                COLUMN_RENT_MONTH_ID,
+                COLUMN_RENT_ROOM_NAME,
+                COLUMN_RENT_ROOM_ID,
                 COLUMN_RENT_AMOUNT
         };
         // sorting orders
         String sortOrder =
-                COLUMN_RENT_ROOM + " ASC";
+                COLUMN_RENT_ROOM_NAME + " ASC";
         ArrayList<Rent> rents = new ArrayList<Rent>();
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -534,8 +557,11 @@ public class DbHelperParent extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Rent rent = new Rent();
+                rent.setRentId(cursor.getInt(cursor.getColumnIndex(COLUMN_RENT_ID)));
                 rent.setMonthName(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_MONTH_NAME)));
-                rent.setAssociateRoomName(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_ROOM)));
+                rent.setMonthId(cursor.getInt(cursor.getColumnIndex(COLUMN_RENT_MONTH_ID)));
+                rent.setAssociateRoomName(cursor.getString(cursor.getColumnIndex(COLUMN_RENT_ROOM_NAME)));
+                rent.setAssociateRoomId(cursor.getInt(cursor.getColumnIndex(COLUMN_RENT_ROOM_ID)));
                 rent.setRentAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_RENT_AMOUNT)));
                 // Adding food item record to list
                 rents.add(rent);

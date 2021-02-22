@@ -28,7 +28,7 @@ public class MeterListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       activityMeterListBinding = DataBindingUtil.setContentView(this, R.layout.activity_meter_list);
+        activityMeterListBinding = DataBindingUtil.setContentView(this, R.layout.activity_meter_list);
 
         init();
         setSupportActionBar(activityMeterListBinding.toolBar);

@@ -86,7 +86,7 @@
                                     android:visibility="gone"/>
 
                                 <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/mRecyclerView"
+                                    android:id="@+id/mRecylerView"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="4dp"
@@ -108,7 +108,7 @@
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/mAddRentMaster"
+            android:id="@+id/mAddMaster"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
