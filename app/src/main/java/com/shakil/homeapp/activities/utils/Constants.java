@@ -56,7 +56,9 @@ public class Constants {
     public class RentTable{
         public static final String COLUMN_RENT_ID = "rent_id";
         public static final String COLUMN_RENT_MONTH_NAME = "rent_month_name";
-        public static final String COLUMN_RENT_ROOM = "rent_room";
+        public static final String COLUMN_RENT_MONTH_ID = "rent_month_id";
+        public static final String COLUMN_RENT_ROOM_NAME = "rent_room_name";
+        public static final String COLUMN_RENT_ROOM_ID = "rent_room_id";
         public static final String COLUMN_RENT_AMOUNT = "rent_amount";
     }
 }

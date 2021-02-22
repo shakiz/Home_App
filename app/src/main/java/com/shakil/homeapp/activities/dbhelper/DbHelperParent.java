@@ -32,8 +32,10 @@ import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_ME
 import static com.shakil.homeapp.activities.utils.Constants.MeterTable.COLUMN_METER_TYPE_NAME;
 import static com.shakil.homeapp.activities.utils.Constants.RentTable.COLUMN_RENT_AMOUNT;
 import static com.shakil.homeapp.activities.utils.Constants.RentTable.COLUMN_RENT_ID;
+import static com.shakil.homeapp.activities.utils.Constants.RentTable.COLUMN_RENT_MONTH_ID;
 import static com.shakil.homeapp.activities.utils.Constants.RentTable.COLUMN_RENT_MONTH_NAME;
-import static com.shakil.homeapp.activities.utils.Constants.RentTable.COLUMN_RENT_ROOM;
+import static com.shakil.homeapp.activities.utils.Constants.RentTable.COLUMN_RENT_ROOM_ID;
+import static com.shakil.homeapp.activities.utils.Constants.RentTable.COLUMN_RENT_ROOM_NAME;
 import static com.shakil.homeapp.activities.utils.Constants.RoomTable.COLUMN_ADVANCED_AMOUNT;
 import static com.shakil.homeapp.activities.utils.Constants.RoomTable.COLUMN_ASSOCIATE_METER_ID;
 import static com.shakil.homeapp.activities.utils.Constants.RoomTable.COLUMN_ASSOCIATE_METER_NAME;
@@ -88,7 +90,9 @@ public class DbHelperParent extends SQLiteOpenHelper {
 
     //region rent table starts
     private String CREATE_RENT_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_RENT + "("
-            + COLUMN_RENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_RENT_MONTH_NAME + " TEXT,"+ COLUMN_RENT_ROOM + " TEXT,"
+            + COLUMN_RENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_RENT_MONTH_NAME + " TEXT," + COLUMN_RENT_MONTH_ID + " INTEGER ,"
+            + COLUMN_RENT_ROOM_NAME + " TEXT," + COLUMN_RENT_ROOM_ID + " INTEGER ,"
             + COLUMN_RENT_AMOUNT + " REAL" + ")";
 
     private String DROP_RENT_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_RENT;
@@ -487,7 +491,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
     }
     //endregion
 
-    //region rent starts
+    //region add new rent
     public void addRent(Rent rent) {
         SQLiteDatabase db = this.getWritableDatabase();
 
