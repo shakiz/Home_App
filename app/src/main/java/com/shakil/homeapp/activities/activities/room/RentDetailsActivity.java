@@ -136,4 +136,13 @@ public class RentDetailsActivity extends AppCompatActivity {
         spinnerAdapter = new SpinnerAdapter();
         inputValidation = new InputValidation(this, activityNewRentDetailsBinding.mainLayout);
     }
+
+    //region activity components
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    //endregion
 }

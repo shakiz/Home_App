@@ -169,10 +169,14 @@ public class RoomActivity extends AppCompatActivity {
     }
 
 
+    //region activity components
+
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(RoomActivity.this, RoomListActivity.class));
+        super.onBackPressed();
     }
+
+    //endregion
 
     @Override
     protected void onDestroy() {

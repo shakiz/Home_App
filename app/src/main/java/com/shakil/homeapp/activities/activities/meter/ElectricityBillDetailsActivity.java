@@ -244,7 +244,7 @@ public class ElectricityBillDetailsActivity extends AppCompatActivity {
     //region activity components
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(ElectricityBillDetailsActivity.this, ElectricityBillListActivity.class));
+        super.onBackPressed();
     }
 
     @Override

@@ -152,8 +152,12 @@ public class NewMeterActivity extends AppCompatActivity {
         dbHelperParent.close();
     }
 
+    //region activity components
+
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(NewMeterActivity.this, MeterListActivity.class));
+        super.onBackPressed();
     }
+
+    //endregion
 }

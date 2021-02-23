@@ -38,4 +38,13 @@ public class TenantListActivity extends AppCompatActivity {
     private void binUiWithComponents(){
 
     }
+
+    //region activity components
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(TenantListActivity.this, MainActivity.class));
+    }
+
+    //endregion
 }

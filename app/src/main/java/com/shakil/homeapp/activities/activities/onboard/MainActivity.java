@@ -12,9 +12,13 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.navigation.NavigationView;
 import com.shakil.homeapp.R;
+import com.shakil.homeapp.activities.activities.meter.ElectricityBillDetailsActivity;
 import com.shakil.homeapp.activities.activities.meter.ElectricityBillListActivity;
 import com.shakil.homeapp.activities.activities.meter.MeterListActivity;
+import com.shakil.homeapp.activities.activities.meter.NewMeterActivity;
+import com.shakil.homeapp.activities.activities.room.RentDetailsActivity;
 import com.shakil.homeapp.activities.activities.room.RentListActivity;
+import com.shakil.homeapp.activities.activities.room.RoomActivity;
 import com.shakil.homeapp.activities.activities.room.RoomListActivity;
 import com.shakil.homeapp.activities.activities.tenant.NewTenantActivity;
 import com.shakil.homeapp.activities.activities.tenant.TenantListActivity;
@@ -132,6 +136,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.nav_tenant_list){
             startActivity(new Intent(MainActivity.this, TenantListActivity.class));
+        }
+        else if (id == R.id.nav_add_room){
+            startActivity(new Intent(MainActivity.this, RoomActivity.class));
+        }
+        else if (id == R.id.nav_add_meter){
+            startActivity(new Intent(MainActivity.this, NewMeterActivity.class));
+        }
+        else if (id == R.id.nav_new_rent){
+            startActivity(new Intent(MainActivity.this, RentDetailsActivity.class));
+        }
+        else if (id == R.id.nav_new_electricity_bill){
+            startActivity(new Intent(MainActivity.this, ElectricityBillDetailsActivity.class));
         }
         activityMainBinding.drawerLayout.closeDrawer(GravityCompat.START);
         return true;

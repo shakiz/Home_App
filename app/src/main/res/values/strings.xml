@@ -91,4 +91,5 @@
     <string name="zero">0</string>
     <string name="total_electricity_bill">Total Electricity Bill</string>
     <string name="month_name">Month Name</string>
+    <string name="electricity_bill">Electricity Bill</string>
 </resources>

@@ -4,6 +4,23 @@
     tools:showIn="navigation_view">
 
     <item
+        android:id="@+id/nav_add_room"
+        android:icon="@drawable/ic_rooms"
+        android:title="@string/add_room" />
+    <item
+        android:id="@+id/nav_add_meter"
+        android:icon="@drawable/ic_action_meter_unit"
+        android:title="@string/add_meter" />
+    <item
+        android:id="@+id/nav_new_rent"
+        android:icon="@drawable/ic_user"
+        android:title="@string/new_rent_details" />
+    <item
+        android:id="@+id/nav_new_electricity_bill"
+        android:icon="@drawable/ic_user"
+        android:title="@string/electricity_bill" />
+
+    <item
         android:id="@+id/nav_room_list"
         android:icon="@drawable/ic_rooms"
         android:title="@string/room_list" />
