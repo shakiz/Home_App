@@ -69,35 +69,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setData();
 
-        activityMainBinding.mAddMasterRoom.setOnClickListener(new View.OnClickListener() {
+        activityMainBinding.rentList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, RentListActivity.class));
             }
         });
 
-        activityMainBinding.mAddMasterElectricityBill.setOnClickListener(new View.OnClickListener() {
+        activityMainBinding.billList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, ElectricityBillListActivity.class));
             }
         });
 
-        activityMainBinding.meterDashboardCard.setOnClickListener(new View.OnClickListener() {
+        activityMainBinding.meterList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, MeterListActivity.class));
             }
         });
 
-        activityMainBinding.roomDashboardCard.setOnClickListener(new View.OnClickListener() {
+        activityMainBinding.roomList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, RoomListActivity.class));
             }
         });
 
-        activityMainBinding.tenantDashboardCard.setOnClickListener(new View.OnClickListener() {
+        activityMainBinding.tenantList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, NewTenantActivity.class));
@@ -107,9 +107,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //endregion
 
     private void setData() {
-        activityMainBinding.totalRooms.setText(getString(R.string.total_rooms)+" : "+dbHelperParent.getTotalRoomRows());
-        activityMainBinding.totalMeters.setText(getString(R.string.total_meters)+" : "+dbHelperParent.getTotalMeterRows());
-        utilsForAll.setCustomDesignTextView(R.id.totalRooms);
     }
 
     //region init components

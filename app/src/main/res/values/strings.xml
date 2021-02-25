@@ -98,4 +98,15 @@
     <string name="good_afternoon">Good Afternoon</string>
     <string name="good_evening">Good Evening</string>
     <string name="good_night">Good Night</string>
+    <string name="new_room">New Room</string>
+    <string name="add_a_room">Add a new room</string>
+    <string name="all_rooms">All rooms</string>
+    <string name="new_meter">New Meter</string>
+    <string name="add_a_meter">Add a new meter</string>
+    <string name="all_meters">All meters</string>
+    <string name="new_tenant">New Tenant</string>
+    <string name="add_a_tenant">Add a new tenant</string>
+    <string name="all_tenants">All tenants</string>
+    <string name="all_rents">All rents</string>
+    <string name="all_bills">All Bills</string>
 </resources>
