@@ -92,4 +92,10 @@
     <string name="total_electricity_bill">Total Electricity Bill</string>
     <string name="month_name">Month Name</string>
     <string name="electricity_bill">Electricity Bill</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="demo_month_and_day">16th May,1996 || Mon</string>
+    <string name="good_noon">Good Noon</string>
+    <string name="good_afternoon">Good Afternoon</string>
+    <string name="good_evening">Good Evening</string>
+    <string name="good_night">Good Night</string>
 </resources>

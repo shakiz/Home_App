@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //region UI interactions
     private void bindUIWithComponents() {
+        activityMainBinding.GreetingsText.setText(utilsForAll.setGreetings());
+        activityMainBinding.DateTimeText.setText(utilsForAll.getDateTimeText());
 
         setData();
 

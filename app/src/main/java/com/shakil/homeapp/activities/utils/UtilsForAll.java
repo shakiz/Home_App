@@ -8,6 +8,11 @@ import android.widget.TextView;
 
 import com.shakil.homeapp.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class UtilsForAll {
 
     private Context context;
@@ -49,4 +54,32 @@ public class UtilsForAll {
             return 0;
         }
     }
+
+    //region get greetings
+    public String setGreetings() {
+        String greetings = "";
+        Calendar calendar = Calendar.getInstance();
+        int timeOfTheDay = calendar.get(Calendar.HOUR_OF_DAY);
+        if (timeOfTheDay >= 0 && timeOfTheDay < 12) {
+            greetings = context.getString(R.string.good_morning);
+        } else if (timeOfTheDay >= 12 && timeOfTheDay < 16) {
+            greetings = context.getString(R.string.good_noon);
+        } else if (timeOfTheDay >= 16 && timeOfTheDay < 18) {
+            greetings = context.getString(R.string.good_afternoon);
+        } else if (timeOfTheDay >= 18 && timeOfTheDay < 20) {
+            greetings = context.getString(R.string.good_evening);
+        } else {
+            greetings = context.getString(R.string.good_night);
+        }
+        return greetings;
+    }
+    //endregion
+
+    //region get dateTime text
+    public String getDateTimeText() {
+        DateFormat df = new SimpleDateFormat("MMM d, yyyy || EEE");
+        String dateTimeText = df.format(new Date());
+        return dateTimeText;
+    }
+    //endregion
 }
