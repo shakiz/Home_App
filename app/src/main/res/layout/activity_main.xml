@@ -32,7 +32,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="256dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:scaleType="fitCenter">
 
                     <com.google.android.material.appbar.AppBarLayout
@@ -56,6 +57,151 @@
 
                     </com.google.android.material.appbar.AppBarLayout>
 
+                    <TextView
+                        android:id="@+id/GreetingsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:textColor="@color/md_green_800"
+                        android:textSize="24sp"
+                        android:text="@string/good_morning"/>
+
+                    <TextView
+                        android:id="@+id/DateTimeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_below="@+id/GreetingsText"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/md_grey_800"
+                        android:textStyle="bold"
+                        android:textSize="24sp"
+                        android:text="@string/demo_month_and_day"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:paddingBottom="24dp"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginRight="8dp"
+                            android:padding="4dp"
+                            android:background="@drawable/total_back"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:padding="2dp"
+                                android:text="@string/total_rooms"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/md_black_1000"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/totalRooms"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:padding="2dp"
+                                android:text="@string/zero"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/md_black_1000"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:padding="4dp"
+                            android:background="@drawable/total_back"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:padding="2dp"
+                                android:text="@string/total_meters"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/md_black_1000"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/totalMeters"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:padding="2dp"
+                                android:text="@string/zero"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/md_black_1000"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="8dp"
+                            android:padding="4dp"
+                            android:background="@drawable/total_back"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:padding="2dp"
+                                android:text="@string/total_tenants"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/md_black_1000"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/totalTenants"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:padding="2dp"
+                                android:text="@string/zero"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/md_black_1000"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
 
@@ -74,28 +220,10 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:id="@+id/mainLayout"
-                    android:layout_margin="8dp">
-
-                    <TextView
-                        android:id="@+id/GreetingsText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:textColor="@color/md_green_800"
-                        android:textSize="24sp"
-                        android:text="@string/good_morning"/>
-
-                    <TextView
-                        android:id="@+id/DateTimeText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/GreetingsText"
-                        android:layout_alignParentLeft="true"
-                        android:textColor="@color/md_grey_800"
-                        android:textStyle="bold"
-                        android:textSize="24sp"
-                        android:text="@string/demo_month_and_day"/>
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
