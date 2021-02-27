@@ -26,8 +26,7 @@
                 app:cardCornerRadius="24dp"
                 android:translationZ="4dp"
                 android:layout_marginTop="-16dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="false"
                 app:elevation="4dp">
 
                 <LinearLayout
@@ -77,7 +76,7 @@
                         android:layout_marginRight="16dp"
                         android:layout_below="@+id/GreetingsText"
                         android:layout_alignParentLeft="true"
-                        android:textColor="@color/md_grey_800"
+                        android:textColor="@color/md_green_800"
                         android:textStyle="bold"
                         android:textSize="24sp"
                         android:text="@string/demo_month_and_day"/>
@@ -85,10 +84,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:paddingBottom="24dp"
+                        android:layout_margin="16dp"
                         android:weightSum="3">
 
                         <LinearLayout
@@ -110,7 +106,7 @@
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:textColor="@color/md_black_1000"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/totalRooms"
@@ -123,7 +119,7 @@
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:textColor="@color/md_black_1000"
-                                android:textSize="14sp" />
+                                android:textSize="18sp" />
 
                         </LinearLayout>
 
@@ -147,7 +143,7 @@
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:textColor="@color/md_black_1000"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/totalMeters"
@@ -160,7 +156,7 @@
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:textColor="@color/md_black_1000"
-                                android:textSize="14sp" />
+                                android:textSize="18sp" />
 
                         </LinearLayout>
 
@@ -183,7 +179,7 @@
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:textColor="@color/md_black_1000"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/totalTenants"
@@ -196,11 +192,30 @@
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:textColor="@color/md_black_1000"
-                                android:textSize="14sp" />
+                                android:textSize="18sp" />
 
                         </LinearLayout>
 
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/moreDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginRight="16dp"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:ellipsize="end"
+                        android:drawableRight="@drawable/ic_arrow_right"
+                        android:drawablePadding="4dp"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:text="@string/details_here"
+                        android:layout_gravity="center|right"
+                        android:gravity="center|right"
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 

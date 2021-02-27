@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".activities.activities.room.RentListActivity"></activity>
+        <activity android:name=".activities.activities.dashboard.DashboardActivity"></activity>
+        <activity android:name=".activities.activities.room.RentListActivity" />
         <activity android:name=".activities.activities.meter.ElectricityBillListActivity" />
         <activity android:name=".activities.activities.tenant.NewTenantActivity" />
         <activity android:name=".activities.activities.tenant.TenantListActivity" />

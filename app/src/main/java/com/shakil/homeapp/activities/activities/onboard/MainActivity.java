@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.navigation.NavigationView;
 import com.shakil.homeapp.R;
+import com.shakil.homeapp.activities.activities.dashboard.DashboardActivity;
 import com.shakil.homeapp.activities.activities.meter.ElectricityBillDetailsActivity;
 import com.shakil.homeapp.activities.activities.meter.ElectricityBillListActivity;
 import com.shakil.homeapp.activities.activities.meter.MeterListActivity;
@@ -23,6 +24,7 @@ import com.shakil.homeapp.activities.activities.room.RoomListActivity;
 import com.shakil.homeapp.activities.activities.tenant.NewTenantActivity;
 import com.shakil.homeapp.activities.activities.tenant.TenantListActivity;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
+import com.shakil.homeapp.activities.model.dashboard.Dashboard;
 import com.shakil.homeapp.activities.utils.UtilsForAll;
 import com.shakil.homeapp.databinding.ActivityMainBinding;
 
@@ -64,10 +66,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //region UI interactions
     private void bindUIWithComponents() {
+        //region set text for greetings, dateTime, totalRooms, totalMeter, totalTenants
         activityMainBinding.GreetingsText.setText(utilsForAll.setGreetings());
         activityMainBinding.DateTimeText.setText(utilsForAll.getDateTimeText());
+        activityMainBinding.totalRooms.setText(""+dbHelperParent.getTotalRoomRows());
+        activityMainBinding.totalMeters.setText(""+dbHelperParent.getTotalMeterRows());
+        activityMainBinding.totalTenants.setText(""+dbHelperParent.getTotalTenantRows());
+        //endregion
 
-        setData();
+        activityMainBinding.moreDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+            }
+        });
 
         activityMainBinding.rentList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,14 +112,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         activityMainBinding.tenantList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, NewTenantActivity.class));
+                startActivity(new Intent(MainActivity.this, TenantListActivity.class));
             }
         });
     }
     //endregion
-
-    private void setData() {
-    }
 
     //region init components
     private void init() {

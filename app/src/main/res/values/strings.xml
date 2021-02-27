@@ -109,4 +109,6 @@
     <string name="all_tenants">All tenants</string>
     <string name="all_rents">All rents</string>
     <string name="all_bills">All Bills</string>
+    <string name="settings">Settings</string>
+    <string name="details_here">Details Here</string>
 </resources>

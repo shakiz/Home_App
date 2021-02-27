@@ -98,8 +98,8 @@ public class RentDetailsActivity extends AppCompatActivity {
         activityNewRentDetailsBinding.AssociateRoomId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                MonthId = position;
-                MonthStr = parent.getItemAtPosition(position).toString();
+                AssociateRoomId = position;
+                AssociateRoomStr = parent.getItemAtPosition(position).toString();
             }
 
             @Override

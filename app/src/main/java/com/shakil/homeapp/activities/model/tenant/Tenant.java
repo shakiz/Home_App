@@ -1,12 +1,54 @@
 package com.shakil.homeapp.activities.model.tenant;
 
-public class Tenant {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Tenant implements Parcelable {
     public int TenantId;
     private String TenantName;
     private String StartingMonth;
     private int StartingMonthId;
-    private String  AssociateMeter;
-    private int  AssociateMeterId;
+    private String AssociateRoom;
+    private int AssociateRoomId;
+
+    public Tenant() {
+    }
+
+    protected Tenant(Parcel in) {
+        TenantId = in.readInt();
+        TenantName = in.readString();
+        StartingMonth = in.readString();
+        StartingMonthId = in.readInt();
+        AssociateRoom = in.readString();
+        AssociateRoomId = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(TenantId);
+        dest.writeString(TenantName);
+        dest.writeString(StartingMonth);
+        dest.writeInt(StartingMonthId);
+        dest.writeString(AssociateRoom);
+        dest.writeInt(AssociateRoomId);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Tenant> CREATOR = new Creator<Tenant>() {
+        @Override
+        public Tenant createFromParcel(Parcel in) {
+            return new Tenant(in);
+        }
+
+        @Override
+        public Tenant[] newArray(int size) {
+            return new Tenant[size];
+        }
+    };
 
     public int getTenantId() {
         return TenantId;
@@ -40,19 +82,19 @@ public class Tenant {
         StartingMonthId = startingMonthId;
     }
 
-    public String getAssociateMeter() {
-        return AssociateMeter;
+    public String getAssociateRoom() {
+        return AssociateRoom;
     }
 
-    public void setAssociateMeter(String associateMeter) {
-        AssociateMeter = associateMeter;
+    public void setAssociateRoom(String associateRoom) {
+        AssociateRoom = associateRoom;
     }
 
-    public int getAssociateMeterId() {
-        return AssociateMeterId;
+    public int getAssociateRoomId() {
+        return AssociateRoomId;
     }
 
-    public void setAssociateMeterId(int associateMeterId) {
-        AssociateMeterId = associateMeterId;
+    public void setAssociateRoomId(int associateRoomId) {
+        AssociateRoomId = associateRoomId;
     }
 }

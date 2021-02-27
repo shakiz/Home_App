@@ -72,8 +72,10 @@ public class DbHelperParent extends SQLiteOpenHelper {
 
     //region tenant table starts
     private String CREATE_TENANT_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_TENANT + "("
-            + COLUMN_TENANT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + Constants.TenantTable.COLUMN_TENANT_NAME + " TEXT,"+ COLUMN_START_MONTH_NAME + " TEXT,"
-            + COLUMN_START_MONTH_ID+ " REAL," + COLUMN_ASSOCIATE_METER_ID+ " REAL,"+ COLUMN_ASSOCIATE_METER_NAME + " TEXT" + ")";
+            + COLUMN_TENANT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            Constants.TenantTable.COLUMN_TENANT_NAME + " TEXT,"+ COLUMN_START_MONTH_NAME + " TEXT,"
+            + COLUMN_START_MONTH_ID+ " REAL," + COLUMN_ASSOCIATE_ROOM_NAME+ " REAL,"+
+            COLUMN_ASSOCIATE_ROOM_ID + " TEXT" + ")";
 
     private String DROP_TENANT_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME_TENANT;
     //endregion
@@ -395,7 +397,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
     }
     //endregion
 
-    //region tenant starts
+    //region add a new tenant
     public void addTenant(Tenant tenant) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -403,27 +405,44 @@ public class DbHelperParent extends SQLiteOpenHelper {
         values.put(Constants.TenantTable.COLUMN_TENANT_NAME, tenant.getTenantName());
         values.put(COLUMN_START_MONTH_ID, tenant.getStartingMonthId());
         values.put(COLUMN_START_MONTH_NAME, tenant.getStartingMonth());
-        values.put(COLUMN_ASSOCIATE_METER_ID, tenant.getAssociateMeterId());
-        values.put(COLUMN_ASSOCIATE_METER_NAME, tenant.getAssociateMeter());
+        values.put(COLUMN_ASSOCIATE_ROOM_NAME, tenant.getAssociateRoom());
+        values.put(COLUMN_ASSOCIATE_ROOM_ID, tenant.getAssociateRoomId());
         // Inserting Row
         db.insert(Constants.TABLE_NAME_TENANT, null, values);
         Log.v("----------------","");
         Log.v(TAG,"Tenant Data");
         Log.v("Tenant Name : ", tenant.getTenantName());
         Log.v("Start Date : ", tenant.getStartingMonth());
-        Log.v("Associate Meter : ", tenant.getAssociateMeter());
         Log.v("----------------","");
         db.close();
     }
+    //endregion
 
+    //region update tenant entry
+    public void updateTenant(Tenant record, int tenantId) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TENANT_NAME, record.getTenantName());
+        values.put(COLUMN_START_MONTH_NAME, record.getStartingMonth());
+        values.put(COLUMN_START_MONTH_ID, record.getStartingMonthId());
+        values.put(COLUMN_ASSOCIATE_ROOM_NAME, record.getAssociateRoom());
+        values.put(COLUMN_ASSOCIATE_ROOM_ID, record.getAssociateRoomId());
+
+        // updating Row
+        sqLiteDatabase.update(Constants.TABLE_NAME_TENANT, values, COLUMN_TENANT_ID+" = "+tenantId, null);
+    }
+    //endregion
+
+    //region get all tenants
     public ArrayList<Tenant> getAllTenantDetails() {
         // array of columns to fetch
         String[] columns = {
-                Constants.TenantTable.COLUMN_TENANT_NAME,
+                COLUMN_TENANT_NAME,
                 COLUMN_START_MONTH_ID,
                 COLUMN_START_MONTH_NAME,
-                COLUMN_ASSOCIATE_METER_ID,
-                COLUMN_ASSOCIATE_METER_NAME
+                COLUMN_ASSOCIATE_ROOM_NAME,
+                COLUMN_ASSOCIATE_ROOM_ID
         };
         // sorting orders
         String sortOrder =
@@ -446,8 +465,8 @@ public class DbHelperParent extends SQLiteOpenHelper {
                 tenant.setTenantName(cursor.getString(cursor.getColumnIndex(Constants.TenantTable.COLUMN_TENANT_NAME)));
                 tenant.setStartingMonthId(cursor.getInt(cursor.getColumnIndex(COLUMN_START_MONTH_ID)));
                 tenant.setStartingMonth(cursor.getString(cursor.getColumnIndex(COLUMN_START_MONTH_NAME)));
-                tenant.setAssociateMeterId(cursor.getInt(cursor.getColumnIndex(COLUMN_ASSOCIATE_METER_ID)));
-                tenant.setAssociateMeter(cursor.getString(cursor.getColumnIndex(COLUMN_ASSOCIATE_METER_NAME)));
+                tenant.setAssociateRoom(cursor.getString(cursor.getColumnIndex(COLUMN_ASSOCIATE_ROOM_NAME)));
+                tenant.setAssociateRoomId(cursor.getInt(cursor.getColumnIndex(COLUMN_ASSOCIATE_ROOM_ID)));
                 // Adding food item record to list
                 tenants.add(tenant);
             } while (cursor.moveToNext());
@@ -457,7 +476,9 @@ public class DbHelperParent extends SQLiteOpenHelper {
         // return roomModelList list
         return tenants;
     }
+    //endregion
 
+    //region get all tenants name
     public ArrayList<String> getTenantNames() {
         // array of columns to fetch
         String[] columns = {
@@ -488,6 +509,16 @@ public class DbHelperParent extends SQLiteOpenHelper {
         db.close();
         // return roomModelList list
         return tenantNameList;
+    }
+    //endregion
+
+    //region returns number of total tenants
+    public int getTotalTenantRows(){
+        String query = "select * from "+Constants.TABLE_NAME_TENANT;
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery(query ,null);
+        int count = cursor.getCount();
+        return count;
     }
     //endregion
 
