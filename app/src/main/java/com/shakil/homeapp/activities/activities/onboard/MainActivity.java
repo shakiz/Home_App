@@ -2,6 +2,8 @@ package com.shakil.homeapp.activities.activities.onboard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -21,6 +23,7 @@ import com.shakil.homeapp.activities.activities.room.RentDetailsActivity;
 import com.shakil.homeapp.activities.activities.room.RentListActivity;
 import com.shakil.homeapp.activities.activities.room.RoomActivity;
 import com.shakil.homeapp.activities.activities.room.RoomListActivity;
+import com.shakil.homeapp.activities.activities.settings.SettingsActivity;
 import com.shakil.homeapp.activities.activities.tenant.NewTenantActivity;
 import com.shakil.homeapp.activities.activities.tenant.TenantListActivity;
 import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
@@ -126,8 +129,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //endregion
 
     //region activity components
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_settings:
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                return true;
+        }
         return toggle != null && toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 

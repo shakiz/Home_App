@@ -168,7 +168,6 @@ public class RoomActivity extends AppCompatActivity {
         dbHelperParent = new DbHelperParent(this);
     }
 
-
     //region activity components
 
     @Override
