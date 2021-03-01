@@ -9,10 +9,13 @@ import android.view.View;
 
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.activities.onboard.MainActivity;
+import com.shakil.homeapp.activities.dbhelper.DbHelperParent;
 import com.shakil.homeapp.databinding.ActivityDashboardBinding;
 
 public class DashboardActivity extends AppCompatActivity {
     private ActivityDashboardBinding activityDashboardBinding;
+    private DbHelperParent dbHelperParent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,11 @@ public class DashboardActivity extends AppCompatActivity {
 
     //region init objects
     private void init(){
-
+        activityDashboardBinding.TotalMeters.setText(String.valueOf(dbHelperParent.getTotalMeterRows()));
+        activityDashboardBinding.TotalRooms.setText(String.valueOf(dbHelperParent.getTotalRoomRows()));
+        activityDashboardBinding.TotalTenants.setText(String.valueOf(dbHelperParent.getTotalTenantRows()));
+        activityDashboardBinding.TotalRentCollection.setText(String.valueOf(dbHelperParent.getTotalRentAmount()));
+        activityDashboardBinding.TotalBillCollection.setText(String.valueOf(dbHelperParent.getTotalElectricityBillCollection()));
     }
     //endregion
 
@@ -40,6 +47,12 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(DashboardActivity.this, MainActivity.class));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelperParent.close();
     }
 
     //endregion

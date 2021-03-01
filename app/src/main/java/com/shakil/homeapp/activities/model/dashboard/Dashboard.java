@@ -1,7 +1,11 @@
 package com.shakil.homeapp.activities.model.dashboard;
 
 public class Dashboard {
-    private int total_room , total_meter , total_earnings , imageResId , totalUnit;
+    private int total_room;
+    private int total_meter;
+    private int total_earnings;
+    private int imageResId;
+    private int totalUnit;
 
     public Dashboard(int total_room, int total_meter, int total_earnings, int imageResId, int totalUnit) {
         this.total_room = total_room;

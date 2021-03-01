@@ -544,7 +544,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
     }
     //endregion
 
-    //region update an electricity bill
+    //region update a rent
     public void updateRent(Rent rent, int rentId) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
@@ -602,6 +602,38 @@ public class DbHelperParent extends SQLiteOpenHelper {
         db.close();
         // return roomModelList list
         return rents;
+    }
+    //endregion
+
+    //region returns total rent amount
+    public int getTotalRentAmount(){
+        int rentAmount = 0;
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_RENT_ID,
+                COLUMN_RENT_AMOUNT
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_RENT_ID + " DESC";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Constants.TABLE_NAME_RENT, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                rentAmount = rentAmount + cursor.getInt(cursor.getColumnIndex(COLUMN_RENT_AMOUNT));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        // return roomModelList list
+        return rentAmount;
     }
     //endregion
 
@@ -687,6 +719,38 @@ public class DbHelperParent extends SQLiteOpenHelper {
         db.close();
         // return roomModelList list
         return billList;
+    }
+    //endregion
+
+    //region total electricity bill collection
+    public int getTotalElectricityBillCollection(){
+        int totalBill = 0;
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_ELECTRICITY_BILL_ID,
+                COLUMN_METER_TOTAL_BILL
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_ELECTRICITY_BILL_ID + " DESC";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Constants.TABLE_NAME_ELECTRiICITY_BILL, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                totalBill = totalBill + cursor.getInt(cursor.getColumnIndex(COLUMN_METER_TOTAL_BILL));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        // return roomModelList list
+        return totalBill;
     }
     //endregion
 }

@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/md_white_1000"
-        tools:context="sl.lms.savethechildren.activities.onboarding.DashBoardActivity">
+        tools:context=".activities.activities.dashboard.DashboardActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -68,9 +68,9 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/TotalCourseCount"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:id="@+id/TotalRooms"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
                                 android:gravity="center"
                                 android:textSize="35sp"
                                 android:layout_margin="10dp"
@@ -79,7 +79,6 @@
                                 android:text="0"/>
 
                             <TextView
-                                android:id="@+id/TotalRooms"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
                                 android:gravity="center"
@@ -116,9 +115,9 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/TotalQuizCount"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:id="@+id/TotalMeters"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
                                 android:gravity="center"
                                 android:layout_margin="10dp"
                                 android:textSize="35sp"
@@ -127,7 +126,6 @@
                                 android:text="@string/zero"/>
 
                             <TextView
-                                android:id="@+id/TotalMeters"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
                                 android:gravity="center"
@@ -164,9 +162,9 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/TotalTimeSpent"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:id="@+id/TotalTenants"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
                                 android:gravity="center"
                                 android:layout_margin="10dp"
                                 android:textSize="35sp"
@@ -176,7 +174,6 @@
                                 android:text="@string/zero"/>
 
                             <TextView
-                                android:id="@+id/TotalTenants"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
                                 android:gravity="center"

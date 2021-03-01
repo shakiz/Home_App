@@ -1,20 +1,48 @@
 package com.shakil.homeapp.activities.activities.settings;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.shakil.homeapp.R;
 import com.shakil.homeapp.activities.activities.onboard.MainActivity;
+import com.shakil.homeapp.databinding.ActivitySettingsBinding;
 
 public class SettingsActivity extends AppCompatActivity {
+    private ActivitySettingsBinding activitySettingsBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        activitySettingsBinding = DataBindingUtil.setContentView(this, R.layout.activity_settings);
+
+        setSupportActionBar(activitySettingsBinding.toolBar);
+
+        activitySettingsBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        init();
+        bindUiWithComponents();
     }
+
+    //region init objects
+    private void init() {
+
+    }
+    //endregion
+
+    //region perform all UI operations
+    private void bindUiWithComponents() {
+
+    }
+    //endregion
 
     //region activity components
 
