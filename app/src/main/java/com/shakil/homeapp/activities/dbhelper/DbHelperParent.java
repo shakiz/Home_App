@@ -81,7 +81,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
     //endregion
 
     //region electricity bill table starts
-    private String CREATE_ELECTRICITY_BILL_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_ELECTRiICITY_BILL + "("
+    private String CREATE_ELECTRICITY_BILL_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_ELECTRICITY_BILL + "("
             + COLUMN_ELECTRICITY_BILL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ROOM_ID + " INTEGER ," + COLUMN_METER_ID + " INTEGER ,"
             + COLUMN_METER_PRESENT_UNIT + " INTEGER ," + COLUMN_METER_PAST_UNIT + " INTEGER ," + COLUMN_UNIT_PRICE + " REAL ,"
             + COLUMN_METER_TOTAL_UNIT + " INTEGER,"
@@ -650,7 +650,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         values.put(COLUMN_METER_TOTAL_UNIT, electricityBill.getTotalUnit());
         values.put(COLUMN_METER_TOTAL_BILL, electricityBill.getTotalBill());
         // Inserting Row
-        db.insert(Constants.TABLE_NAME_ELECTRiICITY_BILL, null, values);
+        db.insert(Constants.TABLE_NAME_ELECTRICITY_BILL, null, values);
         db.close();
     }
     //endregion
@@ -669,7 +669,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         values.put(COLUMN_METER_PAST_UNIT, electricityBill.getTotalBill());
 
         //updating Row
-        sqLiteDatabase.update(Constants.TABLE_NAME_ELECTRiICITY_BILL, values, COLUMN_ELECTRICITY_BILL_ID +" = "+billId, null);
+        sqLiteDatabase.update(Constants.TABLE_NAME_ELECTRICITY_BILL, values, COLUMN_ELECTRICITY_BILL_ID +" = "+billId, null);
     }
     //endregion
 
@@ -692,7 +692,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
         ArrayList<ElectricityBill> billList = new ArrayList<ElectricityBill>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(Constants.TABLE_NAME_ELECTRiICITY_BILL, //Table to query
+        Cursor cursor = db.query(Constants.TABLE_NAME_ELECTRICITY_BILL, //Table to query
                 columns,    //columns to return
                 null,        //columns for the WHERE clause
                 null,        //The values for the WHERE clause
@@ -735,7 +735,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
                 COLUMN_ELECTRICITY_BILL_ID + " DESC";
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(Constants.TABLE_NAME_ELECTRiICITY_BILL, //Table to query
+        Cursor cursor = db.query(Constants.TABLE_NAME_ELECTRICITY_BILL, //Table to query
                 columns,    //columns to return
                 null,        //columns for the WHERE clause
                 null,        //The values for the WHERE clause

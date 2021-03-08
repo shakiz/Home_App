@@ -8,7 +8,7 @@ public class Constants {
     public static String TABLE_NAME_METER = "meter";
     public static String TABLE_NAME_ROOM = "room";
     public static String TABLE_NAME_TENANT = "tenant";
-    public static String TABLE_NAME_ELECTRiICITY_BILL = "electricity_bill";
+    public static String TABLE_NAME_ELECTRICITY_BILL = "electricity_bill";
     public static String TABLE_NAME_RENT = "rent";
 
     public class RoomTable{

@@ -22,6 +22,7 @@ public class DashboardActivity extends AppCompatActivity {
         activityDashboardBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
 
         init();
+        bindUiWithComponents();
         setSupportActionBar(activityDashboardBinding.toolBar);
 
         activityDashboardBinding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -34,6 +35,12 @@ public class DashboardActivity extends AppCompatActivity {
 
     //region init objects
     private void init(){
+        dbHelperParent = new DbHelperParent(this);
+    }
+    //endregion
+
+    //region init objects
+    private void bindUiWithComponents(){
         activityDashboardBinding.TotalMeters.setText(String.valueOf(dbHelperParent.getTotalMeterRows()));
         activityDashboardBinding.TotalRooms.setText(String.valueOf(dbHelperParent.getTotalRoomRows()));
         activityDashboardBinding.TotalTenants.setText(String.valueOf(dbHelperParent.getTotalTenantRows()));
