@@ -193,10 +193,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:translationZ="10dp"
+                    android:translationZ="4dp"
                     app:cardBackgroundColor="@color/md_white_1000"
-                    app:cardElevation="5dp"
-                    android:elevation="5dp"
+                    app:cardElevation="4dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     app:cardCornerRadius="5dp">
@@ -230,7 +229,7 @@
                                     android:layout_height="42dp"
                                     android:scaleType="centerInside"
                                     android:padding="8dp"
-                                    android:background="@drawable/ic_money"/>
+                                    android:background="@drawable/ic_taka"/>
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -334,6 +333,13 @@
 
                         </LinearLayout>
 
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginRight="24dp"
+                            android:background="@color/md_red_300"/>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -357,7 +363,7 @@
                                     android:layout_height="42dp"
                                     android:scaleType="centerInside"
                                     android:padding="8dp"
-                                    android:background="@drawable/ic_action_meter_unit"/>
+                                    android:background="@drawable/ic_electric_meter"/>
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -413,8 +419,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:cardBackgroundColor="@color/md_white_1000"
-                    app:cardElevation="5dp"
-                    android:translationZ="10dp"
+                    app:cardElevation="2dp"
+                    android:translationZ="5dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     app:cardCornerRadius="10dp">

@@ -5,7 +5,7 @@
     <string name="no_of_rooms">Number of Rooms</string>
     <string name="total_earnings">Total Earnings</string>
     <string name="no_of_meters">Number Of Meters</string>
-    <string name="total_unit">Total unit</string>
+    <string name="total_unit">Total Unit</string>
     <string name="add_room">Add New Room</string>
     <string name="add_meter">Add New Meter</string>
     <string name="room_hint">Enter Room Name</string>
