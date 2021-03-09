@@ -1,57 +1,67 @@
 package com.shakil.homeapp.activities.model.dashboard;
 
 public class Dashboard {
-    private int total_room;
-    private int total_meter;
-    private int total_earnings;
-    private int imageResId;
-    private int totalUnit;
+    private int TotalRoom;
+    private int TotalMeter;
+    private int TotalTenant;
+    private int TotalElectricityBill;
+    private int TotalRentAmount;
+    private int TotalUnit;
+    private int TotalAppVisit;
 
-    public Dashboard(int total_room, int total_meter, int total_earnings, int imageResId, int totalUnit) {
-        this.total_room = total_room;
-        this.total_meter = total_meter;
-        this.total_earnings = total_earnings;
-        this.imageResId = imageResId;
-        this.totalUnit = totalUnit;
+    public int getTotalRoom() {
+        return TotalRoom;
     }
 
-    public int getTotal_room() {
-        return total_room;
+    public void setTotalRoom(int totalRoom) {
+        TotalRoom = totalRoom;
     }
 
-    public void setTotal_room(int total_room) {
-        this.total_room = total_room;
+    public int getTotalMeter() {
+        return TotalMeter;
     }
 
-    public int getTotal_meter() {
-        return total_meter;
+    public void setTotalMeter(int totalMeter) {
+        TotalMeter = totalMeter;
     }
 
-    public void setTotal_meter(int total_meter) {
-        this.total_meter = total_meter;
+    public int getTotalTenant() {
+        return TotalTenant;
     }
 
-    public int getTotal_earnings() {
-        return total_earnings;
+    public void setTotalTenant(int totalTenant) {
+        TotalTenant = totalTenant;
     }
 
-    public void setTotal_earnings(int total_earnings) {
-        this.total_earnings = total_earnings;
+    public int getTotalElectricityBill() {
+        return TotalElectricityBill;
     }
 
-    public int getImageResId() {
-        return imageResId;
+    public void setTotalElectricityBill(int totalElectricityBill) {
+        TotalElectricityBill = totalElectricityBill;
     }
 
-    public void setImageResId(int imageResId) {
-        this.imageResId = imageResId;
+    public int getTotalRentAmount() {
+        return TotalRentAmount;
+    }
+
+    public void setTotalRentAmount(int totalRentAmount) {
+        TotalRentAmount = totalRentAmount;
     }
 
     public int getTotalUnit() {
-        return totalUnit;
+        return TotalUnit;
     }
 
     public void setTotalUnit(int totalUnit) {
-        this.totalUnit = totalUnit;
+        TotalUnit = totalUnit;
+    }
+
+    public int getTotalAppVisit() {
+        return TotalAppVisit;
+    }
+
+    public void setTotalAppVisit(int totalAppVisit) {
+        TotalAppVisit = totalAppVisit;
     }
 }

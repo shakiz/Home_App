@@ -34,7 +34,7 @@ public class RecyclerMeterDashboardAdapter extends RecyclerView.Adapter<Recycler
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.totalUnit.setText(dashboardList.get(position).getTotalUnit());
-        holder.totalMeter.setText(dashboardList.get(position).getTotal_meter());
+        holder.totalMeter.setText(dashboardList.get(position).getTotalMeter());
         holder.adddNewMeter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

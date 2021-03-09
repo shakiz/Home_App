@@ -34,8 +34,8 @@ public class RecyclerRoomDashboardAdapter extends RecyclerView.Adapter<RecyclerR
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.totalRoom.setText(dashboardList.get(position).getTotal_room());
-        holder.totalEarnings.setText(dashboardList.get(position).getTotal_earnings());
+        holder.totalRoom.setText(dashboardList.get(position).getTotalRoom());
+        holder.totalEarnings.setText(dashboardList.get(position).getTotalRentAmount());
         holder.adddNewRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

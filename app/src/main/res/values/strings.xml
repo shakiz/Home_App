@@ -122,4 +122,6 @@
     <string name="change_language">Change Language</string>
     <string name="google_login">Google Login</string>
     <string name="save_your_data_using_google_account">Save your data using your google account</string>
+    <string name="units">Units</string>
+    <string name="app_visited">App Visited</string>
 </resources>

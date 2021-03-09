@@ -44,8 +44,8 @@ public class DashboardActivity extends AppCompatActivity {
         activityDashboardBinding.TotalMeters.setText(String.valueOf(dbHelperParent.getTotalMeterRows()));
         activityDashboardBinding.TotalRooms.setText(String.valueOf(dbHelperParent.getTotalRoomRows()));
         activityDashboardBinding.TotalTenants.setText(String.valueOf(dbHelperParent.getTotalTenantRows()));
-        activityDashboardBinding.TotalRentCollection.setText(String.valueOf(dbHelperParent.getTotalRentAmount()));
-        activityDashboardBinding.TotalBillCollection.setText(String.valueOf(dbHelperParent.getTotalElectricityBillCollection()));
+        activityDashboardBinding.TotalRentAmount.setText(String.valueOf(dbHelperParent.getTotalRentAmount()));
+        activityDashboardBinding.TotalElectricityBill.setText(String.valueOf(dbHelperParent.getTotalElectricityBillCollection()));
     }
     //endregion
 
