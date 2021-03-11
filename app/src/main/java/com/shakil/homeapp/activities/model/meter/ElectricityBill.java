@@ -6,7 +6,9 @@ import android.os.Parcelable;
 public class ElectricityBill implements Parcelable {
     private int BillId;
     private int MeterId;
+    private String MeterName;
     private int RoomId;
+    private String RoomName;
     private double UnitPrice;
     private int PresentUnit;
     private int PastUnit;
@@ -19,7 +21,9 @@ public class ElectricityBill implements Parcelable {
     protected ElectricityBill(Parcel in) {
         BillId = in.readInt();
         MeterId = in.readInt();
+        MeterName = in.readString();
         RoomId = in.readInt();
+        RoomName = in.readString();
         UnitPrice = in.readDouble();
         PresentUnit = in.readInt();
         PastUnit = in.readInt();
@@ -31,7 +35,9 @@ public class ElectricityBill implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(BillId);
         dest.writeInt(MeterId);
+        dest.writeString(MeterName);
         dest.writeInt(RoomId);
+        dest.writeString(RoomName);
         dest.writeDouble(UnitPrice);
         dest.writeInt(PresentUnit);
         dest.writeInt(PastUnit);
@@ -72,12 +78,28 @@ public class ElectricityBill implements Parcelable {
         MeterId = meterId;
     }
 
+    public String getMeterName() {
+        return MeterName;
+    }
+
+    public void setMeterName(String meterName) {
+        MeterName = meterName;
+    }
+
     public int getRoomId() {
         return RoomId;
     }
 
     public void setRoomId(int roomId) {
         RoomId = roomId;
+    }
+
+    public String getRoomName() {
+        return RoomName;
+    }
+
+    public void setRoomName(String roomName) {
+        RoomName = roomName;
     }
 
     public double getUnitPrice() {

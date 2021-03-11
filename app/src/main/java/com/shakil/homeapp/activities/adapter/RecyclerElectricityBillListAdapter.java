@@ -46,8 +46,8 @@ public class RecyclerElectricityBillListAdapter extends RecyclerView.Adapter<Rec
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ElectricityBill electricityBill = arrayList.get(position);
-        holder.MeterId.setText(String.valueOf(electricityBill.getMeterId()));
-        holder.RoomId.setText(String.valueOf(electricityBill.getRoomId()));
+        holder.MeterId.setText(electricityBill.getMeterName());
+        holder.RoomId.setText(electricityBill.getRoomName());
         holder.TotalUnit.setText(String.valueOf(electricityBill.getTotalUnit()));
         holder.TotalBill.setText(String.valueOf(electricityBill.getTotalUnit() * electricityBill.getUnitPrice()));
         holder.item_card_view.setOnClickListener(new View.OnClickListener() {

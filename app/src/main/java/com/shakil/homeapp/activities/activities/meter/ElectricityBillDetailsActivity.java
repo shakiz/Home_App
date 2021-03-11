@@ -120,8 +120,10 @@ public class ElectricityBillDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 inputValidation.checkEditTextInput(new int[]{R.id.PresentUnit,R.id.PastUnit,R.id.UnitPrice},"Please check your value");
                 if (!meterNameStr.equals("Select Data") && !roomNameStr.equals("Select Data")){
-                    electricityBill.setMeterId(1);
-                    electricityBill.setRoomId(1);
+                    electricityBill.setMeterId(AssociateMeterId);
+                    electricityBill.setRoomId(AssociateRoomId);
+                    electricityBill.setMeterName(meterNameStr);
+                    electricityBill.setRoomName(roomNameStr);
                     electricityBill.setUnitPrice(Integer.parseInt(activityMeterCostDetailsBinding.UnitPrice.getText().toString()));
                     electricityBill.setPresentUnit(Integer.parseInt(activityMeterCostDetailsBinding.PresentUnit.getText().toString()));
                     electricityBill.setPastUnit(Integer.parseInt(activityMeterCostDetailsBinding.PastUnit.getText().toString()));

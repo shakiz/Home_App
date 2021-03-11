@@ -45,7 +45,9 @@ public class Constants {
     public class ElectricityBillTable{
         public static final String COLUMN_ELECTRICITY_BILL_ID = "bill_id";
         public static final String COLUMN_ROOM_ID = "room_id";
+        public static final String COLUMN_ROOM_NAME = "room_name";
         public static final String COLUMN_METER_ID = "meter_id";
+        public static final String COLUMN_METER_NAME = "meter_name";
         public static final String COLUMN_METER_PRESENT_UNIT = "present_unit";
         public static final String COLUMN_METER_PAST_UNIT = "past_unit";
         public static final String COLUMN_UNIT_PRICE = "unit_price";

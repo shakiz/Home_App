@@ -82,7 +82,9 @@ public class DbHelperParent extends SQLiteOpenHelper {
 
     //region electricity bill table starts
     private String CREATE_ELECTRICITY_BILL_TABLE = "CREATE TABLE " + Constants.TABLE_NAME_ELECTRICITY_BILL + "("
-            + COLUMN_ELECTRICITY_BILL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ROOM_ID + " INTEGER ," + COLUMN_METER_ID + " INTEGER ,"
+            + COLUMN_ELECTRICITY_BILL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ROOM_ID + " INTEGER ,"
+            + COLUMN_METER_ID + " INTEGER ,"
+            + COLUMN_METER_NAME + " TEXT ," + COLUMN_ROOM_NAME + " TEXT ,"
             + COLUMN_METER_PRESENT_UNIT + " INTEGER ," + COLUMN_METER_PAST_UNIT + " INTEGER ," + COLUMN_UNIT_PRICE + " REAL ,"
             + COLUMN_METER_TOTAL_UNIT + " INTEGER,"
             + COLUMN_METER_TOTAL_BILL + " REAL" + ")";
@@ -438,6 +440,7 @@ public class DbHelperParent extends SQLiteOpenHelper {
     public ArrayList<Tenant> getAllTenantDetails() {
         // array of columns to fetch
         String[] columns = {
+                COLUMN_TENANT_ID,
                 COLUMN_TENANT_NAME,
                 COLUMN_START_MONTH_ID,
                 COLUMN_START_MONTH_NAME,
@@ -472,7 +475,6 @@ public class DbHelperParent extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         cursor.close();
-        db.close();
         // return roomModelList list
         return tenants;
     }
@@ -644,6 +646,8 @@ public class DbHelperParent extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_METER_ID, electricityBill.getMeterId());
         values.put(COLUMN_ROOM_ID, electricityBill.getRoomId());
+        values.put(COLUMN_ROOM_NAME, electricityBill.getRoomName());
+        values.put(COLUMN_METER_NAME, electricityBill.getMeterName());
         values.put(COLUMN_UNIT_PRICE, electricityBill.getUnitPrice());
         values.put(COLUMN_METER_PRESENT_UNIT, electricityBill.getPresentUnit());
         values.put(COLUMN_METER_PAST_UNIT, electricityBill.getPastUnit());
@@ -662,6 +666,8 @@ public class DbHelperParent extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_METER_ID, electricityBill.getMeterId());
         values.put(COLUMN_ROOM_ID, electricityBill.getRoomId());
+        values.put(COLUMN_ROOM_NAME, electricityBill.getRoomName());
+        values.put(COLUMN_METER_NAME, electricityBill.getMeterName());
         values.put(COLUMN_UNIT_PRICE, electricityBill.getUnitPrice());
         values.put(COLUMN_METER_PRESENT_UNIT, electricityBill.getPresentUnit());
         values.put(COLUMN_METER_PAST_UNIT, electricityBill.getPastUnit());
@@ -680,6 +686,8 @@ public class DbHelperParent extends SQLiteOpenHelper {
                 COLUMN_ELECTRICITY_BILL_ID,
                 COLUMN_METER_ID,
                 COLUMN_ROOM_ID,
+                COLUMN_METER_NAME,
+                COLUMN_ROOM_NAME,
                 COLUMN_UNIT_PRICE,
                 COLUMN_METER_PRESENT_UNIT,
                 COLUMN_METER_PAST_UNIT,
@@ -706,6 +714,8 @@ public class DbHelperParent extends SQLiteOpenHelper {
                 electricityBill.setBillId(cursor.getInt(cursor.getColumnIndex(COLUMN_ELECTRICITY_BILL_ID)));
                 electricityBill.setMeterId(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_ID)));
                 electricityBill.setRoomId(cursor.getInt(cursor.getColumnIndex(COLUMN_ROOM_ID)));
+                electricityBill.setMeterName(cursor.getString(cursor.getColumnIndex(COLUMN_METER_NAME)));
+                electricityBill.setRoomName(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM_NAME)));
                 electricityBill.setUnitPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_UNIT_PRICE)));
                 electricityBill.setPresentUnit(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_PRESENT_UNIT)));
                 electricityBill.setPastUnit(cursor.getInt(cursor.getColumnIndex(COLUMN_METER_PAST_UNIT)));

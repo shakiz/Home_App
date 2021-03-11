@@ -92,5 +92,11 @@ public class TenantListActivity extends AppCompatActivity {
         startActivity(new Intent(TenantListActivity.this, MainActivity.class));
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelperParent.close();
+    }
+
     //endregion
 }
