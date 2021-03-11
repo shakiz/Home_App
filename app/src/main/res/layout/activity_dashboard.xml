@@ -67,7 +67,7 @@
                             android:layout_margin="10dp"
                             android:orientation="vertical">
 
-                            <TextView
+                            <com.hanks.htextview.evaporate.EvaporateTextView
                                 android:id="@+id/TotalRooms"
                                 android:layout_width="72dp"
                                 android:layout_height="72dp"
@@ -114,7 +114,7 @@
                             android:layout_margin="10dp"
                             android:orientation="vertical">
 
-                            <TextView
+                            <com.hanks.htextview.evaporate.EvaporateTextView
                                 android:id="@+id/TotalMeters"
                                 android:layout_width="72dp"
                                 android:layout_height="72dp"
@@ -161,7 +161,7 @@
                             android:layout_margin="10dp"
                             android:orientation="vertical">
 
-                            <TextView
+                            <com.hanks.htextview.evaporate.EvaporateTextView
                                 android:id="@+id/TotalTenants"
                                 android:layout_width="72dp"
                                 android:layout_height="72dp"
@@ -249,7 +249,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:orientation="horizontal">
-                                        <TextView
+
+                                        <com.hanks.htextview.evaporate.EvaporateTextView
                                             android:id="@+id/TotalRentAmount"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
@@ -258,15 +259,7 @@
                                             android:layout_marginRight="2dp"
                                             android:textStyle="bold"
                                             android:textColor="@color/md_grey_800"
-                                            android:text="@string/zero"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:gravity="center"
-                                            android:textSize="16sp"
-                                            android:textColor="@color/md_grey_700"
-                                            android:text="@string/taka"/>
+                                            android:text="@string/zero_taka"/>
 
                                     </LinearLayout>
 
@@ -306,7 +299,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:orientation="horizontal">
-                                        <TextView
+
+                                        <com.hanks.htextview.evaporate.EvaporateTextView
                                             android:id="@+id/TotalElectricityBill"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
@@ -315,15 +309,7 @@
                                             android:layout_marginRight="2dp"
                                             android:textStyle="bold"
                                             android:textColor="@color/md_grey_800"
-                                            android:text="0"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:gravity="center"
-                                            android:textSize="16sp"
-                                            android:textColor="@color/md_grey_700"
-                                            android:text="@string/taka"/>
+                                            android:text="@string/zero_taka"/>
 
                                     </LinearLayout>
 
@@ -383,7 +369,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:orientation="horizontal">
-                                        <TextView
+
+                                        <com.hanks.htextview.evaporate.EvaporateTextView
                                             android:id="@+id/TotalUnit"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
@@ -392,15 +379,7 @@
                                             android:layout_marginRight="2dp"
                                             android:textStyle="bold"
                                             android:textColor="@color/md_grey_800"
-                                            android:text="@string/zero"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:gravity="center"
-                                            android:textSize="16sp"
-                                            android:textColor="@color/md_grey_700"
-                                            android:text="@string/units"/>
+                                            android:text="@string/zero_unit"/>
 
                                     </LinearLayout>
 
@@ -470,6 +449,7 @@
                                     android:textSize="15sp"
                                     android:textColor="@color/md_grey_700"
                                     android:text="@string/app_visited"/>
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -478,6 +458,7 @@
                                     android:textSize="15sp"
                                     android:textColor="@color/md_grey_700"
                                     android:text="@string/start_bracket"/>
+
                                 <TextView
                                     android:id="@+id/AppVisitCount"
                                     android:layout_width="wrap_content"
@@ -487,6 +468,7 @@
                                     android:textStyle="bold"
                                     android:textColor="@color/md_green_800"
                                     android:text="@string/zero"/>
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -495,6 +477,7 @@
                                     android:textSize="15sp"
                                     android:textColor="@color/md_grey_700"
                                     android:text="@string/end_bracket"/>
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"

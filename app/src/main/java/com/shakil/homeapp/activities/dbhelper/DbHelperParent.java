@@ -763,4 +763,36 @@ public class DbHelperParent extends SQLiteOpenHelper {
         return totalBill;
     }
     //endregion
+
+    //region total units
+    public int getTotalUnit(){
+        int totalUnit = 0;
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_ELECTRICITY_BILL_ID,
+                COLUMN_METER_TOTAL_UNIT
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_ELECTRICITY_BILL_ID + " DESC";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Constants.TABLE_NAME_ELECTRICITY_BILL, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                totalUnit = totalUnit + cursor.getInt(cursor.getColumnIndex(COLUMN_METER_TOTAL_UNIT));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        // return roomModelList list
+        return totalUnit;
+    }
+    //endregion
 }

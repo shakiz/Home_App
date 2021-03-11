@@ -41,11 +41,12 @@ public class DashboardActivity extends AppCompatActivity {
 
     //region init objects
     private void bindUiWithComponents(){
-        activityDashboardBinding.TotalMeters.setText(String.valueOf(dbHelperParent.getTotalMeterRows()));
-        activityDashboardBinding.TotalRooms.setText(String.valueOf(dbHelperParent.getTotalRoomRows()));
-        activityDashboardBinding.TotalTenants.setText(String.valueOf(dbHelperParent.getTotalTenantRows()));
-        activityDashboardBinding.TotalRentAmount.setText(String.valueOf(dbHelperParent.getTotalRentAmount()));
-        activityDashboardBinding.TotalElectricityBill.setText(String.valueOf(dbHelperParent.getTotalElectricityBillCollection()));
+        activityDashboardBinding.TotalMeters.animateText(String.valueOf(dbHelperParent.getTotalMeterRows()));
+        activityDashboardBinding.TotalRooms.animateText(String.valueOf(dbHelperParent.getTotalRoomRows()));
+        activityDashboardBinding.TotalTenants.animateText(String.valueOf(dbHelperParent.getTotalTenantRows()));
+        activityDashboardBinding.TotalRentAmount.animateText(String.valueOf(dbHelperParent.getTotalRentAmount())+" "+getString(R.string.taka));
+        activityDashboardBinding.TotalElectricityBill.animateText(String.valueOf(dbHelperParent.getTotalElectricityBillCollection())+" "+getString(R.string.taka));
+        activityDashboardBinding.TotalUnit.animateText(String.valueOf(dbHelperParent.getTotalUnit())+" "+getString(R.string.units));
     }
     //endregion
 

@@ -124,4 +124,6 @@
     <string name="save_your_data_using_google_account">Save your data using your google account</string>
     <string name="units">Units</string>
     <string name="app_visited">App Visited</string>
+    <string name="zero_taka">0 Taka</string>
+    <string name="zero_unit">0 Unit</string>
 </resources>
